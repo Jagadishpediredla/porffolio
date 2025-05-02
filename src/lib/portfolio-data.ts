@@ -23,7 +23,7 @@ export const portfolioData: PortfolioData = {
     { id: "cert2", title: "VLSI for Beginners", issuer: "NIELIT", description: "Fundamental course on VLSI concepts for beginners." },
     { id: "cert3", title: "Internet Of Things", issuer: "APSSDC", description: "Course covering the basics and applications of IoT."},
     { id: "cert4", title: "Introduction to Embedded System Design", issuer: "NPTEL", description: "Completed NPTEL course on embedded system design fundamentals."},
-    { id: "cert5", title: "Semiconductor Fabrication 101", issuer: "Purdue University", description: "Introduction to the processes involved in semiconductor fabrication."},
+    { id: "cert5", title: "Semiconductor Fabrication 101", issuer: "Texas Instruments", description: "Introduction to the processes involved in semiconductor fabrication."}, // Corrected Issuer
   ],
   experience: [
     {

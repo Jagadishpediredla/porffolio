@@ -4,7 +4,7 @@
 import type React from 'react'; // Import type for React
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
-import { CheckCircle, ExternalLink } from "lucide-react";
+import { CheckCircle, ExternalLink, Building2 } from "lucide-react"; // Added Building2 icon
 import Link from "next/link";
 import Image from 'next/image'; // Import next/image
 import { Badge } from "./ui/badge";
@@ -20,7 +20,7 @@ export default function CertificationsTab({ portfolioData }: CertificationsTabPr
 
   return (
     <Card className="w-full bg-card border border-border shadow-lg hover:shadow-xl transition-shadow duration-300 overflow-hidden animate-fade-in">
-      <CardHeader className="pt-6">
+      <CardHeader className="pt-6"> {/* Added top padding */}
         <CardTitle className="text-2xl font-semibold flex items-center gap-2">
            <CheckCircle className="h-6 w-6 text-primary"/>
            Certifications
@@ -39,8 +39,12 @@ export default function CertificationsTab({ portfolioData }: CertificationsTabPr
             >
               <AccordionTrigger className="px-6 py-4 text-left font-medium hover:no-underline hover:bg-muted/50 transition-colors duration-200 [&[data-state=open]>svg]:text-primary [&[data-state=open]>svg]:rotate-180">
                 <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center w-full pr-4">
-                   <span className="font-semibold text-foreground">{cert.title}</span>
-                   <span className="text-sm text-muted-foreground mt-1 sm:mt-0">{cert.issuer}</span>
+                   <span className="font-semibold text-foreground flex-grow mr-2">{cert.title}</span>
+                   {/* Added generic icon */}
+                   <span className="text-sm text-muted-foreground mt-1 sm:mt-0 flex items-center gap-1 flex-shrink-0">
+                        <Building2 className="h-4 w-4" />
+                        {cert.issuer}
+                    </span>
                  </div>
               </AccordionTrigger>
               <AccordionContent className="px-6 pb-4 pt-0 text-sm text-muted-foreground bg-muted/30">
@@ -61,7 +65,7 @@ export default function CertificationsTab({ portfolioData }: CertificationsTabPr
 
                  {/* Placeholder Text */}
                  <p className="mb-4 text-xs italic text-muted-foreground/80">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                    This certification validates skills in {cert.title}. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
                  </p>
 
                  {cert.skills && cert.skills.length > 0 && (
