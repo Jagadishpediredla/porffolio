@@ -37,7 +37,8 @@ const certifications = [
 export default function CertificationsTab() {
   return (
     <Card className="w-full bg-card border border-border shadow-lg hover:shadow-xl transition-shadow duration-300 overflow-hidden">
-      <CardHeader className="animate-fade-in" style={{ animationDelay: '0.1s' }}>
+       {/* Apply animation class directly */}
+      <CardHeader className="animate-fade-in">
         <CardTitle className="text-2xl font-semibold flex items-center gap-2">
            <CheckCircle className="h-6 w-6 text-primary"/>
            Certifications
@@ -50,8 +51,8 @@ export default function CertificationsTab() {
             <AccordionItem
               value={`item-${cert.id}`}
               key={cert.id}
-              className="border border-border rounded-lg overflow-hidden shadow-sm hover:border-primary/50 hover:shadow-md transition-all duration-300 bg-background animate-fade-in"
-              style={{ animationDelay: `${0.2 + index * 0.1}s` }} // Staggered animation
+              className="border border-border rounded-lg overflow-hidden shadow-sm hover:border-primary/50 hover:shadow-md transition-all duration-300 bg-background animate-fade-in" // Apply animation class
+              style={{ animationDelay: `${0.1 + index * 0.1}s` }} // Staggered animation delay
             >
               <AccordionTrigger className="px-6 py-4 text-left font-medium hover:bg-muted/50 transition-colors duration-200 [&[data-state=open]>svg]:text-primary [&[data-state=open]>svg]:rotate-180">
                 <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center w-full pr-4">
@@ -59,7 +60,8 @@ export default function CertificationsTab() {
                    <span className="text-sm text-muted-foreground mt-1 sm:mt-0">{cert.issuer}</span>
                  </div>
               </AccordionTrigger>
-              <AccordionContent className="px-6 pb-4 pt-0 text-sm text-muted-foreground bg-muted/30 transition-all data-[state=open]:animate-accordion-down data-[state=closed]:animate-accordion-up">
+              {/* Accordion content animation is handled by the component itself */}
+              <AccordionContent className="px-6 pb-4 pt-0 text-sm text-muted-foreground bg-muted/30">
                  <p className="mb-2">{cert.date}</p>
                  <p className="mb-4">{cert.description}</p>
                  <div className="flex flex-wrap gap-2 mb-4">

@@ -7,14 +7,16 @@ import Link from 'next/link';
 export default function PersonalInfoTab() {
   return (
     <Card className="w-full bg-card border border-border shadow-lg hover:shadow-xl transition-shadow duration-300 overflow-hidden">
-      <CardHeader className="text-center pt-8 animate-fade-in" style={{ animationDelay: '0.1s' }}>
-        <Avatar className="mx-auto h-24 w-24 mb-4 ring-2 ring-primary ring-offset-4 ring-offset-background transform transition-transform duration-300 hover:scale-105">
+       {/* Apply animation class directly to header elements */}
+      <CardHeader className="text-center pt-8">
+        <Avatar className="mx-auto h-24 w-24 mb-4 ring-2 ring-primary ring-offset-4 ring-offset-background transform transition-transform duration-300 hover:scale-105 animate-fade-in" style={{ animationDelay: '0.1s' }}>
           <AvatarImage src="https://picsum.photos/200/200" alt="Profile Picture" data-ai-hint="person profile" />
           <AvatarFallback>JD</AvatarFallback>
         </Avatar>
         <CardTitle className="text-3xl font-semibold animate-fade-in" style={{ animationDelay: '0.2s' }}>John Doe</CardTitle>
         <p className="text-primary font-medium animate-fade-in" style={{ animationDelay: '0.3s' }}>Software Engineer</p>
       </CardHeader>
+       {/* Apply animation class directly to content elements */}
       <CardContent className="space-y-6 text-center pb-8">
         <p className="text-muted-foreground leading-relaxed max-w-xl mx-auto animate-fade-in" style={{ animationDelay: '0.4s' }}>
           Passionate and innovative Software Engineer with 5+ years of experience in building scalable web applications and leading projects from conception to deployment. Always eager to learn new technologies and solve complex problems.

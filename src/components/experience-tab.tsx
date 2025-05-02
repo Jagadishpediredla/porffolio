@@ -36,7 +36,8 @@ const experiences = [
 export default function ExperienceTab() {
   return (
     <Card className="w-full bg-card border border-border shadow-lg hover:shadow-xl transition-shadow duration-300 overflow-hidden">
-      <CardHeader className="animate-fade-in" style={{ animationDelay: '0.1s' }}>
+      {/* Apply animation class directly */}
+      <CardHeader className="animate-fade-in">
         <CardTitle className="text-2xl font-semibold flex items-center gap-2">
            <Briefcase className="h-6 w-6 text-primary"/>
            Work Experience
@@ -47,8 +48,8 @@ export default function ExperienceTab() {
         {experiences.map((exp, index) => (
           <div
              key={exp.id}
-             className="animate-fade-in"
-             style={{ animationDelay: `${0.2 + index * 0.15}s` }} // Staggered animation
+             className="animate-fade-in" // Apply animation class
+             style={{ animationDelay: `${0.1 + index * 0.15}s` }} // Staggered animation delay
           >
             <div className="flex flex-col md:flex-row justify-between mb-2">
                <h3 className="text-xl font-semibold text-foreground">{exp.title}</h3>
