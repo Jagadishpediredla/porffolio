@@ -3,7 +3,7 @@
 import type React from 'react'; // Import type for React
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { Github, Linkedin, Mail, MapPin, Code, Zap, Smile, Languages } from "lucide-react"; // Added icons
+import { Github, Linkedin, Mail, MapPin, Code, Zap, Smile, Languages, Phone } from "lucide-react"; // Added Phone icon
 import { Button } from "./ui/button";
 import Link from 'next/link';
 import { Badge } from "@/components/ui/badge"; // Import Badge
@@ -88,18 +88,25 @@ export default function PersonalInfoTab({ portfolioData }: PersonalInfoTabProps)
         <Separator className="my-6" />
 
         {/* Contact & Location Section */}
-        <section aria-labelledby="contact-title" className="flex flex-col md:flex-row justify-center items-center gap-4 md:gap-8">
-             <h2 id="contact-title" className="sr-only">Contact Information</h2>
-             <div className="flex items-center space-x-2 text-muted-foreground">
+         <section aria-labelledby="contact-location-title" className="flex flex-col md:flex-row justify-center items-center gap-y-4 md:gap-x-8 text-muted-foreground">
+             <h2 id="contact-location-title" className="sr-only">Contact and Location</h2>
+             <div className="flex items-center space-x-2">
                  <MapPin className="h-4 w-4" />
                  <span>{personalInfo.location || 'Location not specified'}</span>
              </div>
-             {/* Email is now in social links */}
-             <div className="flex items-center space-x-2 text-muted-foreground">
-                 {/* Phone is now in social links (WhatsApp) */}
-                 {/* <span>{personalInfo.phone}</span> */}
+             {/* Moved Contact Text Here */}
+             <div className="flex items-center space-x-2">
+                  <Mail className="h-4 w-4" />
+                  <a href={`mailto:${personalInfo.email}`} className="hover:text-primary transition-colors duration-200">{personalInfo.email}</a>
+              </div>
+              <div className="flex items-center space-x-2">
+                 {/* Using generic Phone icon here */}
+                 <Phone className="h-4 w-4" />
+                 <span>{personalInfo.phone}</span>
              </div>
-        </section>
+         </section>
+
+        <Separator className="my-6" />
 
         {/* Social Links Section */}
         <section aria-labelledby="social-links-title" className="flex justify-center space-x-4 pt-4">
@@ -127,7 +134,8 @@ export default function PersonalInfoTab({ portfolioData }: PersonalInfoTabProps)
           </Button>
         </section>
 
-        <Separator className="my-6" />
+
+         <Separator className="my-6" />
 
          {/* Technical Skills Section */}
          <section aria-labelledby="tech-skills-title">
