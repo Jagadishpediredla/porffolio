@@ -75,16 +75,16 @@ export default {
   				from: { height: 'var(--radix-accordion-content-height)', opacity: '1' },
           to: { height: '0', opacity: '0' }, // Removed transform
   			},
-        'fade-in': { // Refined fade-in
-          '0%': { opacity: '0', transform: 'translateY(8px) scale(0.98)' },
-          '100%': { opacity: '1', transform: 'translateY(0) scale(1)' },
+        'fade-in': { // Simplified fade-in
+          '0%': { opacity: '0' },
+          '100%': { opacity: '1' },
         },
   		},
   		animation: {
         // Adjusted durations and easing for smoother feel
   			'accordion-down': 'accordion-down 0.2s ease-out forwards',
         'accordion-up': 'accordion-up 0.2s ease-out forwards',
-        'fade-in': 'fade-in 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards', // Slightly faster fade-in
+        'fade-in': 'fade-in 0.5s ease-out forwards', // Use ease-out for fade-in
   		},
       fontFamily: {
         sans: ['var(--font-sans)', 'ui-sans-serif', 'system-ui', 'sans-serif', '"Apple Color Emoji"', '"Segoe UI Emoji"', '"Segoe UI Symbol"', '"Noto Color Emoji"'], // Add Inter font variable
