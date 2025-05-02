@@ -28,14 +28,15 @@ export default function Home() {
           {portfolioData.personalInfo?.name || "Persona Canvas"}
         </h1>
         <p className="text-lg text-muted-foreground">
-          A Showcase of Skills and Projects {/* Updated text */}
+          {/* Updated text */}
+          A Showcase of Skills, Experience, and Projects
         </p>
       </header>
 
       <div className="w-full max-w-5xl">
         <Tabs defaultValue="personal-info" className="w-full">
-          {/* Increased bottom margin for TabsList */}
-          <TabsList className="grid w-full grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-2 mb-12 bg-muted/50 rounded-lg p-1 transition-all duration-300">
+          {/* Increased bottom margin significantly for TabsList */}
+          <TabsList className="grid w-full grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-2 mb-16 bg-muted/50 rounded-lg p-1 transition-all duration-300">
             {tabsConfig.map((tab) => (
               <TabsTrigger
                 key={tab.value}
@@ -49,12 +50,12 @@ export default function Home() {
             ))}
           </TabsList>
 
-          {/* Render Tab Content - Increased top margin */}
+          {/* Render Tab Content - Removed top margin */}
           {tabsConfig.map((tab) => (
              <TabsContent
                key={tab.value}
                value={tab.value}
-               className="mt-16 min-h-[300px]" // Increased top margin
+               className="min-h-[300px]" // Removed mt-16
              >
                <tab.Component />
              </TabsContent>
