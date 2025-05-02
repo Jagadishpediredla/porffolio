@@ -68,33 +68,25 @@ export default {
   		},
   		keyframes: {
   			'accordion-down': {
-  				from: {
-  					height: '0'
-  				},
-  				to: {
-  					height: 'var(--radix-accordion-content-height)'
-  				}
+  				from: { height: '0', opacity: '0', transform: 'translateY(-5px)' },
+          to: { height: 'var(--radix-accordion-content-height)', opacity: '1', transform: 'translateY(0)' },
   			},
   			'accordion-up': {
-  				from: {
-  					height: 'var(--radix-accordion-content-height)'
-  				},
-  				to: {
-  					height: '0'
-  				}
+  				from: { height: 'var(--radix-accordion-content-height)', opacity: '1', transform: 'translateY(0)' },
+          to: { height: '0', opacity: '0', transform: 'translateY(-5px)' },
   			},
-        'fade-in': { // Added fade-in animation
-          '0%': { opacity: '0', transform: 'translateY(10px)' },
-          '100%': { opacity: '1', transform: 'translateY(0)' },
+        'fade-in': { // Refined fade-in
+          '0%': { opacity: '0', transform: 'translateY(8px) scale(0.98)' },
+          '100%': { opacity: '1', transform: 'translateY(0) scale(1)' },
         },
   		},
   		animation: {
-  			'accordion-down': 'accordion-down 0.2s ease-out',
-  			'accordion-up': 'accordion-up 0.2s ease-out',
-        'fade-in': 'fade-in 0.5s ease-out forwards', // Added fade-in animation utility
+  			'accordion-down': 'accordion-down 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards',
+        'accordion-up': 'accordion-up 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards',
+        'fade-in': 'fade-in 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards',
   		},
-      fontFamily: { // Add font family if needed, e.g., using Inter from Google Fonts
-        sans: ['var(--font-sans)', 'sans-serif'],
+      fontFamily: {
+        sans: ['var(--font-sans)', 'ui-sans-serif', 'system-ui', 'sans-serif', '"Apple Color Emoji"', '"Segoe UI Emoji"', '"Segoe UI Symbol"', '"Noto Color Emoji"'], // Add Inter font variable
       },
   	}
   },

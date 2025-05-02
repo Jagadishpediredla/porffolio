@@ -3,7 +3,10 @@ import { Inter } from 'next/font/google'; // Changed font to Inter for better re
 import './globals.css';
 import { Toaster } from "@/components/ui/toaster"; // Import Toaster
 
-const inter = Inter({ subsets: ['latin'], variable: '--font-sans' }); // Use Inter font
+const inter = Inter({
+  subsets: ['latin'],
+  variable: '--font-sans', // Define CSS variable
+});
 
 export const metadata: Metadata = {
   title: 'Persona Canvas - Portfolio', // Updated title
@@ -16,8 +19,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="dark"> {/* Apply dark theme globally */}
-      <body className={`${inter.variable} font-sans antialiased`}> {/* Use Inter font */}
+    <html lang="en" className={`${inter.variable} dark`}> {/* Apply font variable and dark theme */}
+      <body className={`font-sans antialiased`}> {/* Apply font-sans utility class */}
         {children}
         <Toaster /> {/* Add Toaster component */}
       </body>

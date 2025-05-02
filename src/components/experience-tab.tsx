@@ -35,29 +35,36 @@ const experiences = [
 
 export default function ExperienceTab() {
   return (
-    <Card className="w-full bg-card border border-border shadow-lg hover:shadow-xl transition-shadow duration-300">
-      <CardHeader>
+    <Card className="w-full bg-card border border-border shadow-lg hover:shadow-xl transition-shadow duration-300 overflow-hidden">
+      <CardHeader className="animate-fade-in" style={{ animationDelay: '0.1s' }}>
         <CardTitle className="text-2xl font-semibold flex items-center gap-2">
            <Briefcase className="h-6 w-6 text-primary"/>
            Work Experience
         </CardTitle>
+         <CardDescription>My professional journey and key roles.</CardDescription>
       </CardHeader>
       <CardContent className="space-y-8">
         {experiences.map((exp, index) => (
-          <div key={exp.id}>
+          <div
+             key={exp.id}
+             className="animate-fade-in"
+             style={{ animationDelay: `${0.2 + index * 0.15}s` }} // Staggered animation
+          >
             <div className="flex flex-col md:flex-row justify-between mb-2">
                <h3 className="text-xl font-semibold text-foreground">{exp.title}</h3>
-               <span className="text-sm text-muted-foreground md:text-right">{exp.duration}</span>
+               <span className="text-sm text-muted-foreground md:text-right mt-1 md:mt-0">{exp.duration}</span>
             </div>
              <div className="flex flex-col md:flex-row justify-between mb-3 text-muted-foreground">
                <p className="font-medium">{exp.company}</p>
                <p className="text-sm">{exp.location}</p>
             </div>
-            <CardDescription className="mb-4">{exp.description}</CardDescription>
+            <CardDescription className="mb-4 text-base leading-relaxed">{exp.description}</CardDescription>
             <div className="flex flex-wrap gap-2">
-               {exp.skills.map(skill => <Badge key={skill} variant="outline">{skill}</Badge>)}
+               {exp.skills.map(skill => (
+                 <Badge key={skill} variant="outline" className="transition-transform duration-200 hover:scale-105">{skill}</Badge>
+                ))}
             </div>
-            {index < experiences.length - 1 && <Separator className="my-8" />}
+            {index < experiences.length - 1 && <Separator className="my-8 bg-border/50" />}
           </div>
         ))}
       </CardContent>

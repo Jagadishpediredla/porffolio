@@ -51,7 +51,7 @@ const projects = [
 export default function ProjectsTab() {
   return (
     <Card className="w-full bg-card border-border shadow-lg hover:shadow-xl transition-shadow duration-300 overflow-hidden">
-      <CardHeader>
+      <CardHeader className="animate-fade-in" style={{ animationDelay: '0.1s' }}>
          <CardTitle className="text-2xl font-semibold flex items-center gap-2">
            <FolderGit2 className="h-6 w-6 text-primary"/>
            Projects Showcase
@@ -59,35 +59,43 @@ export default function ProjectsTab() {
          <CardDescription>A selection of my recent work.</CardDescription>
       </CardHeader>
       <CardContent className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        {projects.map((project) => (
-          <Card key={project.id} className="flex flex-col overflow-hidden bg-background shadow-md hover:shadow-lg transition-shadow duration-300 border border-border hover:border-primary/50">
-             <div className="relative w-full h-48">
+        {projects.map((project, index) => (
+          <Card
+            key={project.id}
+            className="flex flex-col overflow-hidden bg-background shadow-md hover:shadow-lg transition-all duration-300 border border-border hover:border-primary/50 group animate-fade-in"
+            style={{ animationDelay: `${0.2 + index * 0.1}s` }} // Staggered animation
+          >
+             {/* Image container with overflow hidden and hover effect */}
+             <div className="relative w-full h-48 overflow-hidden">
                <Image
                 src={project.imageUrl}
                 alt={`${project.title} screenshot`}
                 layout="fill"
                 objectFit="cover"
-                className="transition-transform duration-500 hover:scale-105"
+                className="transition-transform duration-500 group-hover:scale-105" // Scale on parent hover
                 data-ai-hint={project.imageHint}
+                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" // Responsive image sizes
               />
              </div>
             <CardHeader>
-              <CardTitle className="text-xl font-semibold">{project.title}</CardTitle>
+              <CardTitle className="text-xl font-semibold group-hover:text-primary transition-colors duration-200">{project.title}</CardTitle>
                <div className="flex flex-wrap gap-1 pt-2">
-                 {project.tags.map(tag => <Badge key={tag} variant="secondary">{tag}</Badge>)}
+                 {project.tags.map(tag => (
+                   <Badge key={tag} variant="secondary" className="transition-transform duration-200 hover:scale-105">{tag}</Badge>
+                  ))}
                </div>
             </CardHeader>
             <CardContent className="flex-grow">
-              <CardDescription>{project.description}</CardDescription>
+              <CardDescription className="text-base">{project.description}</CardDescription>
             </CardContent>
-            <CardFooter className="flex justify-end space-x-2 bg-muted/30 p-4 mt-auto">
-              <Button variant="outline" size="sm" asChild className="hover:bg-accent hover:text-accent-foreground transition-colors duration-200">
-                <Link href={project.githubLink} target="_blank" rel="noopener noreferrer">
+            <CardFooter className="flex justify-end space-x-2 bg-muted/30 p-4 mt-auto border-t border-border/50">
+              <Button variant="outline" size="sm" asChild className="hover:bg-accent hover:text-accent-foreground transition-all duration-200 hover:scale-105 focus:scale-105">
+                <Link href={project.githubLink} target="_blank" rel="noopener noreferrer" aria-label={`View ${project.title} on GitHub`}>
                   <Github className="mr-1 h-4 w-4" /> GitHub
                 </Link>
               </Button>
-              <Button variant="default" size="sm" asChild className="bg-primary hover:bg-primary/90 text-primary-foreground transition-colors duration-200">
-                <Link href={project.liveLink} target="_blank" rel="noopener noreferrer">
+              <Button variant="default" size="sm" asChild className="bg-primary hover:bg-primary/90 text-primary-foreground transition-all duration-200 hover:scale-105 focus:scale-105">
+                <Link href={project.liveLink} target="_blank" rel="noopener noreferrer" aria-label={`View live demo of ${project.title}`}>
                   <ExternalLink className="mr-1 h-4 w-4" /> Live Demo
                 </Link>
               </Button>

@@ -3,7 +3,9 @@
 @tailwind utilities;
 
 body {
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans), Arial, Helvetica, sans-serif; /* Use Inter font variable */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 @layer base {
@@ -20,8 +22,8 @@ body {
     --secondary-foreground: 240 5.9% 10%;
     --muted: 240 4.8% 95.9%;
     --muted-foreground: 240 3.8% 46.1%;
-    --accent: 240 4.8% 95.9%;
-    --accent-foreground: 240 5.9% 10%;
+    --accent: 180 100% 95%; /* Lighter Teal for accent */
+    --accent-foreground: 180 100% 20%; /* Darker Teal text on accent */
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 98%;
     --border: 240 5.9% 90%;
@@ -46,36 +48,36 @@ body {
   .dark {
     --background: 240 10% 3.9%; /* Dark Gray */
     --foreground: 0 0% 98%; /* Light Gray/White */
-    --card: 240 10% 3.9%;
+    --card: 240 10% 6.9%; /* Slightly lighter dark gray for cards */
     --card-foreground: 0 0% 98%;
     --popover: 240 10% 3.9%;
     --popover-foreground: 0 0% 98%;
-    --primary: 180 100% 25%; /* Teal */
-    --primary-foreground: 0 0% 98%; /* Light Gray/White */
+    --primary: 180 100% 30%; /* Slightly brighter Teal in dark mode */
+    --primary-foreground: 0 0% 98%;
     --secondary: 240 3.7% 15.9%;
     --secondary-foreground: 0 0% 98%;
     --muted: 240 3.7% 15.9%;
     --muted-foreground: 240 5% 64.9%;
-    --accent: 240 3.7% 15.9%;
-    --accent-foreground: 0 0% 98%;
+    --accent: 180 100% 15%; /* Darker Teal accent in dark mode */
+    --accent-foreground: 180 100% 85%; /* Lighter Teal text on dark accent */
     --destructive: 0 62.8% 30.6%;
     --destructive-foreground: 0 0% 98%;
     --border: 240 3.7% 15.9%;
     --input: 240 3.7% 15.9%;
-    --ring: 180 100% 35%; /* Lighter Teal for focus rings */
+    --ring: 180 100% 40%; /* Slightly brighter Teal ring in dark mode */
     --chart-1: 220 70% 50%;
     --chart-2: 160 60% 45%;
     --chart-3: 30 80% 55%;
     --chart-4: 280 65% 60%;
     --chart-5: 340 75% 55%;
-    --sidebar-background: 240 10% 3.9%; /* Dark Gray */
-    --sidebar-foreground: 0 0% 98%; /* Light Gray/White */
-    --sidebar-primary: 180 100% 25%; /* Teal */
-    --sidebar-primary-foreground: 0 0% 98%; /* Light Gray/White */
+    --sidebar-background: 240 10% 3.9%;
+    --sidebar-foreground: 0 0% 98%;
+    --sidebar-primary: 180 100% 30%;
+    --sidebar-primary-foreground: 0 0% 98%;
     --sidebar-accent: 240 3.7% 15.9%;
     --sidebar-accent-foreground: 0 0% 98%;
     --sidebar-border: 240 3.7% 15.9%;
-    --sidebar-ring: 180 100% 35%; /* Lighter Teal for focus rings */
+    --sidebar-ring: 180 100% 40%;
   }
 }
 
@@ -89,18 +91,44 @@ body {
   }
 }
 
-/* Add subtle animation for tab content */
+/* More refined animations */
 @layer components {
   .tab-content {
+    /* Applied via className="tab-content" in page.tsx */
     @apply opacity-0 animate-fade-in;
+  }
+
+  /* Add subtle hover transforms */
+  .hover-lift {
+    @apply transition-transform duration-200 ease-out hover:-translate-y-1;
   }
 }
 
+/* Keyframes for animations */
 @keyframes fade-in {
-  from { opacity: 0; transform: translateY(10px); }
-  to { opacity: 1; transform: translateY(0); }
+  from { opacity: 0; transform: translateY(8px) scale(0.98); } /* Slightly smaller start */
+  to { opacity: 1; transform: translateY(0) scale(1); }
 }
 
+@keyframes accordion-down {
+  from { height: 0; opacity: 0; transform: translateY(-5px); }
+  to { height: var(--radix-accordion-content-height); opacity: 1; transform: translateY(0); }
+}
+
+@keyframes accordion-up {
+  from { height: var(--radix-accordion-content-height); opacity: 1; transform: translateY(0); }
+  to { height: 0; opacity: 0; transform: translateY(-5px); }
+}
+
+/* Animation utilities */
 .animate-fade-in {
-  animation: fade-in 0.5s ease-out forwards;
+  animation: fade-in 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards; /* Smoother easing */
+}
+
+.animate-accordion-down {
+  animation: accordion-down 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+}
+
+.animate-accordion-up {
+  animation: accordion-up 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
 }
