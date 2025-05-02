@@ -1,73 +1,185 @@
+'use client';
+
+import type React from 'react'; // Import type for React
+import { useState, useEffect } from 'react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Briefcase } from "lucide-react";
+import { Briefcase, GraduationCap } from "lucide-react"; // Added GraduationCap
 import { Separator } from "./ui/separator";
 import { Badge } from "./ui/badge";
-
-const experiences = [
-  {
-    id: 1,
-    title: "Senior Software Engineer",
-    company: "Tech Innovations Inc.",
-    duration: "June 2021 - Present",
-    location: "San Francisco, CA",
-    description: "Led the development of a new microservices architecture, improving system scalability by 40%. Mentored junior engineers and contributed to code reviews.",
-    skills: ["Microservices", "Go", "Kubernetes", "AWS", "Leadership"]
-  },
-  {
-    id: 2,
-    title: "Software Engineer",
-    company: "Web Solutions Co.",
-    duration: "Jan 2019 - May 2021",
-    location: "Remote",
-    description: "Developed and maintained client-facing web applications using React and Node.js. Collaborated with designers to implement responsive UIs.",
-     skills: ["React", "Node.js", "JavaScript", "CSS", "Agile"]
-  },
-  {
-    id: 3,
-    title: "Junior Developer",
-    company: "Startup Hub",
-    duration: "July 2017 - Dec 2018",
-    location: "Austin, TX",
-    description: "Assisted senior developers in building features for a SaaS platform. Gained experience with full-stack development and version control.",
-     skills: ["Python", "Django", "HTML", "Git", "SQL"]
-  },
-];
+import { Skeleton } from "@/components/ui/skeleton"; // Import Skeleton
+import { getPortfolioData, type Experience, type Education } from '@/lib/firebase/database'; // Import function and types
 
 export default function ExperienceTab() {
+  const [experiences, setExperiences] = useState<Experience[]>([]);
+  const [education, setEducation] = useState<Education[]>([]); // State for education
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      setLoading(true);
+      setError(null);
+      try {
+        const data = await getPortfolioData();
+        if (data) {
+           setExperiences(data.experience ? Object.values(data.experience) : []);
+           setEducation(data.education ? Object.values(data.education) : []); // Fetch education
+        } else {
+           setExperiences([]);
+           setEducation([]);
+           console.log("No portfolio data found in Firebase.");
+        }
+      } catch (err) {
+        console.error("Error fetching experience/education:", err);
+        setError("An error occurred while fetching data.");
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchData();
+  }, []);
+
+  if (loading) {
+    return (
+      <Card className="w-full bg-card border border-border shadow-lg overflow-hidden">
+        <CardHeader>
+          <Skeleton className="h-8 w-1/2 mb-2" />
+          <Skeleton className="h-4 w-3/4" />
+        </CardHeader>
+        <CardContent className="space-y-8">
+          {[...Array(2)].map((_, index) => ( // Skeleton for 2 experience items
+            <div key={`exp-skel-${index}`}>
+              <Skeleton className="h-6 w-3/4 mb-2" />
+              <Skeleton className="h-4 w-1/2 mb-3" />
+              <Skeleton className="h-10 w-full mb-4" />
+              <div className="flex flex-wrap gap-2">
+                <Skeleton className="h-6 w-16 rounded-full" />
+                <Skeleton className="h-6 w-20 rounded-full" />
+                <Skeleton className="h-6 w-12 rounded-full" />
+              </div>
+              <Skeleton className="h-px w-full my-8" />
+            </div>
+          ))}
+           {/* Skeleton for Education */}
+           <Skeleton className="h-8 w-1/3 mb-4" />
+            {[...Array(2)].map((_, index) => ( // Skeleton for 2 education items
+                <div key={`edu-skel-${index}`}>
+                <Skeleton className="h-6 w-3/4 mb-2" />
+                <Skeleton className="h-4 w-1/2 mb-3" />
+                <Skeleton className="h-px w-full my-8" />
+                </div>
+            ))}
+        </CardContent>
+      </Card>
+    );
+  }
+
+   if (error) {
+        return (
+            <Card className="w-full bg-card border border-destructive shadow-lg overflow-hidden">
+                <CardHeader>
+                    <CardTitle className="text-destructive">Error</CardTitle>
+                </CardHeader>
+                <CardContent>
+                    <p>{error}</p>
+                </CardContent>
+            </Card>
+        );
+    }
+
+
   return (
-    <Card className="w-full bg-card border border-border shadow-lg hover:shadow-xl transition-shadow duration-300 overflow-hidden">
-      {/* Apply animation class directly */}
-      <CardHeader className="animate-fade-in" style={{ animationDelay: '0.1s', animationFillMode: 'backwards' }}>
+    <Card className="w-full bg-card border border-border shadow-lg hover:shadow-xl transition-shadow duration-300 overflow-hidden animate-fade-in">
+      {/* Work Experience Section */}
+      <CardHeader>
         <CardTitle className="text-2xl font-semibold flex items-center gap-2">
            <Briefcase className="h-6 w-6 text-primary"/>
-           Work Experience
+           Work Experience / Internships
         </CardTitle>
          <CardDescription>My professional journey and key roles.</CardDescription>
       </CardHeader>
       <CardContent className="space-y-8">
-        {experiences.map((exp, index) => (
-          <div
-             key={exp.id}
-             className="animate-fade-in" // Apply animation class
-             style={{ animationDelay: `${0.2 + index * 0.15}s`, animationFillMode: 'backwards' }} // Staggered animation delay with fill mode
-          >
-            <div className="flex flex-col md:flex-row justify-between mb-2">
-               <h3 className="text-xl font-semibold text-foreground">{exp.title}</h3>
-               <span className="text-sm text-muted-foreground md:text-right mt-1 md:mt-0">{exp.duration}</span>
+        {experiences.length > 0 ? (
+            experiences.map((exp, index) => (
+            <div
+                key={exp.id}
+                className="animate-fade-in"
+                style={{ animationDelay: `${0.1 + index * 0.1}s`, animationFillMode: 'backwards' }}
+            >
+                <div className="flex flex-col md:flex-row justify-between mb-2">
+                <h3 className="text-xl font-semibold text-foreground">{exp.title}</h3>
+                <span className="text-sm text-muted-foreground md:text-right mt-1 md:mt-0">{exp.duration}</span>
+                </div>
+                <div className="flex flex-col md:flex-row justify-between mb-3 text-muted-foreground">
+                <p className="font-medium">{exp.company}</p>
+                 {exp.location && <p className="text-sm">{exp.location}</p>}
+                </div>
+                {/* Split description into bullet points if possible */}
+                <CardDescription className="mb-4 text-base leading-relaxed">
+                 {exp.description.includes('.') ? (
+                    <ul className="list-disc list-inside space-y-1">
+                        {exp.description.split('. ').filter(s => s.trim()).map((point, i) => (
+                            <li key={i}>{point.trim()}{exp.description.includes('.') && i < exp.description.split('. ').filter(s => s.trim()).length - 1 ? '.' : ''}</li>
+                        ))}
+                    </ul>
+                 ) : (
+                    exp.description // Render as is if no periods
+                 )}
+                 </CardDescription>
+                {exp.skills && exp.skills.length > 0 && (
+                <div className="flex flex-wrap gap-2">
+                {exp.skills.map(skill => (
+                    <Badge key={skill} variant="outline" className="transition-transform duration-200 hover:scale-105">{skill}</Badge>
+                    ))}
+                </div>
+                )}
+                {index < experiences.length - 1 && <Separator className="my-8 bg-border/50" />}
             </div>
-             <div className="flex flex-col md:flex-row justify-between mb-3 text-muted-foreground">
-               <p className="font-medium">{exp.company}</p>
-               <p className="text-sm">{exp.location}</p>
-            </div>
-            <CardDescription className="mb-4 text-base leading-relaxed">{exp.description}</CardDescription>
-            <div className="flex flex-wrap gap-2">
-               {exp.skills.map(skill => (
-                 <Badge key={skill} variant="outline" className="transition-transform duration-200 hover:scale-105">{skill}</Badge>
-                ))}
-            </div>
-            {index < experiences.length - 1 && <Separator className="my-8 bg-border/50" />}
-          </div>
-        ))}
+            ))
+        ) : (
+             <p className="text-muted-foreground text-center py-4">No work experience available.</p>
+        )}
+
+         {/* Separator between sections */}
+        {experiences.length > 0 && education.length > 0 && <Separator className="my-12 border-primary/30" />}
+
+        {/* Educational History Section */}
+        {education.length > 0 && (
+            <>
+                <CardHeader className="pt-0 px-0"> {/* Remove padding top */}
+                    <CardTitle className="text-2xl font-semibold flex items-center gap-2">
+                    <GraduationCap className="h-6 w-6 text-primary"/>
+                    Educational History
+                    </CardTitle>
+                     <CardDescription>My academic background.</CardDescription>
+                </CardHeader>
+                 <div className="space-y-8">
+                 {education.map((edu, index) => (
+                     <div
+                         key={edu.id}
+                         className="animate-fade-in"
+                         style={{ animationDelay: `${0.1 + (experiences.length + index) * 0.1}s`, animationFillMode: 'backwards' }} // Continue stagger
+                     >
+                         <div className="flex flex-col md:flex-row justify-between mb-2">
+                         <h3 className="text-xl font-semibold text-foreground">{edu.degree}</h3>
+                         <span className="text-sm text-muted-foreground md:text-right mt-1 md:mt-0">Graduated: {edu.graduationYear}</span>
+                         </div>
+                         <div className="flex flex-col md:flex-row justify-between mb-3 text-muted-foreground">
+                         <p className="font-medium">{edu.institution}</p>
+                         {edu.location && <p className="text-sm">{edu.location}</p>}
+                         </div>
+                         <p className="text-base leading-relaxed">Aggregate: {edu.aggregate}</p>
+                         {index < education.length - 1 && <Separator className="my-8 bg-border/50" />}
+                     </div>
+                     ))}
+                 </div>
+            </>
+        )}
+        {education.length === 0 && !loading && (
+             <p className="text-muted-foreground text-center py-4">No educational history available.</p>
+        )}
+
       </CardContent>
     </Card>
   );

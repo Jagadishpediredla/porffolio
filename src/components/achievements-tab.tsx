@@ -1,43 +1,82 @@
+'use client';
+
+import type React from 'react'; // Import type for React
+import { useState, useEffect } from 'react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Award, Star } from "lucide-react";
 import { Badge } from "./ui/badge";
-
-const achievements = [
-  {
-    id: 1,
-    title: "Open Source Contributor",
-    description: "Actively contributed to the 'Awesome-Framework' project, merging 15+ pull requests focused on performance improvements.",
-    date: "2023",
-    type: "Contribution",
-  },
-  {
-    id: 2,
-    title: "Hackathon Winner - 1st Place",
-    description: "Led a team of 4 to win the 'InnovateAI' Hackathon by developing a novel AI-powered recommendation engine.",
-    date: "Oct 2022",
-    type: "Competition",
-  },
-  {
-    id: 3,
-    title: "Published Technical Article",
-    description: "Authored an article on 'Advanced State Management in React' published on a major tech blog, reaching 50k+ readers.",
-    date: "July 2022",
-    type: "Publication",
-  },
-  {
-    id: 4,
-    title: "Employee of the Quarter",
-    description: "Recognized for outstanding performance and contributions to the team's success at Tech Innovations Inc.",
-    date: "Q3 2021",
-    type: "Recognition",
-  },
-];
+import { Skeleton } from "@/components/ui/skeleton"; // Import Skeleton
+import { getPortfolioData, type Achievement } from '@/lib/firebase/database'; // Import function and type
 
 export default function AchievementsTab() {
+  const [achievements, setAchievements] = useState<Achievement[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      setLoading(true);
+      setError(null);
+      try {
+        const data = await getPortfolioData();
+        if (data && data.achievements) {
+          // Convert Record<string, Achievement> to Achievement[]
+          setAchievements(Object.values(data.achievements));
+        } else {
+          setAchievements([]); // Set empty if no data
+          console.log("No achievements found in Firebase.");
+        }
+      } catch (err) {
+        console.error("Error fetching achievements:", err);
+        setError("An error occurred while fetching achievements.");
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchData();
+  }, []);
+
+  if (loading) {
+    return (
+      <Card className="w-full bg-card border border-border shadow-lg overflow-hidden">
+        <CardHeader>
+          <Skeleton className="h-8 w-1/2 mb-2" />
+          <Skeleton className="h-4 w-3/4" />
+        </CardHeader>
+        <CardContent className="space-y-6">
+          {[...Array(3)].map((_, index) => ( // Render 3 skeleton items
+            <li key={index} className="flex items-start space-x-4 p-4">
+              <Skeleton className="h-5 w-5 rounded-full flex-shrink-0 mt-1" />
+              <div className="flex-grow space-y-2">
+                <Skeleton className="h-5 w-3/4" />
+                <Skeleton className="h-4 w-full" />
+                <Skeleton className="h-3 w-1/4" />
+              </div>
+               <Skeleton className="h-6 w-20 rounded-full flex-shrink-0" />
+            </li>
+          ))}
+        </CardContent>
+      </Card>
+    );
+  }
+
+   if (error) {
+    return (
+        <Card className="w-full bg-card border border-destructive shadow-lg overflow-hidden">
+            <CardHeader>
+                <CardTitle className="text-destructive">Error</CardTitle>
+            </CardHeader>
+            <CardContent>
+                <p>{error}</p>
+            </CardContent>
+        </Card>
+        );
+    }
+
   return (
-    <Card className="w-full bg-card border border-border shadow-lg hover:shadow-xl transition-shadow duration-300 overflow-hidden">
-      {/* Apply animation class directly */}
-      <CardHeader className="animate-fade-in" style={{ animationDelay: '0.1s', animationFillMode: 'backwards' }}>
+    <Card className="w-full bg-card border border-border shadow-lg hover:shadow-xl transition-shadow duration-300 overflow-hidden animate-fade-in">
+      <CardHeader>
         <CardTitle className="text-2xl font-semibold flex items-center gap-2">
            <Award className="h-6 w-6 text-primary"/>
            Achievements & Recognition
@@ -45,27 +84,31 @@ export default function AchievementsTab() {
          <CardDescription>Highlighting key accomplishments and milestones.</CardDescription>
       </CardHeader>
       <CardContent>
-        <ul className="space-y-6">
-          {achievements.map((achievement, index) => (
-            <li
-              key={achievement.id}
-              className="flex items-start space-x-4 p-4 rounded-lg border border-transparent hover:border-primary/30 hover:bg-muted/50 transition-all duration-300 group animate-fade-in" // Apply animation class
-              style={{ animationDelay: `${0.2 + index * 0.1}s`, animationFillMode: 'backwards' }} // Staggered animation delay with fill mode
-            >
-              <span className="flex-shrink-0 mt-1 transition-transform duration-300 group-hover:scale-110">
-                <Star className="h-5 w-5 text-primary" />
-              </span>
-              <div className="flex-grow">
-                <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-1">
-                    <h3 className="font-semibold text-lg text-foreground group-hover:text-primary transition-colors duration-200">{achievement.title}</h3>
-                    <Badge variant="outline" className="mt-1 sm:mt-0 transition-colors duration-200 group-hover:border-primary group-hover:text-primary">{achievement.type}</Badge>
+        {achievements.length > 0 ? (
+            <ul className="space-y-6">
+            {achievements.map((achievement, index) => (
+                <li
+                key={achievement.id}
+                className="flex items-start space-x-4 p-4 rounded-lg border border-transparent hover:border-primary/30 hover:bg-muted/50 transition-all duration-300 group animate-fade-in"
+                style={{ animationDelay: `${0.1 + index * 0.1}s`, animationFillMode: 'backwards' }}
+                >
+                <span className="flex-shrink-0 mt-1 transition-transform duration-300 group-hover:scale-110">
+                    <Star className="h-5 w-5 text-primary" />
+                </span>
+                <div className="flex-grow">
+                    <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-1">
+                        <h3 className="font-semibold text-lg text-foreground group-hover:text-primary transition-colors duration-200">{achievement.title}</h3>
+                        {achievement.type && <Badge variant="outline" className="mt-1 sm:mt-0 transition-colors duration-200 group-hover:border-primary group-hover:text-primary">{achievement.type}</Badge>}
+                    </div>
+                    {achievement.description && <p className="text-muted-foreground text-sm mb-2">{achievement.description}</p>}
+                    {achievement.date && <p className="text-xs text-muted-foreground/80">{achievement.date}</p>}
                 </div>
-                <p className="text-muted-foreground text-sm mb-2">{achievement.description}</p>
-                <p className="text-xs text-muted-foreground/80">{achievement.date}</p>
-              </div>
-            </li>
-          ))}
-        </ul>
+                </li>
+            ))}
+            </ul>
+        ) : (
+            <p className="text-muted-foreground text-center py-4">No achievements available.</p>
+        )}
       </CardContent>
     </Card>
   );
