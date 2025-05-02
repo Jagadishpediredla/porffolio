@@ -35,15 +35,15 @@ export default function Home() {
           {headerName}
         </h1>
         <p className="text-lg text-muted-foreground">
-          My Personal Portfolio {/* Updated tagline */}
+          My Personal Portfolio
         </p>
       </header>
 
        {/* Adjusted main container padding and added bottom margin */}
-       <div className="w-full max-w-5xl mb-24 md:mb-32"> {/* Increased bottom margin */}
+       <div className="w-full max-w-5xl mb-32"> {/* Increased bottom margin */}
         <Tabs defaultValue="personal-info" className="w-full">
           {/* Increased margin-bottom on TabsList */}
-          <TabsList className="grid w-full grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-2 mb-16 bg-muted/50 rounded-lg p-1 transition-all duration-300 sticky top-0 z-20 backdrop-blur-sm"> {/* Increased mb, added sticky, z-index, backdrop-blur */}
+          <TabsList className="grid w-full grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-2 mb-16 bg-muted/50 rounded-lg p-1 transition-all duration-300 ease-in-out "> {/* Increased mb, added sticky, z-index, backdrop-blur */}
             {tabsConfig.map((tab) => (
               <TabsTrigger
                 key={tab.value}
@@ -77,3 +77,4 @@ export default function Home() {
     </main>
   );
 }
+
