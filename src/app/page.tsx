@@ -9,6 +9,7 @@ import ProjectsTab from "@/components/projects-tab";
 import AchievementsTab from "@/components/achievements-tab";
 import { User, Award, Briefcase, FolderGit2, CheckCircle } from "lucide-react"; // Import icons
 
+
 export default function Home() {
 
   const tabsConfig = [
@@ -47,7 +48,7 @@ export default function Home() {
             ))}
           </TabsList>
 
-          {/* Adjusted margin-top for better spacing */}
+          {/* Adjusted margin-top for better spacing. Removed animate-fade-in from TabsContent */}
           <TabsContent value="personal-info" className="mt-8 md:mt-12 lg:mt-16" key="personal-info">
             <PersonalInfoTab />
           </TabsContent>
