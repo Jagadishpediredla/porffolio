@@ -11,8 +11,8 @@ export default function AchievementsTab() {
   const achievements: Achievement[] = portfolioData.achievements; // Use hardcoded data
 
   return (
-    <Card className="w-full bg-card border border-border shadow-lg hover:shadow-xl transition-shadow duration-300 overflow-hidden animate-fade-in">
-      <CardHeader>
+    <Card className="w-full bg-card border border-border shadow-lg hover:shadow-xl transition-shadow duration-300 overflow-auto animate-fade-in"> {/* Ensure overflow is handled */}
+      <CardHeader className="sticky top-0 bg-card z-10"> {/* Make header sticky if needed */}
         <CardTitle className="text-2xl font-semibold flex items-center gap-2">
            <Award className="h-6 w-6 text-primary"/>
            Achievements & Recognition

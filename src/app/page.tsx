@@ -1,7 +1,6 @@
 'use client';
 
 import type React from 'react'; // Import type for React
-import { useEffect } from 'react'; // Import useEffect for initialization
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import PersonalInfoTab from "@/components/personal-info-tab";
 import CertificationsTab from "@/components/certifications-tab";
@@ -9,18 +8,10 @@ import ExperienceTab from "@/components/experience-tab"; // Contains both Experi
 import ProjectsTab from "@/components/projects-tab";
 import AchievementsTab from "@/components/achievements-tab";
 import { User, Award, Briefcase, FolderGit2, CheckCircle } from "lucide-react"; // Import icons
-import { portfolioData as staticData } from '@/lib/portfolio-data'; // Import static data
+import { portfolioData } from '@/lib/portfolio-data'; // Import static data
 
-// Use client-side state for portfolio data, initialized with static data
-// In a real app, you might fetch this data or use context
-const portfolioData = staticData;
 
 export default function Home() {
-
-  useEffect(() => {
-    // Potential client-side initialization if needed
-  }, []);
-
   // Use data from portfolioData or provide fallbacks
    const tabsConfig = [
     { value: "personal-info", label: "Personal Info", icon: User, Component: PersonalInfoTab },
@@ -43,8 +34,8 @@ export default function Home() {
 
       <div className="w-full max-w-5xl">
         <Tabs defaultValue="personal-info" className="w-full">
-          {/* Increased bottom margin on smaller screens (mb-12) */}
-          <TabsList className="grid w-full grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-2 mb-12 sm:mb-8 bg-muted/50 rounded-lg p-1 transition-all duration-300">
+          {/* Increased bottom margin for TabsList */}
+          <TabsList className="grid w-full grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-2 mb-12 bg-muted/50 rounded-lg p-1 transition-all duration-300">
             {tabsConfig.map((tab) => (
               <TabsTrigger
                 key={tab.value}
@@ -58,13 +49,12 @@ export default function Home() {
             ))}
           </TabsList>
 
-          {/* Render Tab Content */}
+          {/* Render Tab Content - Increased top margin */}
           {tabsConfig.map((tab) => (
              <TabsContent
                key={tab.value}
                value={tab.value}
-               // Ensure top margin is sufficient if needed, existing classes seem okay
-               className="mt-8 md:mt-12 lg:mt-16 min-h-[300px]"
+               className="mt-16 min-h-[300px]" // Increased top margin
              >
                <tab.Component />
              </TabsContent>
