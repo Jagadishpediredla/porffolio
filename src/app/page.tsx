@@ -9,7 +9,7 @@ import { User, Award, Briefcase, FolderGit2, CheckCircle } from "lucide-react"; 
 export default function Home() {
   return (
     <main className="flex min-h-screen flex-col items-center p-4 md:p-12 lg:p-24 bg-background text-foreground transition-colors duration-300">
-      <header className="mb-12 text-center animate-fade-in">
+      <header className="mb-12 text-center"> {/* Removed animation */}
         <h1 className="text-4xl md:text-5xl font-bold mb-2 bg-gradient-to-r from-primary via-teal-400 to-secondary bg-clip-text text-transparent drop-shadow-sm">
           Persona Canvas
         </h1>
@@ -28,12 +28,11 @@ export default function Home() {
               { value: "experience", label: "Experience", icon: Briefcase },
               { value: "projects", label: "Projects", icon: FolderGit2 },
               { value: "achievements", label: "Achievements", icon: Award },
-            ].map((tab, index) => (
+            ].map((tab) => ( // Removed index
               <TabsTrigger
                 key={tab.value}
                 value={tab.value}
-                className="flex items-center justify-center gap-2 data-[state=active]:bg-primary data-[state=active]:text-primary-foreground data-[state=active]:shadow-md transition-all duration-300 ease-in-out rounded-md p-2 text-sm font-medium hover:bg-accent/80 hover:text-accent-foreground focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background animate-fade-in" // Apply animation class directly
-                style={{ animationDelay: `${0.2 + index * 0.07}s`, animationFillMode: 'backwards' }} // Staggered animation with fill mode
+                className="flex items-center justify-center gap-2 data-[state=active]:bg-primary data-[state=active]:text-primary-foreground data-[state=active]:shadow-md transition-all duration-300 ease-in-out rounded-md p-2 text-sm font-medium hover:bg-accent/80 hover:text-accent-foreground focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background" // Removed animation class and style
                 aria-label={tab.label}
               >
                 <tab.icon className="h-4 w-4" />
@@ -44,19 +43,20 @@ export default function Home() {
 
           {/* Tab Content containers - Increased top margin further to fix overlap */}
           {/* Added keys to ensure React treats them as distinct components for animation resets on tab change */}
-          <TabsContent value="personal-info" className="mt-16" key="personal-info">
+          {/* Increased margin top from mt-16 to mt-24 */}
+          <TabsContent value="personal-info" className="mt-24" key="personal-info">
             <PersonalInfoTab />
           </TabsContent>
-          <TabsContent value="certifications" className="mt-16" key="certifications">
+          <TabsContent value="certifications" className="mt-24" key="certifications">
             <CertificationsTab />
           </TabsContent>
-          <TabsContent value="experience" className="mt-16" key="experience">
+          <TabsContent value="experience" className="mt-24" key="experience">
             <ExperienceTab />
           </TabsContent>
-          <TabsContent value="projects" className="mt-16" key="projects">
+          <TabsContent value="projects" className="mt-24" key="projects">
             <ProjectsTab />
           </TabsContent>
-          <TabsContent value="achievements" className="mt-16" key="achievements">
+          <TabsContent value="achievements" className="mt-24" key="achievements">
             <AchievementsTab />
           </TabsContent>
         </Tabs>
