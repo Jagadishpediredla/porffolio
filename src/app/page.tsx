@@ -46,19 +46,20 @@ export default function Home() {
 
           {/* Tab Content containers - Let content inside handle its own animation */}
           {/* Added keys to ensure React treats them as distinct components for animation resets on tab change */}
-          <TabsContent value="personal-info" className="tab-content" key="personal-info">
+          {/* Added mt-8 to add space between tabs and content */}
+          <TabsContent value="personal-info" className="tab-content mt-8" key="personal-info">
             <PersonalInfoTab />
           </TabsContent>
-          <TabsContent value="certifications" className="tab-content" key="certifications">
+          <TabsContent value="certifications" className="tab-content mt-8" key="certifications">
             <CertificationsTab />
           </TabsContent>
-          <TabsContent value="experience" className="tab-content" key="experience">
+          <TabsContent value="experience" className="tab-content mt-8" key="experience">
             <ExperienceTab />
           </TabsContent>
-          <TabsContent value="projects" className="tab-content" key="projects">
+          <TabsContent value="projects" className="tab-content mt-8" key="projects">
             <ProjectsTab />
           </TabsContent>
-          <TabsContent value="achievements" className="tab-content" key="achievements">
+          <TabsContent value="achievements" className="tab-content mt-8" key="achievements">
             <AchievementsTab />
           </TabsContent>
         </Tabs>
