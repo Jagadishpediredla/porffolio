@@ -5,17 +5,21 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Briefcase, GraduationCap } from "lucide-react"; // Added GraduationCap
 import { Separator } from "./ui/separator";
 import { Badge } from "./ui/badge";
-import { portfolioData } from '@/lib/portfolio-data'; // Import hardcoded data
-import type { Experience, Education } from '@/lib/types'; // Import types
+// Removed direct import of portfolioData
+import type { PortfolioData, Experience, Education } from '@/lib/types'; // Import types
 
-export default function ExperienceTab() {
-  const experiences: Experience[] = portfolioData.experience; // Use hardcoded data
-  const education: Education[] = portfolioData.education; // Use hardcoded data
+interface ExperienceTabProps {
+  portfolioData: PortfolioData;
+}
+
+export default function ExperienceTab({ portfolioData }: ExperienceTabProps) {
+  const experiences: Experience[] = portfolioData?.experience || []; // Use data from props
+  const education: Education[] = portfolioData?.education || []; // Use data from props
 
   return (
     <Card className="w-full bg-card border border-border shadow-lg hover:shadow-xl transition-shadow duration-300 overflow-hidden animate-fade-in">
       {/* Work Experience Section */}
-      <CardHeader>
+      <CardHeader className="pt-6">
         <CardTitle className="text-2xl font-semibold flex items-center gap-2">
            <Briefcase className="h-6 w-6 text-primary"/>
            Work Experience / Internships
@@ -39,7 +43,7 @@ export default function ExperienceTab() {
                  {exp.location && <p className="text-sm">{exp.location}</p>}
                 </div>
                 {/* Split description into bullet points if possible */}
-                <CardDescription className="mb-4 text-base leading-relaxed">
+                <div className="mb-4 text-base leading-relaxed text-muted-foreground"> {/* Changed CardDescription to div */}
                  {exp.description.includes('.') ? (
                     <ul className="list-disc list-inside space-y-1">
                         {exp.description.split('. ').filter(s => s.trim()).map((point, i) => (
@@ -49,7 +53,7 @@ export default function ExperienceTab() {
                  ) : (
                     exp.description // Render as is if no periods
                  )}
-                 </CardDescription>
+                 </div>
                 {exp.skills && exp.skills.length > 0 && (
                 <div className="flex flex-wrap gap-2">
                 {exp.skills.map(skill => (

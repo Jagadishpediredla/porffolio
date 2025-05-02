@@ -8,11 +8,15 @@ import { CheckCircle, ExternalLink } from "lucide-react";
 import Link from "next/link";
 import Image from 'next/image'; // Import next/image
 import { Badge } from "./ui/badge";
-import { portfolioData } from '@/lib/portfolio-data'; // Import hardcoded data
-import type { Certification } from '@/lib/types'; // Import type
+// Removed direct import of portfolioData
+import type { PortfolioData, Certification } from '@/lib/types'; // Import types
 
-export default function CertificationsTab() {
-  const certifications: Certification[] = portfolioData.certifications; // Use hardcoded data
+interface CertificationsTabProps {
+  portfolioData: PortfolioData;
+}
+
+export default function CertificationsTab({ portfolioData }: CertificationsTabProps) {
+  const certifications: Certification[] = portfolioData?.certifications || []; // Use data from props
 
   return (
     <Card className="w-full bg-card border border-border shadow-lg hover:shadow-xl transition-shadow duration-300 overflow-hidden animate-fade-in">
@@ -51,6 +55,7 @@ export default function CertificationsTab() {
                        fill
                        style={{ objectFit: 'cover' }}
                        data-ai-hint="certification related image"
+                       className="transition-transform duration-300 hover:scale-105" // Added hover effect
                     />
                  </div>
 

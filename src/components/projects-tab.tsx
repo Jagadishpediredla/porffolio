@@ -7,16 +7,19 @@ import { Github, ExternalLink, FolderGit2 } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { Badge } from "./ui/badge";
-import { portfolioData } from '@/lib/portfolio-data'; // Import hardcoded data
-import type { Project } from '@/lib/types'; // Import type
+// Removed direct import of portfolioData
+import type { PortfolioData, Project } from '@/lib/types'; // Import types
 
+interface ProjectsTabProps {
+  portfolioData: PortfolioData;
+}
 
-export default function ProjectsTab() {
-  const projects: Project[] = portfolioData.projects; // Use hardcoded data
+export default function ProjectsTab({ portfolioData }: ProjectsTabProps) {
+  const projects: Project[] = portfolioData?.projects || []; // Use data from props
 
   return (
     <Card className="w-full bg-card border-border shadow-lg hover:shadow-xl transition-shadow duration-300 overflow-hidden animate-fade-in">
-      <CardHeader>
+      <CardHeader className="pt-6">
          <CardTitle className="text-2xl font-semibold flex items-center gap-2">
            <FolderGit2 className="h-6 w-6 text-primary"/>
            Projects Showcase
@@ -55,7 +58,7 @@ export default function ProjectsTab() {
                 </CardHeader>
                 <CardContent className="flex-grow">
                  {/* Split description into bullet points if possible */}
-                <CardDescription className="text-base">
+                <div className="text-base text-muted-foreground"> {/* Changed CardDescription to div */}
                  {project.description.includes('.') ? (
                     <ul className="list-disc list-inside space-y-1">
                         {project.description.split('. ').filter(s => s.trim()).map((point, i) => (
@@ -65,7 +68,7 @@ export default function ProjectsTab() {
                  ) : (
                     project.description // Render as is if no periods
                  )}
-                 </CardDescription>
+                 </div>
                 </CardContent>
                 <CardFooter className="flex justify-end space-x-2 bg-muted/30 p-4 mt-auto border-t border-border/50">
                  {project.githubLink && project.githubLink !== "#" && (

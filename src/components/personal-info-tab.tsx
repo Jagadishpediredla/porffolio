@@ -8,13 +8,17 @@ import { Button } from "./ui/button";
 import Link from 'next/link';
 import { Badge } from "@/components/ui/badge"; // Import Badge
 import { Separator } from "@/components/ui/separator"; // Import Separator
-import { portfolioData } from '@/lib/portfolio-data'; // Import hardcoded data
-import type { PersonalInfo } from '@/lib/types'; // Import type
+// Removed direct import of portfolioData
+import type { PortfolioData, PersonalInfo } from '@/lib/types'; // Import types
+
+interface PersonalInfoTabProps {
+  portfolioData: PortfolioData;
+}
 
 const DEFAULT_FALLBACK = "JD"; // Default fallback initials
 
-export default function PersonalInfoTab() {
-  const personalInfo: PersonalInfo = portfolioData.personalInfo; // Use hardcoded data
+export default function PersonalInfoTab({ portfolioData }: PersonalInfoTabProps) {
+  const personalInfo: PersonalInfo | undefined = portfolioData?.personalInfo; // Use data from props
 
   // Calculate fallback initials dynamically
   const getFallbackInitials = (name: string | undefined): string => {
@@ -31,18 +35,30 @@ export default function PersonalInfoTab() {
   const fallbackInitials = getFallbackInitials(personalInfo?.name);
 
   if (!personalInfo) {
-    // This should ideally not happen with hardcoded data, but keep as a fallback
+    // Render a loading state or a message indicating data is unavailable
     return (
-      <Card className="w-full bg-card border border-border shadow-lg overflow-hidden">
-        <CardHeader>
-          <CardTitle>No Information</CardTitle>
+      <Card className="w-full bg-card border border-border shadow-lg overflow-hidden animate-pulse"> {/* Basic pulse animation */}
+        <CardHeader className="text-center pt-8">
+           <div className="mx-auto h-24 w-24 mb-4 rounded-full bg-muted"></div>
+           <div className="h-8 bg-muted rounded w-3/4 mx-auto"></div>
+           <div className="h-4 bg-muted rounded w-1/2 mx-auto mt-2"></div>
         </CardHeader>
-        <CardContent>
-          <p>Personal information could not be loaded.</p>
+        <CardContent className="space-y-8 text-center pb-8 px-4 md:px-8">
+           {/* Placeholder sections */}
+           <div className="h-4 bg-muted rounded w-full"></div>
+           <Separator className="my-6" />
+           <div className="h-4 bg-muted rounded w-3/4 mx-auto"></div>
+           <Separator className="my-6" />
+           <div className="flex justify-center space-x-4 pt-4">
+              <div className="h-10 w-10 bg-muted rounded-md"></div>
+              <div className="h-10 w-10 bg-muted rounded-md"></div>
+           </div>
+           {/* Add more skeleton placeholders as needed */}
         </CardContent>
       </Card>
     );
   }
+
 
   return (
     <Card className="w-full bg-card border border-border shadow-lg hover:shadow-xl transition-shadow duration-300 overflow-hidden animate-fade-in">

@@ -4,15 +4,19 @@ import type React from 'react'; // Import type for React
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Award, Star } from "lucide-react";
 import { Badge } from "./ui/badge";
-import { portfolioData } from '@/lib/portfolio-data'; // Import hardcoded data
-import type { Achievement } from '@/lib/types'; // Import type
+// Removed direct import of portfolioData
+import type { PortfolioData, Achievement } from '@/lib/types'; // Import types
 
-export default function AchievementsTab() {
-  const achievements: Achievement[] = portfolioData.achievements; // Use hardcoded data
+interface AchievementsTabProps {
+  portfolioData: PortfolioData;
+}
+
+export default function AchievementsTab({ portfolioData }: AchievementsTabProps) {
+  const achievements: Achievement[] = portfolioData?.achievements || []; // Use data from props
 
   return (
     <Card className="w-full bg-card border border-border shadow-lg hover:shadow-xl transition-shadow duration-300 overflow-auto animate-fade-in"> {/* Ensure overflow is handled */}
-      <CardHeader className="sticky top-0 bg-card z-10"> {/* Make header sticky if needed */}
+      <CardHeader className="sticky top-0 bg-card z-10 pt-6"> {/* Make header sticky if needed, added pt-6 */}
         <CardTitle className="text-2xl font-semibold flex items-center gap-2">
            <Award className="h-6 w-6 text-primary"/>
            Achievements & Recognition
