@@ -8,10 +8,11 @@ import ExperienceTab from "@/components/experience-tab"; // Contains both Experi
 import ProjectsTab from "@/components/projects-tab";
 import AchievementsTab from "@/components/achievements-tab";
 import { User, Award, Briefcase, FolderGit2, CheckCircle } from "lucide-react"; // Import icons
-
+import { portfolioData } from '@/lib/portfolio-data'; // Import portfolio data
 
 export default function Home() {
 
+  // Use data from portfolioData or provide fallbacks
   const tabsConfig = [
     { value: "personal-info", label: "Personal Info", icon: User },
     { value: "experience", label: "Experience & Edu", icon: Briefcase }, // Combined label
@@ -24,7 +25,7 @@ export default function Home() {
     <main className="flex min-h-screen flex-col items-center p-4 md:p-12 lg:p-24 bg-background text-foreground transition-colors duration-300">
       <header className="mb-12 text-center">
         <h1 className="text-4xl md:text-5xl font-bold mb-2 bg-gradient-to-r from-primary via-teal-400 to-secondary bg-clip-text text-transparent drop-shadow-sm">
-          Persona Canvas
+          {portfolioData.personalInfo?.name || "Persona Canvas"}
         </h1>
         <p className="text-lg text-muted-foreground">
           My Modern Animated Portfolio
@@ -48,20 +49,21 @@ export default function Home() {
             ))}
           </TabsList>
 
-          {/* Adjusted margin-top for better spacing. Removed animate-fade-in from TabsContent */}
-          <TabsContent value="personal-info" className="mt-8 md:mt-12 lg:mt-16" key="personal-info">
+          {/* Adjusted margin-top for better spacing, especially on mobile */}
+          {/* Increased margin-top values (mt-12 md:mt-16 lg:mt-20) */}
+          <TabsContent value="personal-info" className="mt-12 md:mt-16 lg:mt-20" key="personal-info">
             <PersonalInfoTab />
           </TabsContent>
-           <TabsContent value="experience" className="mt-8 md:mt-12 lg:mt-16" key="experience">
+           <TabsContent value="experience" className="mt-12 md:mt-16 lg:mt-20" key="experience">
             <ExperienceTab /> {/* Renders both experience and education */}
           </TabsContent>
-          <TabsContent value="projects" className="mt-8 md:mt-12 lg:mt-16" key="projects">
+          <TabsContent value="projects" className="mt-12 md:mt-16 lg:mt-20" key="projects">
             <ProjectsTab />
           </TabsContent>
-          <TabsContent value="certifications" className="mt-8 md:mt-12 lg:mt-16" key="certifications">
+          <TabsContent value="certifications" className="mt-12 md:mt-16 lg:mt-20" key="certifications">
             <CertificationsTab />
           </TabsContent>
-          <TabsContent value="achievements" className="mt-8 md:mt-12 lg:mt-16" key="achievements">
+          <TabsContent value="achievements" className="mt-12 md:mt-16 lg:mt-20" key="achievements">
             <AchievementsTab />
           </TabsContent>
         </Tabs>

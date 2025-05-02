@@ -1,3 +1,4 @@
+
 'use client';
 
 import type React from 'react'; // Import type for React
@@ -5,6 +6,7 @@ import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/com
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { CheckCircle, ExternalLink } from "lucide-react";
 import Link from "next/link";
+import Image from 'next/image'; // Import next/image
 import { Badge } from "./ui/badge";
 import { portfolioData } from '@/lib/portfolio-data'; // Import hardcoded data
 import type { Certification } from '@/lib/types'; // Import type
@@ -31,7 +33,7 @@ export default function CertificationsTab() {
               className="border border-border rounded-lg overflow-hidden shadow-sm hover:border-primary/50 hover:shadow-md transition-all duration-300 bg-background animate-fade-in"
               style={{ animationDelay: `${0.1 + index * 0.05}s`, animationFillMode: 'backwards' }} // Staggered animation
             >
-              <AccordionTrigger className="px-6 py-4 text-left font-medium hover:bg-muted/50 transition-colors duration-200 [&[data-state=open]>svg]:text-primary [&[data-state=open]>svg]:rotate-180">
+              <AccordionTrigger className="px-6 py-4 text-left font-medium hover:no-underline hover:bg-muted/50 transition-colors duration-200 [&[data-state=open]>svg]:text-primary [&[data-state=open]>svg]:rotate-180">
                 <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center w-full pr-4">
                    <span className="font-semibold text-foreground">{cert.title}</span>
                    <span className="text-sm text-muted-foreground mt-1 sm:mt-0">{cert.issuer}</span>
@@ -40,6 +42,23 @@ export default function CertificationsTab() {
               <AccordionContent className="px-6 pb-4 pt-0 text-sm text-muted-foreground bg-muted/30">
                  {cert.date && <p className="mb-2">{cert.date}</p>}
                  {cert.description && <p className="mb-4">{cert.description}</p>}
+
+                 {/* Placeholder Image */}
+                 <div className="my-4 relative h-32 w-full overflow-hidden rounded-md">
+                    <Image
+                       src={`https://picsum.photos/seed/${cert.id}/300/200`}
+                       alt={`Placeholder image for ${cert.title}`}
+                       fill
+                       style={{ objectFit: 'cover' }}
+                       data-ai-hint="certification related image"
+                    />
+                 </div>
+
+                 {/* Placeholder Text */}
+                 <p className="mb-4 text-xs italic text-muted-foreground/80">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                 </p>
+
                  {cert.skills && cert.skills.length > 0 && (
                     <div className="flex flex-wrap gap-2 mb-4">
                     {cert.skills.map(skill => (
