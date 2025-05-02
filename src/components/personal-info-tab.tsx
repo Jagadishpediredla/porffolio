@@ -1,3 +1,4 @@
+
 'use client';
 
 import type React from 'react'; // Import type for React
@@ -8,7 +9,6 @@ import { Button } from "./ui/button";
 import Link from 'next/link';
 import { Badge } from "@/components/ui/badge"; // Import Badge
 import { Separator } from "@/components/ui/separator"; // Import Separator
-// Removed direct import of portfolioData
 import type { PortfolioData, PersonalInfo } from '@/lib/types'; // Import types
 
 interface PersonalInfoTabProps {
@@ -92,6 +92,7 @@ export default function PersonalInfoTab({ portfolioData }: PersonalInfoTabProps)
              <h2 id="contact-location-title" className="sr-only">Contact and Location</h2>
              <div className="flex items-center space-x-2">
                  <MapPin className="h-4 w-4" />
+                 {/* Updated to use the new location format */}
                  <span>{personalInfo.location || 'Location not specified'}</span>
              </div>
              {/* Moved Contact Text Here */}
@@ -102,7 +103,7 @@ export default function PersonalInfoTab({ portfolioData }: PersonalInfoTabProps)
               <div className="flex items-center space-x-2">
                  {/* Using generic Phone icon here */}
                  <Phone className="h-4 w-4" />
-                 <span>{personalInfo.phone}</span>
+                 <a href={`tel:${personalInfo.phone.replace(/\D/g, '')}`} className="hover:text-primary transition-colors duration-200">{personalInfo.phone}</a>
              </div>
          </section>
 

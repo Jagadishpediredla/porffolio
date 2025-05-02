@@ -39,11 +39,11 @@ export default function Home() {
         </p>
       </header>
 
-      <div className="w-full max-w-5xl">
+       {/* Adjusted main container padding and added bottom margin */}
+       <div className="w-full max-w-5xl mb-24 md:mb-32"> {/* Increased bottom margin */}
         <Tabs defaultValue="personal-info" className="w-full">
-          {/* Add margin-bottom to TabsList */}
-          {/* Ensure TabsList doesn't cause overlap */}
-          <TabsList className="grid w-full grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-2 mb-12 bg-muted/50 rounded-lg p-1 transition-all duration-300 relative z-10"> {/* Increased mb, added z-index */}
+          {/* Increased margin-bottom on TabsList */}
+          <TabsList className="grid w-full grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-2 mb-16 bg-muted/50 rounded-lg p-1 transition-all duration-300 sticky top-0 z-20 backdrop-blur-sm"> {/* Increased mb, added sticky, z-index, backdrop-blur */}
             {tabsConfig.map((tab) => (
               <TabsTrigger
                 key={tab.value}
@@ -57,8 +57,8 @@ export default function Home() {
             ))}
           </TabsList>
 
-          {/* Add significant margin-top to TabsContent container, especially for mobile */}
-          <div className="mt-16 md:mt-20 lg:mt-24"> {/* Increased mt-* values */}
+          {/* Container for Tab Content - Added more margin top */}
+          <div className="mt-24"> {/* Increased mt for more space */}
             {tabsConfig.map((tab) => (
               <TabsContent
                 key={tab.value}

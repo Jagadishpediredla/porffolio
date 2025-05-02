@@ -7,7 +7,7 @@ export const portfolioData: PortfolioData = {
     name: "Venkata Jagadish Pediredla",
     title: "VLSI Enthusiast", // Derived from objective
     objective: "I am deeply passionate about VLSI technology and am eager to contribute to this rapidly growing field. As an enthusiast, I constantly seek to enhance my knowledge and skills in semiconductor design and fabrication, also enhancing my experience in EDA tools and CMOS design. I strongly believe in the future of the semiconductor sector in India and aspire to be an integral part of its growth. My Interest in VLSI aligns with the evolving technological advancements, and I am excited to contribute to shaping India's future in this domain.",
-    location: "Rajahmundry / Kalikiri, AP, India", // Inferred
+    location: "Kovvur, East Godavari, AP, India", // Updated location
     email: "jpediredla56@gmail.com",
     phone: "9059674614",
     linkedin: "https://linkedin.com/in/venkata-jagadish-pediredla",
