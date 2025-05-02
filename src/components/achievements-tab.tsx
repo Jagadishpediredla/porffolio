@@ -37,7 +37,7 @@ export default function AchievementsTab() {
   return (
     <Card className="w-full bg-card border border-border shadow-lg hover:shadow-xl transition-shadow duration-300 overflow-hidden">
       {/* Apply animation class directly */}
-      <CardHeader className="animate-fade-in">
+      <CardHeader className="animate-fade-in" style={{ animationDelay: '0.1s' }}>
         <CardTitle className="text-2xl font-semibold flex items-center gap-2">
            <Award className="h-6 w-6 text-primary"/>
            Achievements & Recognition
@@ -50,7 +50,7 @@ export default function AchievementsTab() {
             <li
               key={achievement.id}
               className="flex items-start space-x-4 p-4 rounded-lg border border-transparent hover:border-primary/30 hover:bg-muted/50 transition-all duration-300 group animate-fade-in" // Apply animation class
-              style={{ animationDelay: `${0.1 + index * 0.1}s` }} // Staggered animation delay
+              style={{ animationDelay: `${0.2 + index * 0.1}s` }} // Staggered animation delay (adjusted starting delay)
             >
               <span className="flex-shrink-0 mt-1 transition-transform duration-300 group-hover:scale-110">
                 <Star className="h-5 w-5 text-primary" />

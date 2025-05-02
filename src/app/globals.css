@@ -93,11 +93,7 @@ body {
 
 /* More refined animations */
 @layer components {
-  .tab-content {
-    /* Applied via className="tab-content" in page.tsx */
-    /* We let the content inside animate itself */
-     @apply animate-fade-in; /* Apply base fade-in to the whole tab content */
-  }
+  /* Removed .tab-content animation rule */
 
   /* Add subtle hover transforms */
   .hover-lift {
@@ -124,8 +120,7 @@ body {
 /* Animation utilities */
 .animate-fade-in {
   opacity: 0; /* Ensure element starts invisible */
-  animation: fade-in 0.5s ease-out forwards; /* Use standard ease-out */
-  animation-fill-mode: backwards; /* Apply 'from' state before animation starts */
+  animation: fade-in 0.5s ease-out forwards; /* Use standard ease-out, removed fill-mode */
 }
 
 .animate-accordion-down {
@@ -143,4 +138,3 @@ body {
 /* Or apply inline style if needed: style={{ animationDelay: `${index * 0.05}s` }} */
 /* Note: Tailwind delays might not work perfectly with 'backwards' fill mode */
 /* Keeping inline styles for delays might be necessary for stagger */
-

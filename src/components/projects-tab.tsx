@@ -52,7 +52,7 @@ export default function ProjectsTab() {
   return (
     <Card className="w-full bg-card border-border shadow-lg hover:shadow-xl transition-shadow duration-300 overflow-hidden">
        {/* Apply animation class directly */}
-      <CardHeader className="animate-fade-in">
+      <CardHeader className="animate-fade-in" style={{ animationDelay: '0.1s' }}>
          <CardTitle className="text-2xl font-semibold flex items-center gap-2">
            <FolderGit2 className="h-6 w-6 text-primary"/>
            Projects Showcase
@@ -64,7 +64,7 @@ export default function ProjectsTab() {
           <Card
             key={project.id}
             className="flex flex-col overflow-hidden bg-background shadow-md hover:shadow-lg transition-all duration-300 border border-border hover:border-primary/50 group animate-fade-in" // Apply animation class
-            style={{ animationDelay: `${0.1 + index * 0.1}s` }} // Staggered animation delay
+            style={{ animationDelay: `${0.2 + index * 0.1}s` }} // Staggered animation delay (adjusted starting delay)
           >
              {/* Image container with overflow hidden and hover effect */}
              <div className="relative w-full h-48 overflow-hidden">
