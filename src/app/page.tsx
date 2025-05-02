@@ -1,7 +1,6 @@
 'use client';
 
 import type React from 'react'; // Import type for React
-import { useEffect } from 'react'; // Import useEffect for initialization
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import PersonalInfoTab from "@/components/personal-info-tab";
 import CertificationsTab from "@/components/certifications-tab";
@@ -36,14 +35,15 @@ export default function Home() {
           {headerName}
         </h1>
         <p className="text-lg text-muted-foreground">
-          My Personal Portfolio {/* Updated text */}
+          My Personal Portfolio {/* Updated tagline */}
         </p>
       </header>
 
       <div className="w-full max-w-5xl">
         <Tabs defaultValue="personal-info" className="w-full">
           {/* Add margin-bottom to TabsList */}
-          <TabsList className="grid w-full grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-2 mb-12 sm:mb-16 md:mb-20 lg:mb-24 bg-muted/50 rounded-lg p-1 transition-all duration-300"> {/* Adjusted mb based on screen size */}
+          {/* Ensure TabsList doesn't cause overlap */}
+          <TabsList className="grid w-full grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-2 mb-12 bg-muted/50 rounded-lg p-1 transition-all duration-300 relative z-10"> {/* Increased mb, added z-index */}
             {tabsConfig.map((tab) => (
               <TabsTrigger
                 key={tab.value}
@@ -57,13 +57,15 @@ export default function Home() {
             ))}
           </TabsList>
 
-          {/* Add margin-top to TabsContent container */}
-          <div className="mt-8 md:mt-12 lg:mt-16"> {/* Added mt-* here */}
+          {/* Add significant margin-top to TabsContent container, especially for mobile */}
+          <div className="mt-16 md:mt-20 lg:mt-24"> {/* Increased mt-* values */}
             {tabsConfig.map((tab) => (
               <TabsContent
                 key={tab.value}
                 value={tab.value}
-                className="min-h-[300px]" // Removed individual mt-* from TabsContent
+                // Removed fixed minimum height to allow content to define its own height
+                className="animate-fade-in" // Added fade-in animation here as well
+                style={{ animationDelay: `0.2s`, animationFillMode: 'backwards' }} // Basic delay
               >
                 {/* Pass portfolio data to each tab component */}
                 <tab.Component portfolioData={data} />
