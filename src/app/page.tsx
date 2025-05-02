@@ -43,8 +43,8 @@ export default function Home() {
 
       <div className="w-full max-w-5xl">
         <Tabs defaultValue="personal-info" className="w-full">
-          {/* Adjusted grid columns for 5 tabs */}
-          <TabsList className="grid w-full grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-2 mb-8 bg-muted/50 rounded-lg p-1 transition-all duration-300">
+          {/* Increased bottom margin on smaller screens (mb-12) */}
+          <TabsList className="grid w-full grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-2 mb-12 sm:mb-8 bg-muted/50 rounded-lg p-1 transition-all duration-300">
             {tabsConfig.map((tab) => (
               <TabsTrigger
                 key={tab.value}
@@ -63,7 +63,8 @@ export default function Home() {
              <TabsContent
                key={tab.value}
                value={tab.value}
-               className="mt-8 md:mt-12 lg:mt-16 min-h-[300px] animate-fade-in" // Added min-height and adjusted margin
+               // Ensure top margin is sufficient if needed, existing classes seem okay
+               className="mt-8 md:mt-12 lg:mt-16 min-h-[300px]"
              >
                <tab.Component />
              </TabsContent>
