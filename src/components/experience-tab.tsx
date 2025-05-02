@@ -1,93 +1,16 @@
 'use client';
 
 import type React from 'react'; // Import type for React
-import { useState, useEffect } from 'react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Briefcase, GraduationCap } from "lucide-react"; // Added GraduationCap
 import { Separator } from "./ui/separator";
 import { Badge } from "./ui/badge";
-import { Skeleton } from "@/components/ui/skeleton"; // Import Skeleton
-import { getPortfolioData, type Experience, type Education } from '@/lib/firebase/database'; // Import function and types
+import { portfolioData } from '@/lib/portfolio-data'; // Import hardcoded data
+import type { Experience, Education } from '@/lib/types'; // Import types
 
 export default function ExperienceTab() {
-  const [experiences, setExperiences] = useState<Experience[]>([]);
-  const [education, setEducation] = useState<Education[]>([]); // State for education
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      setLoading(true);
-      setError(null);
-      try {
-        const data = await getPortfolioData();
-        if (data) {
-           setExperiences(data.experience ? Object.values(data.experience) : []);
-           setEducation(data.education ? Object.values(data.education) : []); // Fetch education
-        } else {
-           setExperiences([]);
-           setEducation([]);
-           console.log("No portfolio data found in Firebase.");
-        }
-      } catch (err) {
-        console.error("Error fetching experience/education:", err);
-        setError("An error occurred while fetching data.");
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchData();
-  }, []);
-
-  if (loading) {
-    return (
-      <Card className="w-full bg-card border border-border shadow-lg overflow-hidden">
-        <CardHeader>
-          <Skeleton className="h-8 w-1/2 mb-2" />
-          <Skeleton className="h-4 w-3/4" />
-        </CardHeader>
-        <CardContent className="space-y-8">
-          {[...Array(2)].map((_, index) => ( // Skeleton for 2 experience items
-            <div key={`exp-skel-${index}`}>
-              <Skeleton className="h-6 w-3/4 mb-2" />
-              <Skeleton className="h-4 w-1/2 mb-3" />
-              <Skeleton className="h-10 w-full mb-4" />
-              <div className="flex flex-wrap gap-2">
-                <Skeleton className="h-6 w-16 rounded-full" />
-                <Skeleton className="h-6 w-20 rounded-full" />
-                <Skeleton className="h-6 w-12 rounded-full" />
-              </div>
-              <Skeleton className="h-px w-full my-8" />
-            </div>
-          ))}
-           {/* Skeleton for Education */}
-           <Skeleton className="h-8 w-1/3 mb-4" />
-            {[...Array(2)].map((_, index) => ( // Skeleton for 2 education items
-                <div key={`edu-skel-${index}`}>
-                <Skeleton className="h-6 w-3/4 mb-2" />
-                <Skeleton className="h-4 w-1/2 mb-3" />
-                <Skeleton className="h-px w-full my-8" />
-                </div>
-            ))}
-        </CardContent>
-      </Card>
-    );
-  }
-
-   if (error) {
-        return (
-            <Card className="w-full bg-card border border-destructive shadow-lg overflow-hidden">
-                <CardHeader>
-                    <CardTitle className="text-destructive">Error</CardTitle>
-                </CardHeader>
-                <CardContent>
-                    <p>{error}</p>
-                </CardContent>
-            </Card>
-        );
-    }
-
+  const experiences: Experience[] = portfolioData.experience; // Use hardcoded data
+  const education: Education[] = portfolioData.education; // Use hardcoded data
 
   return (
     <Card className="w-full bg-card border border-border shadow-lg hover:shadow-xl transition-shadow duration-300 overflow-hidden animate-fade-in">
@@ -176,7 +99,7 @@ export default function ExperienceTab() {
                  </div>
             </>
         )}
-        {education.length === 0 && !loading && (
+        {education.length === 0 && (
              <p className="text-muted-foreground text-center py-4">No educational history available.</p>
         )}
 

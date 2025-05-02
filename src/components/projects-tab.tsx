@@ -1,92 +1,18 @@
 'use client';
 
 import type React from 'react'; // Import type for React
-import { useState, useEffect } from 'react';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Github, ExternalLink, FolderGit2 } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { Badge } from "./ui/badge";
-import { Skeleton } from "@/components/ui/skeleton"; // Import Skeleton
-import { getPortfolioData, type Project } from '@/lib/firebase/database'; // Import function and type
+import { portfolioData } from '@/lib/portfolio-data'; // Import hardcoded data
+import type { Project } from '@/lib/types'; // Import type
 
 
 export default function ProjectsTab() {
-  const [projects, setProjects] = useState<Project[]>([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      setLoading(true);
-      setError(null);
-      try {
-        const data = await getPortfolioData();
-        if (data && data.projects) {
-          // Convert Record<string, Project> to Project[]
-          setProjects(Object.values(data.projects));
-        } else {
-          setProjects([]); // Set empty if no data
-           console.log("No projects found in Firebase.");
-        }
-      } catch (err) {
-        console.error("Error fetching projects:", err);
-        setError("An error occurred while fetching projects.");
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchData();
-  }, []);
-
-
-  if (loading) {
-    return (
-      <Card className="w-full bg-card border border-border shadow-lg overflow-hidden">
-        <CardHeader>
-          <Skeleton className="h-8 w-1/2 mb-2" />
-          <Skeleton className="h-4 w-3/4" />
-        </CardHeader>
-        <CardContent className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          {[...Array(2)].map((_, index) => ( // Render 2 skeleton cards
-            <Card key={index} className="flex flex-col overflow-hidden bg-background shadow-md border border-border">
-              <Skeleton className="relative w-full h-48" />
-              <CardHeader>
-                <Skeleton className="h-6 w-3/4 mb-2" />
-                 <div className="flex flex-wrap gap-1 pt-2">
-                     <Skeleton className="h-5 w-16 rounded-full" />
-                     <Skeleton className="h-5 w-20 rounded-full" />
-                 </div>
-              </CardHeader>
-              <CardContent className="flex-grow">
-                <Skeleton className="h-12 w-full" />
-              </CardContent>
-              <CardFooter className="flex justify-end space-x-2 bg-muted/30 p-4 mt-auto border-t border-border/50">
-                <Skeleton className="h-8 w-20 rounded-md" />
-                <Skeleton className="h-8 w-24 rounded-md" />
-              </CardFooter>
-            </Card>
-          ))}
-        </CardContent>
-      </Card>
-    );
-  }
-
-   if (error) {
-    return (
-        <Card className="w-full bg-card border border-destructive shadow-lg overflow-hidden">
-            <CardHeader>
-                <CardTitle className="text-destructive">Error</CardTitle>
-            </CardHeader>
-            <CardContent>
-                <p>{error}</p>
-            </CardContent>
-        </Card>
-        );
-    }
-
+  const projects: Project[] = portfolioData.projects; // Use hardcoded data
 
   return (
     <Card className="w-full bg-card border-border shadow-lg hover:shadow-xl transition-shadow duration-300 overflow-hidden animate-fade-in">

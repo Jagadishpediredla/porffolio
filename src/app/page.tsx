@@ -1,23 +1,15 @@
 'use client';
 
 import type React from 'react'; // Import type for React
-import { useEffect } from 'react'; // Import useEffect for initialization
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import PersonalInfoTab from "@/components/personal-info-tab";
 import CertificationsTab from "@/components/certifications-tab";
 import ExperienceTab from "@/components/experience-tab"; // Contains both Experience and Education
 import ProjectsTab from "@/components/projects-tab";
 import AchievementsTab from "@/components/achievements-tab";
-import { User, Award, Briefcase, FolderGit2, CheckCircle, GraduationCap } from "lucide-react"; // Import icons including GraduationCap
-import { initializeData } from '@/lib/firebase/database'; // Import initialization function
+import { User, Award, Briefcase, FolderGit2, CheckCircle } from "lucide-react"; // Import icons
 
 export default function Home() {
-
- // Initialize Firebase data on component mount (consider moving if causes issues)
-  useEffect(() => {
-    initializeData();
-  }, []);
-
 
   const tabsConfig = [
     { value: "personal-info", label: "Personal Info", icon: User },
@@ -41,7 +33,7 @@ export default function Home() {
       <div className="w-full max-w-5xl">
         <Tabs defaultValue="personal-info" className="w-full">
           {/* Adjusted grid columns for 5 tabs */}
-          <TabsList className="grid w-full grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-2 mb-8 bg-muted/50 rounded-lg p-1 transition-all duration-300">
+          <TabsList className="grid w-full grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-2 mb-8 bg-muted/50 rounded-lg p-1 transition-all duration-300">
             {tabsConfig.map((tab) => (
               <TabsTrigger
                 key={tab.value}
@@ -76,4 +68,3 @@ export default function Home() {
     </main>
   );
 }
-

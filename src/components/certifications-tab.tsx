@@ -1,72 +1,16 @@
 'use client';
 
 import type React from 'react'; // Import type for React
-import { useState, useEffect } from 'react';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { CheckCircle, ExternalLink } from "lucide-react";
 import Link from "next/link";
 import { Badge } from "./ui/badge";
-import { Skeleton } from "@/components/ui/skeleton"; // Import Skeleton
-import { getPortfolioData, type Certification } from '@/lib/firebase/database'; // Import function and type
+import { portfolioData } from '@/lib/portfolio-data'; // Import hardcoded data
+import type { Certification } from '@/lib/types'; // Import type
 
 export default function CertificationsTab() {
-  const [certifications, setCertifications] = useState<Certification[]>([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      setLoading(true);
-      setError(null);
-      try {
-        const data = await getPortfolioData();
-        if (data && data.certifications) {
-          // Convert Record<string, Certification> to Certification[]
-          setCertifications(Object.values(data.certifications));
-        } else {
-          setCertifications([]); // Set empty array if no data
-          console.log("No certifications found in Firebase.");
-        }
-      } catch (err) {
-        console.error("Error fetching certifications:", err);
-        setError("An error occurred while fetching certifications.");
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchData();
-  }, []);
-
-  if (loading) {
-    return (
-      <Card className="w-full bg-card border border-border shadow-lg overflow-hidden">
-        <CardHeader className="pt-6">
-          <Skeleton className="h-8 w-1/2 mb-2" />
-          <Skeleton className="h-4 w-3/4" />
-        </CardHeader>
-        <CardContent className="space-y-4">
-          {[...Array(3)].map((_, index) => ( // Render 3 skeleton items
-            <Skeleton key={index} className="h-20 w-full rounded-lg" />
-          ))}
-        </CardContent>
-      </Card>
-    );
-  }
-
-    if (error) {
-        return (
-            <Card className="w-full bg-card border border-destructive shadow-lg overflow-hidden">
-                <CardHeader>
-                    <CardTitle className="text-destructive">Error</CardTitle>
-                </CardHeader>
-                <CardContent>
-                    <p>{error}</p>
-                </CardContent>
-            </Card>
-        );
-    }
+  const certifications: Certification[] = portfolioData.certifications; // Use hardcoded data
 
   return (
     <Card className="w-full bg-card border border-border shadow-lg hover:shadow-xl transition-shadow duration-300 overflow-hidden animate-fade-in">
