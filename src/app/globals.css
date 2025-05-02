@@ -93,19 +93,14 @@ body {
 
 /* More refined animations */
 @layer components {
-  /* Removed .tab-content animation rule */
-
   /* Add subtle hover transforms */
   .hover-lift {
     @apply transition-transform duration-200 ease-out hover:-translate-y-1;
   }
 }
 
-/* Keyframes for animations */
-@keyframes fade-in {
-  from { opacity: 0; transform: translateY(5px); } /* Simplified: Just opacity and slight Y translate */
-  to { opacity: 1; transform: translateY(0); }
-}
+/* Keyframes for animations - Handled by tailwind.config.js now */
+/* @keyframes fade-in { ... } */
 
 @keyframes accordion-down {
   from { height: 0; opacity: 0; } /* Removed transform for smoother feel */
@@ -117,11 +112,8 @@ body {
   to { height: 0; opacity: 0; } /* Removed transform */
 }
 
-/* Animation utilities */
-.animate-fade-in {
-  opacity: 0; /* Ensure element starts invisible */
-  animation: fade-in 0.5s ease-out forwards; /* Use standard ease-out, removed fill-mode */
-}
+/* Animation utilities - Handled by tailwind.config.js now */
+/* .animate-fade-in { ... } */
 
 .animate-accordion-down {
   /* Use a standard ease-out, duration adjusted in accordion.tsx */

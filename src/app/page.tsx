@@ -9,7 +9,6 @@ import { User, Award, Briefcase, FolderGit2, CheckCircle } from "lucide-react"; 
 export default function Home() {
   return (
     <main className="flex min-h-screen flex-col items-center p-4 md:p-12 lg:p-24 bg-background text-foreground transition-colors duration-300">
-      {/* Apply animation class directly */}
       <header className="mb-12 text-center animate-fade-in">
         <h1 className="text-4xl md:text-5xl font-bold mb-2 bg-gradient-to-r from-primary via-teal-400 to-secondary bg-clip-text text-transparent drop-shadow-sm">
           Persona Canvas
@@ -19,10 +18,9 @@ export default function Home() {
         </p>
       </header>
 
-      {/* Container animation */}
-      <div className="w-full max-w-5xl animate-fade-in" style={{ animationDelay: '0.1s' }}> {/* Start container animation slightly earlier */}
+      {/* Apply animation to the container */}
+      <div className="w-full max-w-5xl animate-fade-in" style={{ animationDelay: '0.1s' }}>
         <Tabs defaultValue="personal-info" className="w-full">
-          {/* Adjusted grid columns for better responsiveness */}
           <TabsList className="grid w-full grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-2 mb-8 bg-muted/50 rounded-lg p-1 transition-all duration-300">
             {[
               { value: "personal-info", label: "Personal Info", icon: User },
@@ -34,8 +32,8 @@ export default function Home() {
               <TabsTrigger
                 key={tab.value}
                 value={tab.value}
-                className="flex items-center justify-center gap-2 data-[state=active]:bg-primary data-[state=active]:text-primary-foreground data-[state=active]:shadow-md transition-all duration-300 ease-in-out rounded-md p-2 text-sm font-medium hover:bg-accent/80 hover:text-accent-foreground focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background animate-fade-in" // Apply animation class
-                style={{ animationDelay: `${0.2 + index * 0.07}s` }} // Start tab trigger animations after container starts fading in
+                className="flex items-center justify-center gap-2 data-[state=active]:bg-primary data-[state=active]:text-primary-foreground data-[state=active]:shadow-md transition-all duration-300 ease-in-out rounded-md p-2 text-sm font-medium hover:bg-accent/80 hover:text-accent-foreground focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background animate-fade-in" // Apply animation class directly
+                style={{ animationDelay: `${0.2 + index * 0.07}s` }} // Staggered animation
                 aria-label={tab.label}
               >
                 <tab.icon className="h-4 w-4" />
@@ -44,22 +42,22 @@ export default function Home() {
             ))}
           </TabsList>
 
-          {/* Tab Content containers - Let content inside handle its own animation */}
+          {/* Tab Content containers - Increased top margin */}
+          {/* Removed unused 'tab-content' class */}
           {/* Added keys to ensure React treats them as distinct components for animation resets on tab change */}
-          {/* Added mt-8 to add space between tabs and content */}
-          <TabsContent value="personal-info" className="tab-content mt-8" key="personal-info">
+          <TabsContent value="personal-info" className="mt-12" key="personal-info">
             <PersonalInfoTab />
           </TabsContent>
-          <TabsContent value="certifications" className="tab-content mt-8" key="certifications">
+          <TabsContent value="certifications" className="mt-12" key="certifications">
             <CertificationsTab />
           </TabsContent>
-          <TabsContent value="experience" className="tab-content mt-8" key="experience">
+          <TabsContent value="experience" className="mt-12" key="experience">
             <ExperienceTab />
           </TabsContent>
-          <TabsContent value="projects" className="tab-content mt-8" key="projects">
+          <TabsContent value="projects" className="mt-12" key="projects">
             <ProjectsTab />
           </TabsContent>
-          <TabsContent value="achievements" className="tab-content mt-8" key="achievements">
+          <TabsContent value="achievements" className="mt-12" key="achievements">
             <AchievementsTab />
           </TabsContent>
         </Tabs>
