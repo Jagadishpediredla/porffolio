@@ -1,6 +1,7 @@
 'use client';
 
 import type React from 'react'; // Import type for React
+import { useEffect } from 'react'; // Import useEffect for initialization
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import PersonalInfoTab from "@/components/personal-info-tab";
 import CertificationsTab from "@/components/certifications-tab";
@@ -8,17 +9,25 @@ import ExperienceTab from "@/components/experience-tab"; // Contains both Experi
 import ProjectsTab from "@/components/projects-tab";
 import AchievementsTab from "@/components/achievements-tab";
 import { User, Award, Briefcase, FolderGit2, CheckCircle } from "lucide-react"; // Import icons
-import { portfolioData } from '@/lib/portfolio-data'; // Import portfolio data
+import { portfolioData as staticData } from '@/lib/portfolio-data'; // Import static data
+
+// Use client-side state for portfolio data, initialized with static data
+// In a real app, you might fetch this data or use context
+const portfolioData = staticData;
 
 export default function Home() {
 
+  useEffect(() => {
+    // Potential client-side initialization if needed
+  }, []);
+
   // Use data from portfolioData or provide fallbacks
-  const tabsConfig = [
-    { value: "personal-info", label: "Personal Info", icon: User },
-    { value: "experience", label: "Experience & Edu", icon: Briefcase }, // Combined label
-    { value: "projects", label: "Projects", icon: FolderGit2 },
-    { value: "certifications", label: "Certifications", icon: CheckCircle },
-    { value: "achievements", label: "Achievements", icon: Award },
+   const tabsConfig = [
+    { value: "personal-info", label: "Personal Info", icon: User, Component: PersonalInfoTab },
+    { value: "experience", label: "Experience & Edu", icon: Briefcase, Component: ExperienceTab },
+    { value: "projects", label: "Projects", icon: FolderGit2, Component: ProjectsTab },
+    { value: "certifications", label: "Certifications", icon: CheckCircle, Component: CertificationsTab },
+    { value: "achievements", label: "Achievements", icon: Award, Component: AchievementsTab },
   ];
 
   return (
@@ -28,7 +37,7 @@ export default function Home() {
           {portfolioData.personalInfo?.name || "Persona Canvas"}
         </h1>
         <p className="text-lg text-muted-foreground">
-          My Modern Animated Portfolio
+          A Showcase of Skills and Projects {/* Updated text */}
         </p>
       </header>
 
@@ -49,23 +58,16 @@ export default function Home() {
             ))}
           </TabsList>
 
-          {/* Adjusted margin-top for better spacing, especially on mobile */}
-          {/* Increased margin-top values (mt-12 md:mt-16 lg:mt-20) */}
-          <TabsContent value="personal-info" className="mt-12 md:mt-16 lg:mt-20" key="personal-info">
-            <PersonalInfoTab />
-          </TabsContent>
-           <TabsContent value="experience" className="mt-12 md:mt-16 lg:mt-20" key="experience">
-            <ExperienceTab /> {/* Renders both experience and education */}
-          </TabsContent>
-          <TabsContent value="projects" className="mt-12 md:mt-16 lg:mt-20" key="projects">
-            <ProjectsTab />
-          </TabsContent>
-          <TabsContent value="certifications" className="mt-12 md:mt-16 lg:mt-20" key="certifications">
-            <CertificationsTab />
-          </TabsContent>
-          <TabsContent value="achievements" className="mt-12 md:mt-16 lg:mt-20" key="achievements">
-            <AchievementsTab />
-          </TabsContent>
+          {/* Render Tab Content */}
+          {tabsConfig.map((tab) => (
+             <TabsContent
+               key={tab.value}
+               value={tab.value}
+               className="mt-8 md:mt-12 lg:mt-16 min-h-[300px] animate-fade-in" // Added min-height and adjusted margin
+             >
+               <tab.Component />
+             </TabsContent>
+           ))}
         </Tabs>
       </div>
     </main>
