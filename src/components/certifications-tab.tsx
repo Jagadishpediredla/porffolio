@@ -1,3 +1,4 @@
+
 'use client';
 
  import type React from 'react';
@@ -6,11 +7,11 @@
  import Link from "next/link";
  import Image from "next/image";
  import { Badge } from "./ui/badge";
- import { certificationsData as certs } from '@/lib/certifications-data'; 
+ import { certificationsData as certs } from '@/lib/certifications-data';
  import type { PortfolioData, Certification } from '@/lib/types';
 
 interface CertificationsTabProps {
-  portfolioData?: PortfolioData; 
+  portfolioData?: PortfolioData;
 }
 
 export default function CertificationsTab({ portfolioData }: CertificationsTabProps) {
@@ -83,9 +84,9 @@ export default function CertificationsTab({ portfolioData }: CertificationsTabPr
                       </div>
                     </AccordionTrigger>
                     <AccordionContent className="px-6 pb-6 pt-2 text-base text-muted-foreground bg-muted/30">
-                      {item.date && <p className="mb-1 text-xs text-muted-foreground/80">Date: {item.date}</p>}
+                      {/* Removed date display: {item.date && <p className="mb-1 text-xs text-muted-foreground/80">Date: {item.date}</p>} */}
                       {item.description && <p className="mb-4 leading-relaxed">{item.description}</p>}
-                      
+
                       <div className="my-5 relative h-72 md:h-80 w-full overflow-hidden rounded-md border border-border/30 bg-muted/10 flex items-center justify-center">
                         <Image
                           src={item.imageUrl || `https://picsum.photos/seed/${item.id}/400/300`}
@@ -131,4 +132,3 @@ export default function CertificationsTab({ portfolioData }: CertificationsTabPr
     </div>
   );
 }
-
