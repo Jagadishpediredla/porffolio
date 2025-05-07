@@ -33,7 +33,7 @@ const RecentExperienceSummary: React.FC<RecentExperienceSummaryProps> = ({ exper
       </CardHeader>
       <CardContent className="flex-grow flex flex-col">
         <h3 className="text-lg font-medium text-foreground text-left mb-1">{experience.title}</h3>
-        <p className="text-sm text-muted-foreground mb-1">{experience.company}</p>
+        <p className="text-sm text-muted-foreground mb-1 text-left">{experience.company}</p> {/* Added text-left */}
         <div className="flex items-center gap-2 text-xs text-muted-foreground/80 mt-1 mb-2">
           <Calendar className="h-3.5 w-3.5" />
           <span>{experience.duration}</span>
@@ -47,4 +47,3 @@ const RecentExperienceSummary: React.FC<RecentExperienceSummaryProps> = ({ exper
 };
 
 export default RecentExperienceSummary;
-
