@@ -4,10 +4,9 @@
 import type React from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { Github, Linkedin as LinkedinIcon, Mail, MapPin, Code, Zap, Smile, Languages, Phone, FileText } from "lucide-react";
+import { Github, Linkedin as LinkedinIcon, Mail, MapPin, Phone, FileText } from "lucide-react";
 import { Button } from "./ui/button";
 import Link from 'next/link';
-import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import type { PortfolioData, PersonalInfo } from '@/lib/types';
 
@@ -45,12 +44,15 @@ export default function PersonalInfoSection({ portfolioData }: PersonalInfoSecti
   return (
     <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12 items-start max-w-6xl mx-auto">
       {/* Apply animation to the entire grid item for consistency */}
-      <div className="flex flex-col items-center md:items-start md:col-span-1 animate-fade-in" style={{ animationDelay: '0.1s' }}>
-        <Avatar className="h-48 w-48 md:h-56 md:w-56 mb-6 ring-4 ring-primary/30 ring-offset-4 ring-offset-background shadow-xl hover:ring-primary/50 transition-all duration-300 ease-out">
+      <div 
+        className="flex flex-col items-center md:items-start md:col-span-1 animate-fade-in-up" 
+        style={{ animationDelay: '0.1s', animationFillMode: 'backwards' }}
+      >
+        <Avatar className="h-48 w-48 md:h-56 md:w-56 mb-6 ring-4 ring-primary/30 ring-offset-4 ring-offset-background shadow-xl hover:ring-primary/50 transition-all duration-300 ease-out hover:shadow-primary/20">
           <AvatarImage src={personalInfo.profilePictureUrl || `https://picsum.photos/seed/${personalInfo.name}/300/300`} alt="Profile Picture" data-ai-hint="person professional" />
           <AvatarFallback className="text-4xl">{fallbackInitials}</AvatarFallback>
         </Avatar>
-        <Button variant="default" size="lg" className="mt-4 btn-textured w-full md:w-auto group hover-lift" asChild>
+        <Button variant="default" size="lg" className="mt-4 btn-textured w-full md:w-auto group hover-lift hover:shadow-primary/20" asChild>
            <Link href={personalInfo.cvLink || "#"} target="_blank" rel="noopener noreferrer" aria-label="Download CV">
              <FileText className="mr-2 h-5 w-5 group-hover:animate-pulse" /> Download CV
            </Link>
@@ -58,7 +60,10 @@ export default function PersonalInfoSection({ portfolioData }: PersonalInfoSecti
       </div>
 
       {/* Apply animation to the entire grid item */}
-      <div className="md:col-span-2 space-y-6 animate-fade-in" style={{ animationDelay: '0.3s' }}>
+      <div 
+        className="md:col-span-2 space-y-6 animate-fade-in-up" 
+        style={{ animationDelay: '0.3s', animationFillMode: 'backwards' }}
+      >
         <h3 className="text-3xl lg:text-4xl font-bold text-foreground mb-1">{personalInfo.name}</h3>
         <p className="text-xl lg:text-2xl text-primary font-semibold mb-4">{personalInfo.title}</p>
 
@@ -92,22 +97,22 @@ export default function PersonalInfoSection({ portfolioData }: PersonalInfoSecti
         <Separator className="my-6 bg-border/20" />
 
         <div className="flex flex-wrap gap-3">
-            <Button variant="outline" size="icon" asChild className="hover-lift border-primary/30 hover:border-primary hover:bg-accent/20">
+            <Button variant="outline" size="icon" asChild className="hover-lift border-primary/30 hover:border-primary hover:bg-accent/20 hover:shadow-primary/20">
               <Link href={personalInfo.github || '#'} target="_blank" rel="noopener noreferrer" aria-label="GitHub Profile">
                 <Github className="h-5 w-5" />
               </Link>
             </Button>
-            <Button variant="outline" size="icon" asChild className="hover-lift border-primary/30 hover:border-primary hover:bg-accent/20">
+            <Button variant="outline" size="icon" asChild className="hover-lift border-primary/30 hover:border-primary hover:bg-accent/20 hover:shadow-primary/20">
               <Link href={personalInfo.linkedin || '#'} target="_blank" rel="noopener noreferrer" aria-label="LinkedIn Profile">
                 <LinkedinIcon className="h-5 w-5" />
               </Link>
             </Button>
-             <Button variant="outline" size="icon" asChild className="hover-lift border-primary/30 hover:border-primary hover:bg-accent/20">
+             <Button variant="outline" size="icon" asChild className="hover-lift border-primary/30 hover:border-primary hover:bg-accent/20 hover:shadow-primary/20">
               <a href={`mailto:${personalInfo.email}`} aria-label="Send Email">
                 <Mail className="h-5 w-5" />
               </a>
             </Button>
-             <Button variant="outline" size="icon" asChild className="hover-lift border-primary/30 hover:border-primary hover:bg-accent/20">
+             <Button variant="outline" size="icon" asChild className="hover-lift border-primary/30 hover:border-primary hover:bg-accent/20 hover:shadow-primary/20">
               <a href={`https://wa.me/${personalInfo.phone.replace(/\D/g, '')}`} target="_blank" rel="noopener noreferrer" aria-label="WhatsApp Chat">
                  <WhatsAppIcon />
               </a>

@@ -38,7 +38,7 @@ export default function Home() {
   useEffect(() => {
     // Simulate fetching data
     // In a real app, this would be an API call
-    // For now, we use static data and Firebase
+    // For now, we use static data
     setPortfolioData(staticData);
     setLoading(false);
   }, []);
@@ -76,50 +76,53 @@ export default function Home() {
   } else if (activeSectionId === sectionIds.about) {
     currentView = (
       <SectionWrapper id={sectionIds.about}>
-        <h2 className="text-3xl md:text-4xl font-bold text-center mb-12 text-primary">About Me</h2>
+        <h2 className="text-3xl md:text-4xl font-bold text-center mb-12 text-primary animate-fade-in-up" style={{ animationDelay: '0s', animationFillMode: 'backwards' }}>About Me</h2>
         <PersonalInfoSection portfolioData={portfolioData} />
       </SectionWrapper>
     );
   } else if (activeSectionId === sectionIds.skills) {
     currentView = (
       <SectionWrapper id={sectionIds.skills} bg="bg-card/30">
-        <h2 className="text-3xl md:text-4xl font-bold text-center mb-12 text-primary">My Skills</h2>
+        <h2 className="text-3xl md:text-4xl font-bold text-center mb-12 text-primary animate-fade-in-up" style={{ animationDelay: '0s', animationFillMode: 'backwards' }}>My Skills</h2>
         <SkillsSection personalInfo={portfolioData.personalInfo} />
       </SectionWrapper>
     );
   } else if (activeSectionId === sectionIds.experience) {
     currentView = (
       <SectionWrapper id={sectionIds.experience}>
-        <h2 className="text-3xl md:text-4xl font-bold text-center mb-12 text-primary">Experience & Education</h2>
+        <h2 className="text-3xl md:text-4xl font-bold text-center mb-12 text-primary animate-fade-in-up" style={{ animationDelay: '0s', animationFillMode: 'backwards' }}>Experience & Education</h2>
         <ExperienceSection portfolioData={portfolioData} />
       </SectionWrapper>
     );
   } else if (activeSectionId === sectionIds.projects) {
     currentView = (
       <SectionWrapper id={sectionIds.projects} bg="bg-card/30">
-        <h2 className="text-3xl md:text-4xl font-bold text-center mb-12 text-primary">Projects</h2>
+        <h2 className="text-3xl md:text-4xl font-bold text-center mb-12 text-primary animate-fade-in-up" style={{ animationDelay: '0s', animationFillMode: 'backwards' }}>Projects</h2>
         <ProjectsSection portfolioData={portfolioData} />
       </SectionWrapper>
     );
   } else if (activeSectionId === sectionIds.certifications) {
     currentView = (
       <SectionWrapper id={sectionIds.certifications}>
-        <h2 className="text-3xl md:text-4xl font-bold text-center mb-12 text-primary">Certifications</h2>
+        <h2 className="text-3xl md:text-4xl font-bold text-center mb-12 text-primary animate-fade-in-up" style={{ animationDelay: '0s', animationFillMode: 'backwards' }}>Certifications</h2>
         <CertificationsTab portfolioData={portfolioData} />
       </SectionWrapper>
     );
   } else if (activeSectionId === sectionIds.achievements) {
     currentView = (
       <SectionWrapper id={sectionIds.achievements} bg="bg-card/30">
-        <h2 className="text-3xl md:text-4xl font-bold text-center mb-12 text-primary">Achievements</h2>
+        <h2 className="text-3xl md:text-4xl font-bold text-center mb-12 text-primary animate-fade-in-up" style={{ animationDelay: '0s', animationFillMode: 'backwards' }}>Achievements</h2>
         <AchievementsTab portfolioData={portfolioData} />
       </SectionWrapper>
     );
   } else if (activeSectionId === sectionIds.contact) {
     currentView = (
       <SectionWrapper id={sectionIds.contact}>
-         <h2 className="text-3xl md:text-4xl font-bold text-center mb-12 text-primary">Contact Me</h2>
-         <div className="max-w-lg mx-auto bg-card p-8 rounded-xl shadow-xl border border-border/30">
+         <h2 className="text-3xl md:text-4xl font-bold text-center mb-12 text-primary animate-fade-in-up" style={{ animationDelay: '0s', animationFillMode: 'backwards' }}>Contact Me</h2>
+         <div 
+           className="max-w-lg mx-auto bg-card p-8 rounded-xl shadow-xl border border-border/30 animate-fade-in-up"
+           style={{ animationDelay: '0.1s', animationFillMode: 'backwards' }}
+          >
             <p className="text-lg mb-6 text-foreground text-center">I'd love to hear from you! Whether you have a question or just want to say hi, feel free to reach out.</p>
             <div className="space-y-4 text-muted-foreground">
               <p className="flex items-center justify-start"> {/* Changed to justify-start */}
@@ -152,8 +155,10 @@ export default function Home() {
         onNavLinkClick={handleNavLinkClick} 
         activeSectionId={activeSectionId} 
       />
-      <main className="flex-grow pt-16 md:pt-20"> {/* Adjusted top padding */}
-        <div key={activeSectionId} className="animate-fade-in">
+      {/* Adjusted top padding to ensure Navbar doesn't overlap content */}
+      <main className="flex-grow pt-20 md:pt-24"> {/* Increased top padding */}
+        {/* Removed animate-fade-in from this div to let sections handle their own animations */}
+        <div key={activeSectionId}>
           {currentView}
         </div>
       </main>
@@ -164,4 +169,3 @@ export default function Home() {
     </div>
   );
 }
-
