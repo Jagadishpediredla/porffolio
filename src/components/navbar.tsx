@@ -41,7 +41,7 @@ const Navbar: React.FC<NavbarProps> = ({ sectionIds, onNavLinkClick, activeSecti
     { label: 'Skills', id: sectionIds.skills },
     { label: 'Experience', id: sectionIds.experience },
     { label: 'Projects', id: sectionIds.projects },
-    { label: 'Certs', id: sectionIds.certifications, fullLabel: 'Certifications' },
+    { label: 'Certifications', id: sectionIds.certifications, fullLabel: 'Certifications' }, // Changed 'Certs' to 'Certifications'
     { label: 'Achievements', id: sectionIds.achievements },
     { label: 'Contact', id: sectionIds.contact },
   ];

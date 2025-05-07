@@ -16,11 +16,11 @@ const ExperienceItemCard: React.FC<{ item: Experience, index: number }> = ({ ite
     className="relative animate-fade-in-up pl-8 md:pl-10 group" // Added group for hover effects
     style={{ animationDelay: `${0.1 + index * 0.1}s`, animationFillMode: 'backwards' }}
   >
-    <div className="absolute left-0 md:left-[-0.5rem] top-1 h-4 w-4 rounded-full bg-primary border-2 border-background ring-2 ring-primary/50 group-hover:ring-primary transition-all duration-300"></div> {/* Enhanced dot hover */}
+    <div className="absolute left-0 md:-left-0.5 top-1 h-4 w-4 rounded-full bg-primary border-2 border-background ring-2 ring-primary/50 group-hover:ring-primary transition-all duration-300"></div> {/* Enhanced dot hover, adjusted md:left for centering */}
     {/* Added hover effect classes */}
-    <div className="bg-card/60 backdrop-blur-sm p-6 rounded-lg border border-border/50 shadow-md hover:shadow-primary/15 hover:border-primary/50 transition-all duration-300 ml-2">
+    <div className="bg-card/60 backdrop-blur-sm p-6 rounded-xl border border-border/50 shadow-lg hover:shadow-primary/20 hover:border-primary/60 transition-all duration-300 ml-2 hover-lift">
       <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-2 gap-2">
-        <h3 className="text-xl font-semibold text-foreground">{item.title}</h3>
+        <h3 className="text-xl font-semibold text-foreground group-hover:text-primary transition-colors">{item.title}</h3>
         <div className="flex items-center gap-2 text-sm text-muted-foreground flex-shrink-0">
           <Calendar className="h-4 w-4" />
           <span>{item.duration}</span>
@@ -57,11 +57,11 @@ const EducationItemCard: React.FC<{ item: Education, index: number }> = ({ item,
     className="relative animate-fade-in-up pl-8 md:pl-10 group" // Added group for hover effects
     style={{ animationDelay: `${0.1 + index * 0.1}s`, animationFillMode: 'backwards' }}
   >
-    <div className="absolute left-0 md:left-[-0.5rem] top-1 h-4 w-4 rounded-full bg-primary border-2 border-background ring-2 ring-primary/50 group-hover:ring-primary transition-all duration-300"></div> {/* Enhanced dot hover */}
+    <div className="absolute left-0 md:-left-0.5 top-1 h-4 w-4 rounded-full bg-primary border-2 border-background ring-2 ring-primary/50 group-hover:ring-primary transition-all duration-300"></div> {/* Enhanced dot hover, adjusted md:left for centering */}
     {/* Added hover effect classes */}
-    <div className="bg-card/60 backdrop-blur-sm p-6 rounded-lg border border-border/50 shadow-md hover:shadow-primary/15 hover:border-primary/50 transition-all duration-300 ml-2">
+    <div className="bg-card/60 backdrop-blur-sm p-6 rounded-xl border border-border/50 shadow-lg hover:shadow-primary/20 hover:border-primary/60 transition-all duration-300 ml-2 hover-lift">
       <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-2 gap-2">
-        <h3 className="text-xl font-semibold text-foreground">{item.degree}</h3>
+        <h3 className="text-xl font-semibold text-foreground group-hover:text-primary transition-colors">{item.degree}</h3>
         <div className="flex items-center gap-2 text-sm text-muted-foreground flex-shrink-0">
           <Calendar className="h-4 w-4" />
           <span>Graduated: {item.graduationYear}</span>
