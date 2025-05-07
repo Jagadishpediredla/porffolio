@@ -34,8 +34,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${inter.variable} ${poppins.variable} ${lato.variable} dark`}> {/* Add font variables */}
-      <body className={`font-body antialiased relative overflow-x-hidden`}> {/* Apply Lato font variable as default body font */}
+    <html lang="en" className={`${inter.variable} ${poppins.variable} ${lato.variable} dark`}>
+      <body className={`font-body antialiased`}> {/* Apply Lato font variable as default body font */}
          {/* Background Container */}
         <div
           className="fixed inset-0 z-[-1] bg-background bg-cover bg-center bg-fixed opacity-15"
