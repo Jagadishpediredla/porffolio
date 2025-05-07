@@ -5,37 +5,28 @@ import type { PortfolioData } from './types';
 export const portfolioData: PortfolioData = {
   personalInfo: {
     name: "Venkata Jagadish Pediredla",
-    title: "My Personal Portfolio", // Updated tagline
+    title: "My Personal Portfolio",
     objective: "A highly motivated and passionate Electronics engineer with a strong foundation in semiconductor design, EDA tools, and CMOS technology. Eager to contribute to India's burgeoning semiconductor sector by applying acquired skills in practical settings and continuously learning to stay at the forefront of technological advancements. Proven ability in problem-solving, project execution, and a keen interest in embedded systems and IoT.",
     location: "Kovvur, East Godavari, AP, India",
     email: "jpediredla56@gmail.com",
     phone: "9059674614",
     linkedin: "https://linkedin.com/in/venkata-jagadish-pediredla",
     github: "https://github.com/jagadishpediredla",
-    profilePictureUrl: "/assets/images/profile-picture.jpg", // Updated path to local image
+    profilePictureUrl: "/assets/images/profile-picture.jpg",
     // Ensure this list contains all skills for categorization in skills-section.tsx
     technicalSkills: [
         "Verilog", "System Verilog", "UVM", "CMOS Design", "VLSI Testing", "MEMS", "Xilinx Vivado", "LTspice",
-        "LabVIEW", "Embedded Systems", "MPLAB IDE", "Arduino IDE", "ESP8266", "ESP32",
+        "LabVIEW", "Embedded Systems", "MPLAB IDE", "Arduino IDE", "ESP32", // Removed ESP8266, UVM & SystemVerilog are here
         "Python", "MATLAB"
     ],
     softSkills: ["Passion for learning", "Presentation & Public Speaking", "Logical Reasoning", "Self-Control", "Problem-Solving", "Teamwork"],
     hobbies: ["Playing Shuttle Badminton", "DIY Electronics Projects", "Exploring New Places & Technologies", "Listening to Music"],
     languages: ["Telugu (Native)", "English (Fluent)", "Hindi (Conversational)"],
-    cvLink: "/assets/VenkataJagadishPediredla_Resume.pdf", // Placeholder CV link
+    cvLink: "/assets/VenkataJagadishPediredla_Resume.pdf",
   },
-  certifications: [ // This data is now sourced from certifications-data.ts
-    // {
-    //   id: "cert1",
-    //   title: "Chip Design and Verilog Programming",
-    //   issuer: "Infosys",
-    //   description:"Completed an intensive certification focused on advanced chip design methodologies and practical Verilog programming for complex digital circuits. Covered FSM design, synthesis, and verification techniques.",
-    //   logoUrl: "/assets/logos/infosys.png", // Path to local logo
-    //   date: "2023",
-    //   skills: ["Verilog", "Chip Design", "FSM", "Synthesis", "Verification"],
-    //   link: "#" // Placeholder link
-    // },
-    // ... other certifications were here, now in certifications-data.ts
+  certifications: [ 
+    // Certifications data is now primarily managed in certifications-data.ts
+    // This array can be kept for fallback or specific overrides if needed, but generally certifications-data.ts is the source.
   ],
   experience: [
     {
@@ -80,7 +71,7 @@ export const portfolioData: PortfolioData = {
       id: "proj2",
       title: "Cost-Effective Automated Mopping Robot",
       description: "Developed an autonomous and manually-controllable mopping robot using Arduino IDE and ESP8266. Created a custom mobile application for remote operation and mode selection. Engineered the robot to be highly affordable (under ₹3000) without compromising core functionality, showcasing skills in embedded programming, IoT, and frugal innovation.",
-      imageUrl: "https://picsum.photos/seed/mopping-robot-iot/400/250",
+      imageUrl: "https://picsum.photos/seed/mopping-robot-iot/400/250", // Updated placeholder
       imageHint: "IoT mopping robot",
       tags: ["Arduino", "ESP8266", "Robotics", "IoT", "Mobile App Development", "Automation", "Embedded C"],
       githubLink: "https://github.com/jagadishpediredla/Automated-Mopping-Robot",
@@ -89,7 +80,7 @@ export const portfolioData: PortfolioData = {
       id: "proj3",
       title: "Impact Detection Car Prototype",
       description: "Showcased a prototype model for impact detection, aimed at supporting ISRO’s upcoming Chandrayaan missions. Built using an indigenous accelerometer sensor from SCL and integrated with a microcontroller to detect impacts during motion, simulating a lunar rover. Tested and analyzed sensor response to validate effectiveness for future ISRO rovers.",
-      imageUrl: "https://picsum.photos/seed/impact-detection/400/250",
+      imageUrl: "https://picsum.photos/seed/impact-detection/400/250", // Dummy image
       imageHint: "impact sensor prototype",
       tags: ["Accelerometer", "Sensor Integration", "Microcontroller", "ISRO", "Chandrayaan", "SCL", "Impact Detection", "Prototype", "Embedded Systems"],
       githubLink: "#",
@@ -98,7 +89,7 @@ export const portfolioData: PortfolioData = {
       id: "proj4",
       title: "Gyro-Controlled Car",
       description: "Developed a car controlled via a mobile phone's gyroscope. Hosted a web server on an ESP32 microcontroller for real-time communication. Smartphone gyroscope data is sent to the ESP32 via a web interface, controlling the car's motors. Enables intuitive control by tilting the phone, integrating IoT and motion-sensing.",
-      imageUrl: "https://picsum.photos/seed/gyro-car/400/250",
+      imageUrl: "https://picsum.photos/seed/gyro-car/400/250", // Dummy image
       imageHint: "gyro controlled car",
       tags: ["Gyroscope", "ESP32", "IoT", "Web Server", "Motion Control", "Mobile Control", "Robotics", "Embedded Systems"],
       githubLink: "#",

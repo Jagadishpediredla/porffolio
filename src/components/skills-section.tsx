@@ -16,8 +16,8 @@ export default function SkillsSection({ personalInfo }: SkillsSectionProps) {
 
   // Define core VLSI/Hardware related skills (customize this list as needed)
   const coreSkillsList = [
-    "Verilog", "CMOS Design", "VLSI Testing", "MEMS", "Xilinx Vivado",
-    "LTspice", "LabVIEW", "Embedded Systems", "MPLAB IDE", "Arduino IDE", "ESP8266"
+    "Verilog", "System Verilog", "UVM", "CMOS Design", "VLSI Testing", "MEMS", "Xilinx Vivado",
+    "LTspice", "LabVIEW", "Embedded Systems", "MPLAB IDE", "Arduino IDE"
   ];
 
   const coreTechnicalSkills = allTechnicalSkills.filter(skill => coreSkillsList.includes(skill));
@@ -29,7 +29,7 @@ export default function SkillsSection({ personalInfo }: SkillsSectionProps) {
 
   const renderSkillCategory = (title: string, skills: string[], Icon: React.ElementType, animationDelay: string) => (
     <Card
-      className="bg-card/80 backdrop-blur-sm animate-fade-in-up hover:shadow-primary/15 hover:border-primary/50 transition-all duration-300" // Added hover effect
+      className="bg-card/80 backdrop-blur-sm animate-fade-in-up hover:shadow-primary/15 hover:border-primary/50 transition-all duration-300 hover-lift" // Added hover-lift
       style={{ animationDelay, animationFillMode: 'backwards' }}
     >
       <CardHeader>
@@ -41,13 +41,13 @@ export default function SkillsSection({ personalInfo }: SkillsSectionProps) {
         {skills.map((skill, index) => (
           <Badge
             key={`${title}-${skill}-${index}`}
-            variant={title.includes("Technical") || title === "Hobbies" ? "secondary" : "outline"}
+            variant={title.includes("Core Technical") || title.includes("Software") ? "secondary" : "outline"} // Adjusted variant logic
             className="transition-transform duration-200 hover:scale-105 text-base px-4 py-1.5"
           >
             {skill}
           </Badge>
         ))}
-        {skills.length === 0 && <p className="text-muted-foreground text-sm">No {title.toLowerCase()} listed.</p>}
+        {skills.length === 0 && <p className="text-muted-foreground text-sm">No {title.toLowerCase().replace(" (vlsi/hardware)", "").replace(" (software & other)", "")} listed.</p>}
       </CardContent>
     </Card>
   );
