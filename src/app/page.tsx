@@ -3,6 +3,7 @@
 
 import type React from 'react';
 import { useState, useEffect } from 'react';
+import Image from 'next/image'; // Import Image component
 import PersonalInfoSection from "@/components/personal-info-section";
 import CertificationsTab from "@/components/certifications-tab";
 import ExperienceTab from "@/components/experience-tab"; // Corrected import name
@@ -103,7 +104,7 @@ export default function Home() {
   const SectionWrapper: React.FC<{ id: string; children: React.ReactNode; bg?: string; className?: string; isVisible: boolean }> = ({ id, children, bg, className, isVisible }) => (
     <section
       id={id}
-      className={`px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16 py-16 md:py-20 ${bg || ''} ${className || ''} ${isVisible ? 'animate-fade-in-up' : 'hidden'} min-h-[calc(100vh-var(--navbar-height,4rem)-2rem)] md:min-h-[calc(100vh-var(--navbar-height,4rem)-4rem)]`} // Adjusted min-height and added separate mobile/desktop values
+      className={`px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16 py-16 md:py-20 ${bg || ''} ${className || ''} ${isVisible ? 'animate-fade-in-up' : 'hidden'} min-h-[calc(100vh-var(--navbar-height,5rem)-2rem)] md:min-h-[calc(100vh-var(--navbar-height,5rem)-4rem)]`} // Adjusted min-height and added separate mobile/desktop values
       style={{ animationDelay: '0.1s', animationFillMode: 'backwards' }} // Apply consistent minimal delay
     >
       {children}
@@ -119,6 +120,14 @@ export default function Home() {
       const remainingSkills = homeSkills.filter(skill => !prioritizedSkills.includes(skill));
       displayedSkills = [...displayedSkills, ...remainingSkills.slice(0, 6 - displayedSkills.length)];
   }
+
+  const collaborationLogos = [
+    { src: '/images/nielit.png', alt: 'NIELIT Logo' },
+    { src: '/images/arm.png', alt: 'Arm Logo' },
+    { src: '/images/texas.png', alt: 'Texas Instruments Logo' },
+    { src: '/images/scl.png', alt: 'SCL Logo' },
+    { src: '/images/infosys.png', alt: 'Infosys Logo' },
+  ];
 
 
   // Render all sections, but only the active one will have the animation class applied correctly
@@ -170,6 +179,25 @@ export default function Home() {
                <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform duration-200" />
              </Button>
            </div>
+
+           {/* Collaboration Logos Section */}
+           <div className="mt-20 md:mt-24 border-t border-border/30 pt-10">
+              <h3 className="text-xl md:text-2xl font-semibold text-primary mb-6 text-center">Key Collaborations & Certifying Bodies</h3>
+              <div className="flex flex-wrap justify-center items-center gap-8 md:gap-12">
+                 {collaborationLogos.map((logo, index) => (
+                  <div key={index} className="relative h-10 md:h-12 w-24 md:w-32 filter grayscale hover:grayscale-0 transition-all duration-300 opacity-70 hover:opacity-100">
+                     <Image
+                       src={logo.src}
+                       alt={logo.alt}
+                       fill
+                       style={{ objectFit: 'contain' }}
+                       sizes="(max-width: 768px) 100px, 128px"
+                     />
+                  </div>
+                 ))}
+              </div>
+           </div>
+
          </div>
        </SectionWrapper>
 
@@ -256,7 +284,7 @@ export default function Home() {
       </main>
       <footer className="py-6 text-center bg-card/50 text-muted-foreground border-t border-border/20 mt-auto">
          <p>&copy; {new Date().getFullYear()} {portfolioData?.personalInfo?.name || 'Venkata Jagadish Pediredla'}. All rights reserved.</p>
-         <p>{portfolioData.personalInfo.title}</p>
+         {/* Removed title from footer as it's prominent in the hero */}
       </footer>
     </div>
   );
