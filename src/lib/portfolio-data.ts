@@ -1,4 +1,3 @@
-
 // src/lib/portfolio-data.ts
 import type { PortfolioData } from './types';
 
@@ -25,57 +24,18 @@ export const portfolioData: PortfolioData = {
     languages: ["Telugu (Native)", "English (Fluent)", "Hindi (Conversational)"],
     cvLink: "/assets/VenkataJagadishPediredla_Resume.pdf", // Placeholder CV link
   },
-  certifications: [
-    {
-      id: "cert1",
-      title: "Chip Design and Verilog Programming",
-      issuer: "Infosys",
-      description:"Completed an intensive certification focused on advanced chip design methodologies and practical Verilog programming for complex digital circuits. Covered FSM design, synthesis, and verification techniques.",
-      logoUrl: "/assets/logos/infosys.png", // Path to local logo
-      date: "2023",
-      skills: ["Verilog", "Chip Design", "FSM", "Synthesis", "Verification"],
-      link: "#" // Placeholder link
-    },
-    {
-      id: "cert2",
-      title: "VLSI for Beginners",
-      issuer: "NIELIT",
-      description: "A foundational course introducing core VLSI concepts, including semiconductor physics, CMOS fabrication processes, and basic digital circuit design principles.",
-      logoUrl: "/assets/logos/nielit.png", // Path to local logo
-      date: "2022",
-      skills: ["VLSI Fundamentals", "CMOS", "Digital Circuits"],
-       link: "#" // Placeholder link
-    },
-    {
-      id: "cert3",
-      title: "Internet Of Things (IoT)",
-      issuer: "APSSDC",
-      description: "Comprehensive training covering the architecture, protocols, and applications of IoT. Included hands-on experience with sensors, microcontrollers, and cloud platforms.",
-      logoUrl: "/assets/logos/apssdc.png", // Path to local logo
-      date: "2023",
-      skills: ["IoT", "Sensors", "Microcontrollers", "Cloud Platforms"],
-       link: "#" // Placeholder link
-    },
-    {
-      id: "cert4",
-      title: "Introduction to Embedded System Design",
-      issuer: "NPTEL",
-      description: "An NPTEL certified course detailing the fundamentals of embedded system architecture, programming, and real-time operating systems (RTOS).",
-      logoUrl: "/assets/logos/nptel.png", // Path to local logo
-      date: "2022",
-      skills: ["Embedded Systems", "RTOS", "Microcontroller Programming"],
-       link: "#" // Placeholder link
-    },
-    {
-      id: "cert5",
-      title: "Semiconductor Fabrication 101",
-      issuer: "Texas Instruments",
-      description: "An introductory program by Texas Instruments explaining the key stages and processes involved in modern semiconductor device fabrication, from wafer processing to packaging.",
-      logoUrl: "/assets/logos/ti.png", // Path to local logo
-      date: "2023",
-      skills: ["Semiconductor Fabrication", "Wafer Processing", "Cleanroom Protocols"],
-       link: "#" // Placeholder link
-    },
+  certifications: [ // This data is now sourced from certifications-data.ts
+    // {
+    //   id: "cert1",
+    //   title: "Chip Design and Verilog Programming",
+    //   issuer: "Infosys",
+    //   description:"Completed an intensive certification focused on advanced chip design methodologies and practical Verilog programming for complex digital circuits. Covered FSM design, synthesis, and verification techniques.",
+    //   logoUrl: "/assets/logos/infosys.png", // Path to local logo
+    //   date: "2023",
+    //   skills: ["Verilog", "Chip Design", "FSM", "Synthesis", "Verification"],
+    //   link: "#" // Placeholder link
+    // },
+    // ... other certifications were here, now in certifications-data.ts
   ],
   experience: [
     {
@@ -114,7 +74,7 @@ export const portfolioData: PortfolioData = {
       imageUrl: "https://picsum.photos/seed/fpga-traffic/400/250",
       imageHint: "FPGA traffic controller",
       tags: ["Verilog", "Vivado", "FPGA", "FSM", "Traffic Control", "HDL", "Digital Design"],
-      githubLink: "https://github.com/jagadishpediredla/T-Junction-Traffic-Control", // Placeholder
+      githubLink: "https://github.com/jagadishpediredla/T-Junction-Traffic-Control",
     },
     {
       id: "proj2",
@@ -123,7 +83,7 @@ export const portfolioData: PortfolioData = {
       imageUrl: "https://picsum.photos/seed/mopping-robot-iot/400/250",
       imageHint: "IoT mopping robot",
       tags: ["Arduino", "ESP8266", "Robotics", "IoT", "Mobile App Development", "Automation", "Embedded C"],
-      githubLink: "https://github.com/jagadishpediredla/Automated-Mopping-Robot", // Placeholder
+      githubLink: "https://github.com/jagadishpediredla/Automated-Mopping-Robot",
     },
      {
       id: "proj3",
@@ -132,7 +92,7 @@ export const portfolioData: PortfolioData = {
       imageUrl: "https://picsum.photos/seed/impact-detection/400/250",
       imageHint: "impact sensor prototype",
       tags: ["Accelerometer", "Sensor Integration", "Microcontroller", "ISRO", "Chandrayaan", "SCL", "Impact Detection", "Prototype", "Embedded Systems"],
-      githubLink: "#", // Add link if available
+      githubLink: "#",
     },
     {
       id: "proj4",
@@ -141,13 +101,15 @@ export const portfolioData: PortfolioData = {
       imageUrl: "https://picsum.photos/seed/gyro-car/400/250",
       imageHint: "gyro controlled car",
       tags: ["Gyroscope", "ESP32", "IoT", "Web Server", "Motion Control", "Mobile Control", "Robotics", "Embedded Systems"],
-      githubLink: "#", // Add link if available
+      githubLink: "#",
     },
   ],
   achievements: [
-     { id: "ach1", title: "Qualified NDA Examination (First Attempt)", description:"Successfully cleared the National Defence Academy entrance examination on the first attempt, showcasing discipline and strong aptitude.", type: "Competitive Exam"},
+     { id: "ach1", title: "Qualified NDA Examination (Conducted by UPSC)", description:"Successfully cleared the National Defence Academy entrance examination on the first attempt, showcasing discipline and strong aptitude.", type: "Competitive Exam"},
      { id: "ach2", title: "District 2nd Prize - Yuva Utsav Science Fair", description:"Awarded 2nd place at the district-level Yuva Utsav science competition, organized by the Government of India, for an innovative science project.", type: "Competition"},
      { id: "ach3", title: "Student of the Year (Intermediate)", description:"Recognized as 'Student of the Year' during intermediate education for outstanding academic performance and extracurricular involvement.", type: "Academic Award"},
+     { id: "ach4", title: "District 2nd Prize - Mathematics Competition (Conducted by APSSDC)", description:"Secured 2nd place in a district-level mathematics competition organized by APSSDC, demonstrating strong analytical and problem-solving skills.", type: "Competition", date: "2020"},
+     { id: "ach5", title: "1st Prize - Hackathon (Conducted by JNTU Kalikiri, CSE Dept.)", description:"Won 1st prize in a hackathon conducted by the Computer Science Department at JNTU College of Engineering, Kalikiri. Developed an innovative solution within a time-constrained environment.", type: "Hackathon", date: "2024"},
   ],
   education: [
       {
