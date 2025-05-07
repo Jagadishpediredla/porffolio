@@ -3,7 +3,7 @@
 
 import type React from 'react';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
-import { ExternalLink } from "lucide-react"; // Removed Building2 icon
+import { ExternalLink } from "lucide-react";
 import Link from "next/link";
 import Image from 'next/image';
 import { Badge } from "./ui/badge";
@@ -16,14 +16,13 @@ interface CertificationsSectionProps {
 export default function CertificationsSection({ portfolioData }: CertificationsSectionProps) {
   const certifications: Certification[] = portfolioData?.certifications || [];
 
-  // Map issuer names to potential logo URLs (replace with actual URLs)
+  // Map issuer names to potential logo URLs
   const issuerLogos: { [key: string]: string } = {
-    "Infosys": "/assets/logos/infosys.png", // Placeholder path
-    "NIELIT": "/assets/logos/nielit.png", // Placeholder path
-    "APSSDC": "/assets/logos/apssdc.png", // Placeholder path
-    "NPTEL": "/assets/logos/nptel.png", // Placeholder path
-    "Texas Instruments": "/assets/logos/ti.png", // Placeholder path
-    // Add more mappings as needed
+    "Infosys": "/assets/logos/infosys.png",
+    "NIELIT": "/assets/logos/nielit.png",
+    "APSSDC": "/assets/logos/apssdc.png",
+    "NPTEL": "/assets/logos/nptel.png",
+    "Texas Instruments": "/assets/logos/ti.png",
   };
 
   return (
@@ -34,22 +33,23 @@ export default function CertificationsSection({ portfolioData }: CertificationsS
             <AccordionItem
               value={`item-${cert.id}`}
               key={cert.id}
-              className="border border-border/50 rounded-lg overflow-hidden shadow-sm hover:border-primary/50 hover:shadow-md transition-all duration-300 bg-card/80 backdrop-blur-sm animate-fade-in"
-              style={{ animationDelay: `${0.1 + index * 0.1}s`, animationFillMode: 'backwards' }} // Staggered animation
+              // Added hover effect classes, adjusted existing ones
+              className="border border-border/50 rounded-lg overflow-hidden shadow-sm hover:border-primary/50 hover:shadow-primary/15 transition-all duration-300 bg-card/80 backdrop-blur-sm animate-fade-in-up group" // Added group and fade-in-up
+              style={{ animationDelay: `${0.1 + index * 0.1}s`, animationFillMode: 'backwards' }}
             >
               <AccordionTrigger className="px-6 py-4 text-left font-medium hover:no-underline hover:bg-muted/50 transition-colors duration-200 [&[data-state=open]>svg]:text-primary [&[data-state=open]>svg]:rotate-180">
                 <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center w-full pr-4 gap-4">
                   <div className="flex items-center gap-3 flex-grow">
                      {/* Issuer Logo */}
                      {issuerLogos[cert.issuer] && (
-                        <div className="flex-shrink-0 h-8 w-8 relative">
+                        <div className="flex-shrink-0 h-8 w-8 relative bg-white rounded p-1"> {/* Added white bg and padding */}
                           <Image
                             src={issuerLogos[cert.issuer]}
                             alt={`${cert.issuer} logo`}
                             fill
                             sizes="32px"
                             style={{ objectFit: 'contain' }}
-                            onError={(e) => { e.currentTarget.style.display = 'none'; }} // Hide if logo fails to load
+                            onError={(e) => { e.currentTarget.style.display = 'none'; }}
                           />
                         </div>
                       )}
@@ -68,12 +68,12 @@ export default function CertificationsSection({ portfolioData }: CertificationsS
                  {/* Placeholder Image for Credential Visual (Optional) */}
                  <div className="my-5 relative h-40 w-full overflow-hidden rounded-md border border-border/30">
                     <Image
-                       src={`https://picsum.photos/seed/${cert.id}/400/200`} // Keep placeholder for visual flair
+                       src={`https://picsum.photos/seed/${cert.id}/400/200`}
                        alt={`Visual representation for ${cert.title}`}
                        fill
                        style={{ objectFit: 'cover' }}
                        data-ai-hint="certification related document"
-                       className="opacity-75 group-hover:opacity-100 transition-opacity duration-300"
+                       className="opacity-75 group-hover:opacity-100 transition-opacity duration-300" // Adjusted opacity interaction
                     />
                  </div>
 

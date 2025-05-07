@@ -1,3 +1,4 @@
+
 // src/lib/portfolio-data.ts
 import type { PortfolioData } from './types';
 
@@ -5,7 +6,7 @@ import type { PortfolioData } from './types';
 export const portfolioData: PortfolioData = {
   personalInfo: {
     name: "Venkata Jagadish Pediredla",
-    title: "VLSI Enthusiast & Aspiring Engineer", // Enhanced title
+    title: "VLSI Enthusiast & Aspiring Engineer",
     objective: "A highly motivated and passionate VLSI enthusiast with a strong foundation in semiconductor design, EDA tools, and CMOS technology. Eager to contribute to India's burgeoning semiconductor sector by applying acquired skills in practical settings and continuously learning to stay at the forefront of technological advancements. Proven ability in problem-solving, project execution, and a keen interest in embedded systems and IoT.",
     location: "Kovvur, East Godavari, AP, India",
     email: "jpediredla56@gmail.com",
@@ -13,57 +14,67 @@ export const portfolioData: PortfolioData = {
     linkedin: "https://linkedin.com/in/venkata-jagadish-pediredla",
     github: "https://github.com/jagadishpediredla",
     profilePictureUrl: "https://picsum.photos/seed/vjp-profile/300/300",
-    technicalSkills: ["LabVIEW", "Verilog", "LTspice", "Python", "MATLAB", "Xilinx Vivado", "MPLAB IDE", "Arduino IDE", "ESP8266", "CMOS Design", "VLSI Testing", "MEMS", "Embedded Systems"],
+    // Ensure this list contains all skills for categorization in skills-section.tsx
+    technicalSkills: [
+        "Verilog", "CMOS Design", "VLSI Testing", "MEMS", "Xilinx Vivado", "LTspice",
+        "LabVIEW", "Embedded Systems", "MPLAB IDE", "Arduino IDE", "ESP8266",
+        "Python", "MATLAB"
+    ],
     softSkills: ["Passion for learning", "Presentation & Public Speaking", "Logical Reasoning", "Self-Control", "Problem-Solving", "Teamwork"],
     hobbies: ["Playing Shuttle Badminton", "DIY Electronics Projects", "Exploring New Places & Technologies", "Listening to Music"],
     languages: ["Telugu (Native)", "English (Fluent)", "Hindi (Conversational)"],
     cvLink: "/assets/VenkataJagadishPediredla_Resume.pdf", // Placeholder CV link
   },
   certifications: [
-    { 
-      id: "cert1", 
-      title: "Chip Design and Verilog Programming", 
-      issuer: "Infosys", 
+    {
+      id: "cert1",
+      title: "Chip Design and Verilog Programming",
+      issuer: "Infosys",
       description:"Completed an intensive certification focused on advanced chip design methodologies and practical Verilog programming for complex digital circuits. Covered FSM design, synthesis, and verification techniques.",
       logoUrl: "/assets/logos/infosys.png",
       date: "2023",
-      skills: ["Verilog", "Chip Design", "FSM", "Synthesis", "Verification"]
+      skills: ["Verilog", "Chip Design", "FSM", "Synthesis", "Verification"],
+      link: "#" // Placeholder link
     },
-    { 
-      id: "cert2", 
-      title: "VLSI for Beginners", 
-      issuer: "NIELIT", 
+    {
+      id: "cert2",
+      title: "VLSI for Beginners",
+      issuer: "NIELIT",
       description: "A foundational course introducing core VLSI concepts, including semiconductor physics, CMOS fabrication processes, and basic digital circuit design principles.",
       logoUrl: "/assets/logos/nielit.png",
       date: "2022",
-      skills: ["VLSI Fundamentals", "CMOS", "Digital Circuits"]
+      skills: ["VLSI Fundamentals", "CMOS", "Digital Circuits"],
+       link: "#" // Placeholder link
     },
-    { 
-      id: "cert3", 
-      title: "Internet Of Things (IoT)", 
-      issuer: "APSSDC", 
+    {
+      id: "cert3",
+      title: "Internet Of Things (IoT)",
+      issuer: "APSSDC",
       description: "Comprehensive training covering the architecture, protocols, and applications of IoT. Included hands-on experience with sensors, microcontrollers, and cloud platforms.",
       logoUrl: "/assets/logos/apssdc.png",
       date: "2023",
-      skills: ["IoT", "Sensors", "Microcontrollers", "Cloud Platforms"]
+      skills: ["IoT", "Sensors", "Microcontrollers", "Cloud Platforms"],
+       link: "#" // Placeholder link
     },
-    { 
-      id: "cert4", 
-      title: "Introduction to Embedded System Design", 
-      issuer: "NPTEL", 
+    {
+      id: "cert4",
+      title: "Introduction to Embedded System Design",
+      issuer: "NPTEL",
       description: "An NPTEL certified course detailing the fundamentals of embedded system architecture, programming, and real-time operating systems (RTOS).",
       logoUrl: "/assets/logos/nptel.png",
       date: "2022",
-      skills: ["Embedded Systems", "RTOS", "Microcontroller Programming"]
+      skills: ["Embedded Systems", "RTOS", "Microcontroller Programming"],
+       link: "#" // Placeholder link
     },
-    { 
-      id: "cert5", 
-      title: "Semiconductor Fabrication 101", 
-      issuer: "Texas Instruments", 
+    {
+      id: "cert5",
+      title: "Semiconductor Fabrication 101",
+      issuer: "Texas Instruments",
       description: "An introductory program by Texas Instruments explaining the key stages and processes involved in modern semiconductor device fabrication, from wafer processing to packaging.",
       logoUrl: "/assets/logos/ti.png",
       date: "2023",
-      skills: ["Semiconductor Fabrication", "Wafer Processing", "Cleanroom Protocols"]
+      skills: ["Semiconductor Fabrication", "Wafer Processing", "Cleanroom Protocols"],
+       link: "#" // Placeholder link
     },
   ],
   experience: [
@@ -72,7 +83,7 @@ export const portfolioData: PortfolioData = {
       title: "VLSI Testing Internship",
       company: "Semiconductor Laboratory (SCL)",
       location: "Mohali, India",
-      duration: "Jan 2024 - Present", // Assuming ongoing, update if ended
+      duration: "Jan 2024 - Present",
       description: "Developed a LabVIEW-based virtual machine for automated testing of semiconductor devices, significantly improving efficiency. Gained hands-on experience with MEMS-CMUT device design, fabrication processes, and characterization. Contributed to test plan development and execution.",
       skills: ["VLSI Testing", "LabVIEW Automation", "MEMS", "CMUT Devices", "Semiconductor Fabrication", "Test Plan Development"]
     },
@@ -81,7 +92,7 @@ export const portfolioData: PortfolioData = {
       title: "VLSI Design Internship",
       company: "CodTech IT Solutions",
       location: "Remote",
-      duration: "Jun 2024 - Jul 2024", // Based on resume
+      duration: "Jun 2024 - Jul 2024",
       description: "Focused on CMOS design fundamentals and VLSI basics. Implemented and simulated various digital logic circuits using Verilog on the Xilinx Vivado platform. Participated in design reviews and documentation.",
       skills: ["CMOS Design", "Verilog HDL", "Xilinx Vivado", "Digital Logic Simulation", "VLSI Basics"]
     },
@@ -90,7 +101,7 @@ export const portfolioData: PortfolioData = {
       title: "Embedded Systems Design Internship",
       company: "Emertex",
       location: "Remote",
-      duration: "Feb 2024 - Apr 2024", // Based on resume
+      duration: "Feb 2024 - Apr 2024",
       description: "Engineered and simulated an embedded control system for a washing machine project utilizing MPLAB IDE and ESP microcontrollers. Successfully implemented control cycles, user interface logic, and sensor integration for various washing machine functionalities.",
        skills: ["Embedded Systems", "MPLAB IDE", "ESP Microcontrollers", "System Simulation", "Control Systems", "Firmware Development"]
     },

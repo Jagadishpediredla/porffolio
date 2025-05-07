@@ -13,11 +13,12 @@ interface ExperienceSectionProps {
 
 const ExperienceItemCard: React.FC<{ item: Experience, index: number }> = ({ item, index }) => (
   <div
-    className="relative animate-fade-in-up pl-8 md:pl-10" // Added padding for dot
+    className="relative animate-fade-in-up pl-8 md:pl-10 group" // Added group for hover effects
     style={{ animationDelay: `${0.1 + index * 0.1}s`, animationFillMode: 'backwards' }}
   >
-    <div className="absolute left-0 md:left-[-0.5rem] top-1 h-4 w-4 rounded-full bg-primary border-2 border-background ring-2 ring-primary/50"></div>
-    <div className="bg-card/60 backdrop-blur-sm p-6 rounded-lg border border-border/50 shadow-md hover:shadow-primary/10 transition-shadow duration-300 ml-2"> {/* Adjusted margin for timeline line */}
+    <div className="absolute left-0 md:left-[-0.5rem] top-1 h-4 w-4 rounded-full bg-primary border-2 border-background ring-2 ring-primary/50 group-hover:ring-primary transition-all duration-300"></div> {/* Enhanced dot hover */}
+    {/* Added hover effect classes */}
+    <div className="bg-card/60 backdrop-blur-sm p-6 rounded-lg border border-border/50 shadow-md hover:shadow-primary/15 hover:border-primary/50 transition-all duration-300 ml-2">
       <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-2 gap-2">
         <h3 className="text-xl font-semibold text-foreground">{item.title}</h3>
         <div className="flex items-center gap-2 text-sm text-muted-foreground flex-shrink-0">
@@ -53,11 +54,12 @@ const ExperienceItemCard: React.FC<{ item: Experience, index: number }> = ({ ite
 
 const EducationItemCard: React.FC<{ item: Education, index: number }> = ({ item, index }) => (
   <div
-    className="relative animate-fade-in-up pl-8 md:pl-10" // Added padding for dot
+    className="relative animate-fade-in-up pl-8 md:pl-10 group" // Added group for hover effects
     style={{ animationDelay: `${0.1 + index * 0.1}s`, animationFillMode: 'backwards' }}
   >
-    <div className="absolute left-0 md:left-[-0.5rem] top-1 h-4 w-4 rounded-full bg-primary border-2 border-background ring-2 ring-primary/50"></div>
-    <div className="bg-card/60 backdrop-blur-sm p-6 rounded-lg border border-border/50 shadow-md hover:shadow-primary/10 transition-shadow duration-300 ml-2"> {/* Adjusted margin */}
+    <div className="absolute left-0 md:left-[-0.5rem] top-1 h-4 w-4 rounded-full bg-primary border-2 border-background ring-2 ring-primary/50 group-hover:ring-primary transition-all duration-300"></div> {/* Enhanced dot hover */}
+    {/* Added hover effect classes */}
+    <div className="bg-card/60 backdrop-blur-sm p-6 rounded-lg border border-border/50 shadow-md hover:shadow-primary/15 hover:border-primary/50 transition-all duration-300 ml-2">
       <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-2 gap-2">
         <h3 className="text-xl font-semibold text-foreground">{item.degree}</h3>
         <div className="flex items-center gap-2 text-sm text-muted-foreground flex-shrink-0">

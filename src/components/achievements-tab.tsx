@@ -2,7 +2,7 @@
 'use client';
 
 import type React from 'react';
-import { Award, Star } from "lucide-react";
+import { Star } from "lucide-react"; // Removed Award
 import { Badge } from "./ui/badge";
 import type { PortfolioData, Achievement } from '@/lib/types';
 
@@ -20,7 +20,8 @@ export default function AchievementsSection({ portfolioData }: AchievementsSecti
             {achievements.map((achievement, index) => (
                 <li
                 key={achievement.id}
-                className="flex items-start space-x-4 p-5 rounded-lg border border-border/50 bg-card/80 backdrop-blur-sm shadow-md hover:border-primary/30 hover:shadow-primary/10 transition-all duration-300 group animate-fade-in-up"
+                // Added hover effect classes
+                className="flex items-start space-x-4 p-5 rounded-lg border border-border/50 bg-card/80 backdrop-blur-sm shadow-md hover:border-primary/50 hover:shadow-primary/15 transition-all duration-300 group animate-fade-in-up"
                 style={{ animationDelay: `${0.1 + index * 0.15}s`, animationFillMode: 'backwards' }}
                 >
                 <span className="flex-shrink-0 mt-1.5 p-2 bg-primary/10 rounded-full transition-transform duration-300 group-hover:scale-110">

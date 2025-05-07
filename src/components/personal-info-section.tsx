@@ -44,7 +44,8 @@ export default function PersonalInfoSection({ portfolioData }: PersonalInfoSecti
 
   return (
     <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12 items-start max-w-6xl mx-auto">
-      <div className="flex flex-col items-center md:items-start md:col-span-1 animate-fade-in-up" style={{animationDelay: '0.1s'}}>
+      {/* Apply animation to the entire grid item for consistency */}
+      <div className="flex flex-col items-center md:items-start md:col-span-1 animate-fade-in" style={{ animationDelay: '0.1s' }}>
         <Avatar className="h-48 w-48 md:h-56 md:w-56 mb-6 ring-4 ring-primary/30 ring-offset-4 ring-offset-background shadow-xl hover:ring-primary/50 transition-all duration-300 ease-out">
           <AvatarImage src={personalInfo.profilePictureUrl || `https://picsum.photos/seed/${personalInfo.name}/300/300`} alt="Profile Picture" data-ai-hint="person professional" />
           <AvatarFallback className="text-4xl">{fallbackInitials}</AvatarFallback>
@@ -56,7 +57,8 @@ export default function PersonalInfoSection({ portfolioData }: PersonalInfoSecti
          </Button>
       </div>
 
-      <div className="md:col-span-2 space-y-6 animate-fade-in-up" style={{animationDelay: '0.3s'}}>
+      {/* Apply animation to the entire grid item */}
+      <div className="md:col-span-2 space-y-6 animate-fade-in" style={{ animationDelay: '0.3s' }}>
         <h3 className="text-3xl lg:text-4xl font-bold text-foreground mb-1">{personalInfo.name}</h3>
         <p className="text-xl lg:text-2xl text-primary font-semibold mb-4">{personalInfo.title}</p>
 
@@ -64,20 +66,21 @@ export default function PersonalInfoSection({ portfolioData }: PersonalInfoSecti
             {personalInfo.objective}
         </p>
 
-        <Card className="bg-card/50 border-border/30 shadow-md">
+        {/* Add consistent hover effect to Card */}
+        <Card className="bg-card/50 border-border/30 shadow-md hover:shadow-primary/15 hover:border-primary/50 transition-all duration-300">
             <CardHeader>
                 <CardTitle className="text-lg text-primary flex items-center"><MapPin className="mr-2 h-5 w-5" /> Contact & Location</CardTitle>
             </CardHeader>
             <CardContent className="space-y-3 text-base text-muted-foreground">
                 <p><strong className="text-foreground/90 font-medium">Location:</strong> {personalInfo.location}</p>
                 <p>
-                    <strong className="text-foreground/90 font-medium">Email:</strong> 
+                    <strong className="text-foreground/90 font-medium">Email:</strong>
                     <a href={`mailto:${personalInfo.email}`} className="hover:text-primary transition-colors duration-200 break-all ml-1">
                         {personalInfo.email}
                     </a>
                 </p>
                 <p>
-                    <strong className="text-foreground/90 font-medium">Phone:</strong> 
+                    <strong className="text-foreground/90 font-medium">Phone:</strong>
                     <a href={`tel:${personalInfo.phone.replace(/\D/g, '')}`} className="hover:text-primary transition-colors duration-200 ml-1">
                         {personalInfo.phone}
                     </a>
@@ -85,7 +88,7 @@ export default function PersonalInfoSection({ portfolioData }: PersonalInfoSecti
                  <p><strong className="text-foreground/90 font-medium">Languages:</strong> {personalInfo.languages?.join(', ')}</p>
             </CardContent>
         </Card>
-        
+
         <Separator className="my-6 bg-border/20" />
 
         <div className="flex flex-wrap gap-3">
