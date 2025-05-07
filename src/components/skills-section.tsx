@@ -17,9 +17,9 @@ export default function SkillsSection({ personalInfo }: SkillsSectionProps) {
   const hobbies = personalInfo?.hobbies || [];
   const languages = personalInfo?.languages || [];
 
-  const renderSkillCategory = (title: string, skills: string[], Icon: React.ElementType, animationDelay: string, cardClassName?: string) => (
+  const renderSkillCategory = (title: string, skills: string[], Icon: React.ElementType, animationDelay: string) => (
     <Card 
-      className={`bg-card/80 backdrop-blur-sm animate-fade-in-up ${cardClassName || ''}`} 
+      className="bg-card/80 backdrop-blur-sm animate-fade-in-up" 
       style={{ animationDelay, animationFillMode: 'backwards' }}
     >
       <CardHeader>
@@ -44,17 +44,11 @@ export default function SkillsSection({ personalInfo }: SkillsSectionProps) {
 
   return (
     <div className="w-full max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-10">
-      {/* Technical Skills Column */}
-      <div className="space-y-10">
-        {renderSkillCategory("Technical Skills", technicalSkills, Code, "0.1s", "md:col-span-1")}
-      </div>
-
-      {/* Other Skills Column (Soft, Languages, Hobbies) */}
-      <div className="space-y-10">
-        {renderSkillCategory("Soft Skills", softSkills, Zap, "0.3s")}
-        {renderSkillCategory("Languages", languages, Languages, "0.5s")}
-        {renderSkillCategory("Hobbies", hobbies, Smile, "0.7s")}
-      </div>
+      {renderSkillCategory("Technical Skills", technicalSkills, Code, "0.1s")}
+      {renderSkillCategory("Soft Skills", softSkills, Zap, "0.3s")}
+      {renderSkillCategory("Languages", languages, Languages, "0.5s")}
+      {renderSkillCategory("Hobbies", hobbies, Smile, "0.7s")}
     </div>
   );
 }
+

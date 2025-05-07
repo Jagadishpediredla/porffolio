@@ -18,8 +18,11 @@ const WhatsAppIcon = () => (
 
 
 export default function HeroSection({ personalInfo }: HeroSectionProps) {
-  const objectiveSentences = personalInfo.objective.split('. ');
-  const briefObjective = objectiveSentences.slice(0, 2).join('. ') + (objectiveSentences.length > 1 ? '.' : '');
+  const objectiveSentences = personalInfo.objective.split('. ').filter(s => s.trim() !== '');
+  const mainObjectivePart = objectiveSentences.slice(0, 2).join('. ') + (objectiveSentences.length > 2 ? '.' : '');
+  const additionalHighlight = objectiveSentences.length > 2 
+    ? objectiveSentences[2] + '.' 
+    : "Driven by a passion for VLSI technology, I am eager to contribute to innovative projects and continually expand my expertise in the semiconductor field.";
 
 
   return (
@@ -31,8 +34,7 @@ export default function HeroSection({ personalInfo }: HeroSectionProps) {
          {personalInfo.title}.
       </p>
       <p className="text-lg md:text-xl text-muted-foreground/80 mb-8 max-w-3xl text-center leading-relaxed">
-        {briefObjective} {/* Using a summarized objective */}
-        Driven by a passion for VLSI technology, I am eager to contribute to innovative projects and continually expand my expertise in the semiconductor field.
+        {mainObjectivePart} {additionalHighlight}
       </p>
 
        {/* Social Links */}
@@ -68,3 +70,4 @@ export default function HeroSection({ personalInfo }: HeroSectionProps) {
     </div>
   );
 }
+
