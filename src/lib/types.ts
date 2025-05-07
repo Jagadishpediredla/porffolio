@@ -22,22 +22,23 @@ export interface Certification {
   id: string;
   title: string;
   issuer: string;
+  category: string; // Added category field
   date?: string;
   description?: string;
   link?: string;
   skills?: string[];
-  logoUrl?: string; // Optional: URL for the issuer's logo (not currently used in CertificationsTab directly but good for data model)
-  imageUrl?: string; // URL for the certificate image itself
+  logoUrl?: string;
+  imageUrl?: string;
 }
 
 export interface Experience {
   id: string;
-  title: string; // e.g., 'VLSI Testing Internship'
-  company: string; // e.g., 'Semiconductor Laboratory'
-  duration: string; // e.g., 'January 7 2024 - Ongoing'
-  location?: string; // Optional location
-  description: string; // Bullet points joined or summarized
-  skills?: string[]; // Optional skills based on description
+  title: string; 
+  company: string; 
+  duration: string; 
+  location?: string; 
+  description: string; 
+  skills?: string[]; 
 }
 
 export interface Project {
@@ -46,31 +47,31 @@ export interface Project {
   description: string;
   imageUrl: string;
   imageHint: string;
-  githubLink?: string; // Optional
-  liveLink?: string; // Optional
+  githubLink?: string; 
+  liveLink?: string; 
   tags: string[];
 }
 
 export interface Achievement {
   id: string;
   title: string;
-  description?: string; // Optional description
-  date?: string; // Optional date
-  type?: string; // Optional type
+  description?: string; 
+  date?: string; 
+  type?: string; 
 }
 
 export interface Education {
     id: string;
-    degree: string; // e.g., 'Bachelor of Technology (ECE)'
+    degree: string; 
     institution: string;
     location?: string;
     graduationYear: string;
-    aggregate: string; // e.g., '8 CGPA', '97%', '10.0 CGPA'
+    aggregate: string; 
 }
 
 export interface PortfolioData {
   personalInfo: PersonalInfo;
-  certifications: Certification[]; // This was for the main portfolioData, certificationsData.ts uses Certification[] directly
+  certifications: Certification[];
   experience: Experience[];
   projects: Project[];
   achievements: Achievement[];

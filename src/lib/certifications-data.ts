@@ -1,14 +1,12 @@
 // src/lib/certifications-data.ts
 import type { Certification } from './types'; // Ensure this type matches
 
-// Helper to generate unique IDs if needed, though the current ones are fine.
-const generateId = (prefix: string) => `${prefix}-${Math.random().toString(36).substr(2, 9)}`;
-
 export const certificationsData: Certification[] = [
   {
     title: "AI for India 1.0",
     issuer: "GUVI & AICTE",
-    id: "ai-for-india-d2k4m5n8o", // Example static ID
+    id: "ai-for-india-d2k4m5n8o",
+    category: "Artificial Intelligence & Machine Learning",
     description: "A national-level program by GUVI in collaboration with AICTE, aimed at upskilling individuals in Artificial Intelligence and Machine Learning. This certification signifies understanding of core AI concepts, Python programming for AI, and practical applications in various domains, often involving hands-on projects.",
     date: "October 2023",
     imageUrl: "/images/AI for india .jpg",
@@ -19,6 +17,7 @@ export const certificationsData: Certification[] = [
     title: "Embedded Systems Design with Emertex",
     issuer: "Emertex Microcontroller Solutions",
     id: "embedded-systems-emertex-p9q1r2s3t",
+    category: "Embedded Systems & IoT",
     description: "This certification focuses on the design, development, and implementation of embedded systems using industry-standard microcontrollers and development tools. Covers hardware-software co-design, real-time operating system (RTOS) concepts, and peripheral interfacing.",
     date: "July 2022",
     imageUrl: "/images/Emmbeded Systems Emertex.jpg",
@@ -29,6 +28,7 @@ export const certificationsData: Certification[] = [
     title: "Certified Embedded System Engineer",
     issuer: "NIELIT (National Institute of Electronics & Information Technology)",
     id: "embedded-system-nielit-u4v5w6x7y",
+    category: "Embedded Systems & IoT",
     description: "A government-recognized certification covering core concepts and practical applications of embedded systems. Validates proficiency in microcontroller programming, interfacing, and system-level design for diverse embedded applications.",
     date: "December 2022",
     imageUrl: "/images/Emmbeded system  NIELIT .jpg",
@@ -39,6 +39,7 @@ export const certificationsData: Certification[] = [
     title: "Embedded Systems Design with Arm",
     issuer: "Arm Education",
     id: "embedded-systems-arm-z1a2b3c4d",
+    category: "Embedded Systems & IoT",
     description: "Focuses on embedded systems development utilizing the Arm architecture. This certification covers Arm-based microcontrollers, software development tools, and understanding of hardware and software aspects for creating efficient embedded solutions.",
     date: "May 2023",
     imageUrl: "/images/Emmbeded systems with Arm.jpg",
@@ -49,6 +50,7 @@ export const certificationsData: Certification[] = [
     title: "IoT Application Development with Arm",
     issuer: "Arm Education",
     id: "iot-application-arm-e5f6g7h8i",
+    category: "Embedded Systems & IoT",
     description: "Covers the development of Internet of Things (IoT) applications utilizing Arm-based microcontrollers. Includes topics like sensor integration, wireless communication protocols (e.g., MQTT, CoAP), and cloud connectivity for IoT solutions.",
     date: "March 2023",
     imageUrl: "/images/IOT Application with Arm.jpg",
@@ -59,6 +61,7 @@ export const certificationsData: Certification[] = [
     title: "Foundations of Internet of Things",
     issuer: "Codtech IT Solutions",
     id: "iot-codtech-j9k1l2m3n",
+    category: "Embedded Systems & IoT",
     description: "An introductory certification by Codtech, introducing the core concepts of the Internet of Things (IoT), its architecture, key components, and various practical applications across industries.",
     date: "August 2021",
     imageUrl: "/images/Internet of things  codtech.jpg",
@@ -69,6 +72,7 @@ export const certificationsData: Certification[] = [
     title: "Internet of Things (IoT) Specialization",
     issuer: "APSSDC (Andhra Pradesh State Skill Development Corporation)",
     id: "iot-apssdc-o4p5q6r7s",
+    category: "Embedded Systems & IoT",
     description: "This certification by APSSDC focuses on the development and deployment of IoT solutions and applications, often tailored to regional industry needs. Emphasizes practical skills in building and managing IoT systems.",
     date: "September 2022",
     imageUrl: "/images/Internet of things APSSDC.jpg",
@@ -77,8 +81,9 @@ export const certificationsData: Certification[] = [
   },
   {
     title: "Introduction to Cloud Computing",
-    issuer: "Infosys Springboard / NASSCOM FutureSkills", // Common providers for this
+    issuer: "Infosys Springboard / NASSCOM FutureSkills",
     id: "cloud-computing-t8u9v1w2x",
+    category: "Cloud Computing",
     description: "Provides a comprehensive overview of cloud computing, including fundamental concepts, service models (IaaS, PaaS, SaaS), deployment models (public, private, hybrid), and key services offered by major cloud providers.",
     date: "January 2024",
     imageUrl: "/images/Introduction to Cloud Computing.jpg",
@@ -87,8 +92,9 @@ export const certificationsData: Certification[] = [
   },
   {
     title: "Machine Learning Fundamentals",
-    issuer: "NPTEL / Coursera / Udemy (Generic)", // Common providers
+    issuer: "NPTEL / Coursera / Udemy (Generic)",
     id: "machine-learning-y3z4a5b6c",
+    category: "Artificial Intelligence & Machine Learning",
     description: "Covers fundamental machine learning algorithms (e.g., regression, classification, clustering), techniques for data preprocessing, model evaluation, and practical applications using popular ML libraries.",
     date: "November 2023",
     imageUrl: "/images/Machine Learning .jpg",
@@ -99,6 +105,7 @@ export const certificationsData: Certification[] = [
     title: "MEMS and Microsystems Fabrication",
     issuer: "NPTEL / IISc (Common for MEMS in India)",
     id: "mems-fabrication-d7e8f9g1h",
+    category: "VLSI & Semiconductor Technology",
     description: "Focuses on the principles and practices of Micro-Electro-Mechanical Systems (MEMS) fabrication, including lithography, etching, deposition, and packaging techniques used in creating micro-scale devices.",
     date: "June 2022",
     imageUrl: "/images/Mems Fabrication.jpg",
@@ -107,8 +114,9 @@ export const certificationsData: Certification[] = [
   },
   {
     title: "Python Programming Proficiency",
-    issuer: "Infosys Springboard / HackerRank / Sololearn (Generic)", // Common platforms
+    issuer: "Infosys Springboard / HackerRank / Sololearn (Generic)",
     id: "python-i2j3k4l5m",
+    category: "Cloud Computing", // Or Software Development if that category is created
     description: "Validates proficiency in Python programming, covering its fundamentals (data types, control flow, functions, OOP) and advanced concepts like data structures, file handling, and standard libraries.",
     date: "April 2021",
     imageUrl: "/images/Python .jpg",
@@ -119,6 +127,7 @@ export const certificationsData: Certification[] = [
     title: "Semiconductor Chip Layout Design",
     issuer: "SCL (Semiconductor Laboratory) / Cadence / Synopsys University Program (Generic)",
     id: "scl-n6o7p8q9r",
+    category: "VLSI & Semiconductor Technology",
     description: "Covers the design and layout aspects of semiconductor circuits, including transistor-level design, layout rules, parasitic extraction, and physical verification using EDA tools.",
     date: "February 2023",
     imageUrl: "/images/SCL .jpg",
@@ -127,8 +136,9 @@ export const certificationsData: Certification[] = [
   },
   {
     title: "Introduction to Semiconductor Fabrication",
-    issuer: "Texas Instruments / NPTEL", // TI is mentioned in resume
+    issuer: "Texas Instruments / NPTEL",
     id: "semiconductor-fabrication-s1t2u3v4w",
+    category: "VLSI & Semiconductor Technology",
     description: "Introduces the complex processes involved in modern semiconductor manufacturing and fabrication, from wafer processing and photolithography to etching, doping, and final device assembly.",
     date: "August 2022",
     imageUrl: "/images/Semiconductor Fabrication.jpg",
@@ -137,8 +147,9 @@ export const certificationsData: Certification[] = [
   },
   {
     title: "Technology and Innovation Foundation",
-    issuer: "SIDVI Foundation", // As per image name
+    issuer: "SIDVI Foundation",
     id: "sidvi-foundation-x5y6z7a8b",
+    category: "Foundational Technology & Innovation",
     description: "Covers various aspects of technology, innovation management, and fostering an entrepreneurial mindset. Often includes modules on emerging technologies and their societal impact.",
     date: "March 2021",
     imageUrl: "/images/Sidvi foundation.jpg",
@@ -149,6 +160,7 @@ export const certificationsData: Certification[] = [
     title: "VLSI Design for Beginners",
     issuer: "Udemy / Coursera / Local Institute (Generic)",
     id: "vlsi-for-beginners-c9d1e2f3g",
+    category: "VLSI & Semiconductor Technology",
     description: "An introductory course to Very Large Scale Integration (VLSI) technology, covering basic digital design concepts, CMOS logic, and an overview of the IC design flow.",
     date: "September 2021",
     imageUrl: "/images/VLSI for Beginners.jpg",
@@ -159,6 +171,7 @@ export const certificationsData: Certification[] = [
     title: "VLSI SoC Design Using Verilog",
     issuer: "Maven Silicon / Edureka / Coursera (Generic VLSI providers)",
     id: "vlsi-soc-design-verilog-h4i5j6k7l",
+    category: "VLSI & Semiconductor Technology",
     description: "Focuses on the design of System-on-Chip (SoC) using Verilog HDL. Covers RTL design, verification methodologies, synthesis, and timing analysis for complex SoC development.",
     date: "December 2023",
     imageUrl: "/images/VLSI soc Design Using Verilog.jpg",
@@ -169,6 +182,7 @@ export const certificationsData: Certification[] = [
     title: "Advanced VLSI Digital Design",
     issuer: "NPTEL / VLSI System Design (VSD) Corp / Udemy (Generic)",
     id: "vlsi-digital-design-m8n9o1p2q",
+    category: "VLSI & Semiconductor Technology",
     description: "Covers core principles and advanced techniques in VLSI digital circuit design, including high-speed design, low-power techniques, FSM design, and data path/control path optimization.",
     date: "January 2023",
     imageUrl: "/images/Vlsi Digital Design.jpg",
@@ -179,6 +193,7 @@ export const certificationsData: Certification[] = [
     title: "Digital Image Processing Fundamentals",
     issuer: "NPTEL / Coursera (Generic)",
     id: "digital-image-processing-r3s4t5u6v",
+    category: "Artificial Intelligence & Machine Learning",
     description: "Provides a comprehensive understanding of digital image processing algorithms and techniques, including image enhancement, restoration, segmentation, and feature extraction using tools like MATLAB or Python libraries.",
     date: "July 2023",
     imageUrl: "/images/digital image processing.jpg",
@@ -189,6 +204,7 @@ export const certificationsData: Certification[] = [
     title: "Machine Learning for Semiconductor Manufacturing",
     issuer: "SEMI / Industry Specific Training (Generic)",
     id: "machine-learning-semiconductors-w7x8y9z1a",
+    category: "Artificial Intelligence & Machine Learning",
     description: "Explores the applications of machine learning within the semiconductor industry, such as yield prediction, anomaly detection in fabrication processes, predictive maintenance, and process optimization using AI techniques.",
     date: "June 2023",
     imageUrl: "/images/meachine Learning for semiconductors.jpg",
