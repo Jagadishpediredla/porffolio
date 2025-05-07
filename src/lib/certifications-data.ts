@@ -1,3 +1,4 @@
+
 // src/lib/certifications-data.ts
 import type { Certification } from './types'; // Ensure this type matches
 
@@ -92,7 +93,7 @@ export const certificationsData: Certification[] = [
   },
   {
     title: "Machine Learning Fundamentals",
-    issuer: "NPTEL / Coursera / Udemy (Generic)",
+    issuer: "NPTEL / Coursera / Udemy (Generic)", // Assuming generic issuer if not specified
     id: "machine-learning-y3z4a5b6c",
     category: "Artificial Intelligence & Machine Learning",
     description: "Covers fundamental machine learning algorithms (e.g., regression, classification, clustering), techniques for data preprocessing, model evaluation, and practical applications using popular ML libraries.",
@@ -103,7 +104,7 @@ export const certificationsData: Certification[] = [
   },
   {
     title: "MEMS and Microsystems Fabrication",
-    issuer: "NPTEL / IISc (Common for MEMS in India)",
+    issuer: "EPFL", // Updated Issuer
     id: "mems-fabrication-d7e8f9g1h",
     category: "VLSI & Semiconductor Technology",
     description: "Focuses on the principles and practices of Micro-Electro-Mechanical Systems (MEMS) fabrication, including lithography, etching, deposition, and packaging techniques used in creating micro-scale devices.",
@@ -114,7 +115,7 @@ export const certificationsData: Certification[] = [
   },
   {
     title: "Python Programming Proficiency",
-    issuer: "Infosys Springboard / HackerRank / Sololearn (Generic)",
+    issuer: "Infosys Springboard / HackerRank / Sololearn (Generic)", // Assuming generic issuer
     id: "python-i2j3k4l5m",
     category: "Cloud Computing", // Or Software Development if that category is created
     description: "Validates proficiency in Python programming, covering its fundamentals (data types, control flow, functions, OOP) and advanced concepts like data structures, file handling, and standard libraries.",
@@ -125,7 +126,7 @@ export const certificationsData: Certification[] = [
   },
   {
     title: "Semiconductor Chip Layout Design",
-    issuer: "SCL (Semiconductor Laboratory) / Cadence / Synopsys University Program (Generic)",
+    issuer: "SCL (Semiconductor Laboratory) / Cadence / Synopsys University Program (Generic)", // Assuming generic issuer
     id: "scl-n6o7p8q9r",
     category: "VLSI & Semiconductor Technology",
     description: "Covers the design and layout aspects of semiconductor circuits, including transistor-level design, layout rules, parasitic extraction, and physical verification using EDA tools.",
@@ -136,7 +137,7 @@ export const certificationsData: Certification[] = [
   },
   {
     title: "Introduction to Semiconductor Fabrication",
-    issuer: "Texas Instruments / NPTEL",
+    issuer: "Texas Instruments", // Updated Issuer
     id: "semiconductor-fabrication-s1t2u3v4w",
     category: "VLSI & Semiconductor Technology",
     description: "Introduces the complex processes involved in modern semiconductor manufacturing and fabrication, from wafer processing and photolithography to etching, doping, and final device assembly.",
@@ -158,7 +159,7 @@ export const certificationsData: Certification[] = [
   },
   {
     title: "VLSI Design for Beginners",
-    issuer: "Udemy / Coursera / Local Institute (Generic)",
+    issuer: "NIELIT", // Updated Issuer
     id: "vlsi-for-beginners-c9d1e2f3g",
     category: "VLSI & Semiconductor Technology",
     description: "An introductory course to Very Large Scale Integration (VLSI) technology, covering basic digital design concepts, CMOS logic, and an overview of the IC design flow.",
@@ -169,7 +170,7 @@ export const certificationsData: Certification[] = [
   },
   {
     title: "VLSI SoC Design Using Verilog",
-    issuer: "Maven Silicon / Edureka / Coursera (Generic VLSI providers)",
+    issuer: "Maven Silicon / Edureka / Coursera (Generic VLSI providers)", // Assuming generic issuer
     id: "vlsi-soc-design-verilog-h4i5j6k7l",
     category: "VLSI & Semiconductor Technology",
     description: "Focuses on the design of System-on-Chip (SoC) using Verilog HDL. Covers RTL design, verification methodologies, synthesis, and timing analysis for complex SoC development.",
@@ -180,7 +181,7 @@ export const certificationsData: Certification[] = [
   },
   {
     title: "Advanced VLSI Digital Design",
-    issuer: "NPTEL / VLSI System Design (VSD) Corp / Udemy (Generic)",
+    issuer: "Infosys", // Updated Issuer
     id: "vlsi-digital-design-m8n9o1p2q",
     category: "VLSI & Semiconductor Technology",
     description: "Covers core principles and advanced techniques in VLSI digital circuit design, including high-speed design, low-power techniques, FSM design, and data path/control path optimization.",
@@ -191,7 +192,7 @@ export const certificationsData: Certification[] = [
   },
   {
     title: "Digital Image Processing Fundamentals",
-    issuer: "NPTEL / Coursera (Generic)",
+    issuer: "NPTEL / Coursera (Generic)", // Assuming generic issuer
     id: "digital-image-processing-r3s4t5u6v",
     category: "Artificial Intelligence & Machine Learning",
     description: "Provides a comprehensive understanding of digital image processing algorithms and techniques, including image enhancement, restoration, segmentation, and feature extraction using tools like MATLAB or Python libraries.",
@@ -202,7 +203,7 @@ export const certificationsData: Certification[] = [
   },
   {
     title: "Machine Learning for Semiconductor Manufacturing",
-    issuer: "SEMI / Industry Specific Training (Generic)",
+    issuer: "SEMI / Industry Specific Training (Generic)", // Assuming generic issuer
     id: "machine-learning-semiconductors-w7x8y9z1a",
     category: "Artificial Intelligence & Machine Learning",
     description: "Explores the applications of machine learning within the semiconductor industry, such as yield prediction, anomaly detection in fabrication processes, predictive maintenance, and process optimization using AI techniques.",
@@ -212,3 +213,4 @@ export const certificationsData: Certification[] = [
     link: "#",
   },
 ];
+
