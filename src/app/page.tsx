@@ -12,7 +12,7 @@ import HeroSection from "@/components/hero-section";
 import Navbar from "@/components/navbar";
 import { portfolioData as staticData } from '@/lib/portfolio-data';
 import type { PortfolioData } from '@/lib/types';
-import { Mail, Phone, Linkedin as LinkedinIcon, ArrowRight } from 'lucide-react';
+import { ArrowRight } from 'lucide-react'; // Mail, Phone, LinkedinIcon removed as custom icons will be used
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import FeaturedSkillsSummary from '@/components/featured-skills-summary';
@@ -20,6 +20,9 @@ import RecentExperienceSummary from '@/components/recent-experience-summary';
 import HighlightedProjectsSummary from '@/components/highlighted-projects-summary';
 import KeyCertificationsSummary from '@/components/key-certifications-summary';
 import NotableAchievementsSummary from '@/components/notable-achievements-summary';
+import MailCustomIcon from '@/components/icons/MailCustomIcon';
+import PhoneCustomIcon from '@/components/icons/PhoneCustomIcon';
+import LinkedinCustomIcon from '@/components/icons/LinkedinCustomIcon';
 
 
 export default function Home() {
@@ -81,7 +84,7 @@ export default function Home() {
     if (element) {
       const navbarHeight = document.querySelector('nav')?.offsetHeight || 0;
       const elementPosition = element.getBoundingClientRect().top + window.scrollY;
-      const offsetPosition = elementPosition - navbarHeight - 20;
+      const offsetPosition = elementPosition - navbarHeight - 20; // 20px buffer
 
       window.scrollTo({
         top: offsetPosition,
@@ -127,7 +130,7 @@ export default function Home() {
     currentView = (
       <section
         id={sectionIds.home}
-        className="relative min-h-screen flex flex-col items-center justify-center text-center px-4 py-16 md:py-20 overflow-hidden" // Added py for padding
+        className="relative min-h-screen flex flex-col items-center justify-center text-center px-4 py-16 md:py-20 overflow-hidden" 
       >
         <div
           className="absolute inset-0 z-0 opacity-[0.07]"
@@ -232,20 +235,20 @@ export default function Home() {
             <p className="text-lg mb-6 text-foreground text-center">I'd love to hear from you! Whether you have a question or just want to say hi, feel free to reach out.</p>
             <div className="space-y-4 text-muted-foreground">
               <p className="flex items-center justify-start">
-                <Mail className="mr-3 h-5 w-5 text-primary flex-shrink-0" />
+                <MailCustomIcon className="mr-3 h-5 w-5 text-primary flex-shrink-0" />
                 <a href={`mailto:${portfolioData.personalInfo.email}`} className="hover:text-primary transition-colors duration-200 break-all">
                   {portfolioData.personalInfo.email}
                 </a>
               </p>
               <p className="flex items-center justify-start">
-                <Phone className="mr-3 h-5 w-5 text-primary flex-shrink-0" />
+                <PhoneCustomIcon className="mr-3 h-5 w-5 text-primary flex-shrink-0" />
                 <a href={`tel:${portfolioData.personalInfo.phone.replace(/\D/g, '')}`} className="hover:text-primary transition-colors duration-200">
                   {portfolioData.personalInfo.phone}
                 </a>
               </p>
               <p className="flex items-center justify-start">
                 <Link href={portfolioData.personalInfo.linkedin || '#'} target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors duration-200 inline-flex items-center">
-                  <LinkedinIcon className="mr-3 h-5 w-5 text-primary flex-shrink-0" /> LinkedIn Profile
+                  <LinkedinCustomIcon className="mr-3 h-5 w-5 text-primary flex-shrink-0" /> LinkedIn Profile
                 </Link>
               </p>
             </div>
@@ -261,7 +264,7 @@ export default function Home() {
         onNavLinkClick={handleNavLinkClick}
         activeSectionId={activeSectionId}
       />
-      <main className="flex-grow pt-[4rem] md:pt-[4rem]"> {/* Adjusted padding-top */}
+      <main className="flex-grow pt-[4rem] md:pt-[4.5rem]"> {/* Increased padding-top for mobile */}
         {/* The key prop forces a re-render on view change, which can help with animations */}
         <div key={activeSectionId}>
           {currentView}
