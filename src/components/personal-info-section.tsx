@@ -90,7 +90,6 @@ export default function PersonalInfoSection({ portfolioData }: PersonalInfoSecti
                         {personalInfo.phone}
                     </a>
                 </p>
-                 <p><strong className="text-foreground/90 font-medium">Languages:</strong> {personalInfo.languages?.join(', ')}</p>
             </CardContent>
         </Card>
 

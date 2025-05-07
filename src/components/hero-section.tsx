@@ -53,15 +53,6 @@ export default function HeroSection({ personalInfo }: HeroSectionProps) {
            </a>
          </Button>
        </div>
-
-       {/* Optional: Scroll Down Indicator or Call to Action for other sections */}
-       {/* Kept subtle, might be less necessary if views switch directly */}
-       <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce opacity-70">
-          <svg className="w-5 h-5 md:w-6 md:h-6 text-primary" fill="none" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" viewBox="0 0 24 24" stroke="currentColor">
-            <path d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
-          </svg>
-       </div>
     </div>
   );
 }
-
