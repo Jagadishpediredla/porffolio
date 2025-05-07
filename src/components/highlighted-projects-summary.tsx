@@ -28,14 +28,15 @@ const HighlightedProjectsSummary: React.FC<HighlightedProjectsSummaryProps> = ({
   }
 
   return (
-    <Card className="h-full flex flex-col bg-card/60 backdrop-blur-sm border-border/50 shadow-lg hover:shadow-primary/20 hover:border-primary/60 transition-all duration-300 hover-lift overflow-hidden">
+    // Ensure the card takes full height within the grid cell
+    <Card className="h-full flex flex-col bg-card/60 backdrop-blur-sm border-border/50 shadow-lg hover:shadow-primary/20 hover:border-primary/60 transition-all duration-300 hover-lift overflow-hidden group">
       <CardHeader>
         <CardTitle className="text-xl font-semibold text-primary flex items-center">
           <Github className="mr-2 h-5 w-5" /> Featured Project
         </CardTitle>
       </CardHeader>
       <CardContent className="flex-grow">
-        <div className="relative w-full h-40 mb-3 rounded-md overflow-hidden group">
+        <div className="relative w-full h-40 mb-3 rounded-md overflow-hidden"> {/* Removed group here, added to parent card */}
           <Image
             src={project.imageUrl || `https://picsum.photos/seed/${project.id}/300/200`}
             alt={`${project.title} screenshot`}
@@ -43,7 +44,7 @@ const HighlightedProjectsSummary: React.FC<HighlightedProjectsSummaryProps> = ({
             style={{ objectFit: 'cover' }}
             data-ai-hint={project.imageHint || 'project technology'}
             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-            className="transition-transform duration-500 group-hover:scale-105"
+            className="transition-transform duration-500 group-hover:scale-105" // Group hover effect from parent
           />
            <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent group-hover:from-black/40 transition-colors duration-300"></div>
         </div>

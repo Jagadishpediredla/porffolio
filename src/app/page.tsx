@@ -5,8 +5,8 @@ import type React from 'react';
 import { useState, useEffect } from 'react';
 import PersonalInfoSection from "@/components/personal-info-section";
 import CertificationsTab from "@/components/certifications-tab";
-import ExperienceSection from "@/components/experience-tab";
-import ProjectsSection from "@/components/projects-tab";
+import ExperienceTab from "@/components/experience-tab"; // Corrected import name
+import ProjectsTab from "@/components/projects-tab"; // Corrected import name and path
 import AchievementsTab from "@/components/achievements-tab";
 import SkillsSection from "@/components/skills-section";
 import HeroSection from "@/components/hero-section";
@@ -83,9 +83,10 @@ export default function Home() {
         setActiveSectionId(id);
     }
 
-    // Scroll into view (we'll handle this differently now)
-    // Instead of direct scroll, we just change the active ID.
-    // The main render logic will then display the correct section.
+    // Scroll into view logic can be added here if needed, e.g.,
+    // const element = document.getElementById(id);
+    // element?.scrollIntoView({ behavior: 'smooth' });
+    // However, current setup relies on conditional rendering which works fine for SPA-like feel.
   };
 
 
@@ -98,11 +99,12 @@ export default function Home() {
   }
 
   // Shared Wrapper for consistent styling and animation (controlled by active state)
+  // Adjusted padding top/bottom for better spacing, especially on mobile
   const SectionWrapper: React.FC<{ id: string; children: React.ReactNode; bg?: string; className?: string; isVisible: boolean }> = ({ id, children, bg, className, isVisible }) => (
     <section
       id={id}
-      className={`px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16 ${bg || ''} ${className || ''} ${isVisible ? 'animate-fade-in-up' : 'hidden'}`}
-      style={{ animationDelay: isVisible && id !== sectionIds.home ? '0.1s' : '0s', animationFillMode: 'backwards' }} // Apply minimal delay only for non-home sections
+      className={`px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16 py-16 md:py-20 ${bg || ''} ${className || ''} ${isVisible ? 'animate-fade-in-up' : 'hidden'} min-h-[calc(100vh-var(--navbar-height,4rem)-2rem)] md:min-h-[calc(100vh-var(--navbar-height,4rem)-4rem)]`} // Adjusted min-height and added separate mobile/desktop values
+      style={{ animationDelay: '0.1s', animationFillMode: 'backwards' }} // Apply consistent minimal delay
     >
       {children}
     </section>
@@ -123,109 +125,97 @@ export default function Home() {
   const allSections = (
      <>
        {/* --- Home Section --- */}
-       <SectionWrapper id={sectionIds.home} isVisible={activeSectionId === sectionIds.home} className="relative flex flex-col items-center justify-center text-center py-16 md:py-20 overflow-hidden min-h-[calc(100vh-var(--navbar-height,5rem)-2rem)]"> {/* Added min-height */}
+       {/* Rely solely on SectionWrapper for animation */}
+       <SectionWrapper id={sectionIds.home} isVisible={activeSectionId === sectionIds.home} className="relative flex flex-col items-center justify-center text-center overflow-hidden">
+         {/* Background specific to Home section */}
          <div
            className="absolute inset-0 z-0 opacity-[0.07]"
            style={{
-             backgroundImage: "url('https://picsum.photos/seed/chip-texture-dark/1200/800')",
+             backgroundImage: "url('https://picsum.photos/seed/vlsi-circuit-bg/1200/800')",
              backgroundSize: 'cover',
              backgroundPosition: 'center',
              mixBlendMode: 'overlay',
            }}
-           data-ai-hint="microchip texture"
+           data-ai-hint="vlsi circuit texture"
          ></div>
          <div className="w-full max-w-6xl mx-auto z-10">
-           {/* Only animate HeroSection if home is active */}
-           <div className={activeSectionId === sectionIds.home ? 'animate-fade-in-up' : ''} style={{ animationDelay: activeSectionId === sectionIds.home ? '0.2s' : '0s' }}>
-             <HeroSection personalInfo={portfolioData.personalInfo} />
+           {/* Removed conditional animation class here */}
+           <HeroSection personalInfo={portfolioData.personalInfo} />
+
+           {/* Removed conditional animation class from outer container */}
+           <div className="mt-12 md:mt-16">
+             <h2 className="text-2xl md:text-3xl font-bold text-primary mb-8 md:mb-10">Portfolio Snapshot</h2>
+             {/* Restructured grid for better alignment of summary cards */}
+             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6 md:gap-8 max-w-4xl mx-auto">
+               {displayedSkills.length > 0 && (
+                 <FeaturedSkillsSummary skills={displayedSkills} />
+               )}
+               {portfolioData.experience && portfolioData.experience.length > 0 && (
+                 <RecentExperienceSummary experience={portfolioData.experience[0]} />
+               )}
+               {portfolioData.projects && portfolioData.projects.length > 0 && (
+                 <HighlightedProjectsSummary project={portfolioData.projects[0]} />
+               )}
+               {portfolioData.achievements && portfolioData.achievements.length > 0 && (
+                   <NotableAchievementsSummary achievement={portfolioData.achievements[0]} />
+               )}
+             </div>
+             {/* Removed KeyCertificationsSummary from snapshot for brevity, can be added back if desired */}
            </div>
 
-           {/* Only animate rest of home if active */}
-           {activeSectionId === sectionIds.home && (
-             <>
-               <div className="mt-12 md:mt-16 animate-fade-in-up" style={{ animationDelay: '0.4s' }}>
-                 <h2 className="text-2xl md:text-3xl font-bold text-primary mb-8 md:mb-10">Portfolio Snapshot</h2>
-                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
-                   {displayedSkills.length > 0 && (
-                     <FeaturedSkillsSummary skills={displayedSkills} />
-                   )}
-                   {portfolioData.experience && portfolioData.experience.length > 0 && (
-                     <RecentExperienceSummary experience={portfolioData.experience[0]} />
-                   )}
-                   {portfolioData.projects && portfolioData.projects.length > 0 && (
-                     <HighlightedProjectsSummary project={portfolioData.projects[0]} />
-                   )}
-                 </div>
-               </div>
-
-               <div className="mt-10 md:mt-12 animate-fade-in-up" style={{ animationDelay: '0.6s' }}>
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
-                     {portfolioData.certifications && portfolioData.certifications.length > 0 && (
-                         <KeyCertificationsSummary certification={portfolioData.certifications[0]} />
-                     )}
-                     {portfolioData.achievements && portfolioData.achievements.length > 0 && (
-                         <NotableAchievementsSummary achievement={portfolioData.achievements[0]} />
-                     )}
-                 </div>
-               </div>
-
-
-               <div className="mt-12 md:mt-16 animate-fade-in-up text-center" style={{ animationDelay: '0.8s' }}>
-                 <Button onClick={() => handleNavLinkClick(sectionIds.about)} size="lg" className="btn-textured hover-lift group">
-                   Explore Full Portfolio
-                   <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform duration-200" />
-                 </Button>
-               </div>
-             </>
-           )}
+           {/* Removed conditional animation class here */}
+           <div className="mt-12 md:mt-16 text-center">
+             <Button onClick={() => handleNavLinkClick(sectionIds.about)} size="lg" className="btn-textured hover-lift group">
+               Explore Full Portfolio
+               <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform duration-200" />
+             </Button>
+           </div>
          </div>
        </SectionWrapper>
 
        {/* --- About Section --- */}
-       <SectionWrapper id={sectionIds.about} isVisible={activeSectionId === sectionIds.about} className="py-16 md:py-20 min-h-[calc(100vh-var(--navbar-height,5rem)-2rem)]"> {/* Added min-height */}
-         <h2 className={`text-3xl md:text-4xl font-bold text-center mb-10 md:mb-12 text-primary ${activeSectionId === sectionIds.about ? 'animate-fade-in-up' : ''}`} style={{ animationDelay: '0s', animationFillMode: 'backwards' }}>About Me</h2>
+       <SectionWrapper id={sectionIds.about} isVisible={activeSectionId === sectionIds.about} className="">
+         <h2 className={`text-3xl md:text-4xl font-bold text-center mb-10 md:mb-12 text-primary`}>About Me</h2>
          <PersonalInfoSection portfolioData={portfolioData} />
        </SectionWrapper>
 
         {/* --- Skills Section --- */}
-        <SectionWrapper id={sectionIds.skills} isVisible={activeSectionId === sectionIds.skills} bg="bg-card/10" className="py-16 md:py-20 min-h-[calc(100vh-var(--navbar-height,5rem)-2rem)]"> {/* Added min-height */}
-            <h2 className={`text-3xl md:text-4xl font-bold text-center mb-10 md:mb-12 text-primary ${activeSectionId === sectionIds.skills ? 'animate-fade-in-up' : ''}`} style={{ animationDelay: '0s', animationFillMode: 'backwards' }}>My Skills</h2>
+        <SectionWrapper id={sectionIds.skills} isVisible={activeSectionId === sectionIds.skills} bg="bg-card/10" className="">
+            <h2 className={`text-3xl md:text-4xl font-bold text-center mb-10 md:mb-12 text-primary`}>My Skills</h2>
             <SkillsSection personalInfo={portfolioData.personalInfo} />
         </SectionWrapper>
 
        {/* --- Experience Section --- */}
-        <SectionWrapper id={sectionIds.experience} isVisible={activeSectionId === sectionIds.experience} className="py-16 md:py-20 min-h-[calc(100vh-var(--navbar-height,5rem)-2rem)]"> {/* Added min-height */}
-            <h2 className={`text-3xl md:text-4xl font-bold text-center mb-10 md:mb-12 text-primary ${activeSectionId === sectionIds.experience ? 'animate-fade-in-up' : ''}`} style={{ animationDelay: '0s', animationFillMode: 'backwards' }}>Experience & Education</h2>
-            <ExperienceSection portfolioData={portfolioData} />
+        <SectionWrapper id={sectionIds.experience} isVisible={activeSectionId === sectionIds.experience} className="">
+            <h2 className={`text-3xl md:text-4xl font-bold text-center mb-10 md:mb-12 text-primary`}>Experience & Education</h2>
+            <ExperienceTab portfolioData={portfolioData} />
         </SectionWrapper>
 
         {/* --- Projects Section --- */}
-        <SectionWrapper id={sectionIds.projects} isVisible={activeSectionId === sectionIds.projects} bg="bg-card/10" className="py-16 md:py-20 min-h-[calc(100vh-var(--navbar-height,5rem)-2rem)]"> {/* Added min-height */}
-            <h2 className={`text-3xl md:text-4xl font-bold text-center mb-10 md:mb-12 text-primary ${activeSectionId === sectionIds.projects ? 'animate-fade-in-up' : ''}`} style={{ animationDelay: '0s', animationFillMode: 'backwards' }}>Projects</h2>
-            <ProjectsSection portfolioData={portfolioData} />
+        <SectionWrapper id={sectionIds.projects} isVisible={activeSectionId === sectionIds.projects} bg="bg-card/10" className="">
+            <h2 className={`text-3xl md:text-4xl font-bold text-center mb-10 md:mb-12 text-primary`}>Projects</h2>
+            <ProjectsTab portfolioData={portfolioData} />
         </SectionWrapper>
 
        {/* --- Certifications Section --- */}
-        <SectionWrapper id={sectionIds.certifications} isVisible={activeSectionId === sectionIds.certifications} className="py-16 md:py-20 min-h-[calc(100vh-var(--navbar-height,5rem)-2rem)]"> {/* Added min-height */}
-            <h2 className={`text-3xl md:text-4xl font-bold text-center mb-10 md:mb-12 text-primary ${activeSectionId === sectionIds.certifications ? 'animate-fade-in-up' : ''}`} style={{ animationDelay: '0s', animationFillMode: 'backwards' }}>Certifications</h2>
+        <SectionWrapper id={sectionIds.certifications} isVisible={activeSectionId === sectionIds.certifications} className="">
+            <h2 className={`text-3xl md:text-4xl font-bold text-center mb-10 md:mb-12 text-primary`}>Certifications</h2>
             <CertificationsTab portfolioData={portfolioData} />
         </SectionWrapper>
 
         {/* --- Achievements Section --- */}
-        <SectionWrapper id={sectionIds.achievements} isVisible={activeSectionId === sectionIds.achievements} bg="bg-card/10" className="py-16 md:py-20 min-h-[calc(100vh-var(--navbar-height,5rem)-2rem)]"> {/* Added min-height */}
-            <h2 className={`text-3xl md:text-4xl font-bold text-center mb-10 md:mb-12 text-primary ${activeSectionId === sectionIds.achievements ? 'animate-fade-in-up' : ''}`} style={{ animationDelay: '0s', animationFillMode: 'backwards' }}>Achievements</h2>
+        <SectionWrapper id={sectionIds.achievements} isVisible={activeSectionId === sectionIds.achievements} bg="bg-card/10" className="">
+            <h2 className={`text-3xl md:text-4xl font-bold text-center mb-10 md:mb-12 text-primary`}>Achievements</h2>
             <AchievementsTab portfolioData={portfolioData} />
         </SectionWrapper>
 
        {/* --- Contact Section --- */}
-       <SectionWrapper id={sectionIds.contact} isVisible={activeSectionId === sectionIds.contact} className="py-16 md:py-20 min-h-[calc(100vh-var(--navbar-height,5rem)-2rem)]"> {/* Added min-height */}
-          <h2 className={`text-3xl md:text-4xl font-bold text-center mb-10 md:mb-12 text-primary ${activeSectionId === sectionIds.contact ? 'animate-fade-in-up' : ''}`} style={{ animationDelay: '0s', animationFillMode: 'backwards' }}>Contact Me</h2>
+       <SectionWrapper id={sectionIds.contact} isVisible={activeSectionId === sectionIds.contact} className="">
+          <h2 className={`text-3xl md:text-4xl font-bold text-center mb-10 md:mb-12 text-primary`}>Contact Me</h2>
           <div
             className="max-w-lg mx-auto bg-card p-8 rounded-xl shadow-xl border border-border/30 hover:shadow-primary/20 hover:border-primary/60 transition-all duration-300 hover-lift"
            >
-            {/* Updated Contact Section Intro Text */}
              <p className="text-lg mb-6 text-foreground text-center">Interested in collaborating or have a query? Feel free to reach out using the contact details below.</p>
-             {/* Added statement about work opportunities */}
              <p className="text-lg mb-6 text-primary font-semibold text-center">I am actively seeking new opportunities and would love to discuss how my skills can benefit your team.</p>
              <div className="space-y-4 text-muted-foreground">
                <p className="flex items-center justify-start">
@@ -259,8 +249,8 @@ export default function Home() {
         onNavLinkClick={handleNavLinkClick}
         activeSectionId={activeSectionId}
       />
-      {/* Increased top padding to ensure content is below the navbar */}
-      <main className="flex-grow pt-[calc(var(--navbar-height,5rem)+1.5rem)]"> {/* Increased top padding */}
+      {/* Adjusted top padding to account for navbar height - uses CSS variable */}
+      <main className="flex-grow pt-[calc(var(--navbar-height,4rem)+1.5rem)] md:pt-[calc(var(--navbar-height,4rem)+2.5rem)]"> {/* Increased padding top */}
          {/* Render all sections */}
          {allSections}
       </main>
@@ -271,3 +261,4 @@ export default function Home() {
     </div>
   );
 }
+
