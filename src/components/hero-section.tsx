@@ -1,4 +1,3 @@
-
 'use client';
 
 import type React from 'react';
@@ -18,43 +17,37 @@ const WhatsAppIcon = () => (
 
 
 export default function HeroSection({ personalInfo }: HeroSectionProps) {
-  const objectiveSentences = personalInfo.objective.split('. ').filter(s => s.trim() !== '');
-  const mainObjectivePart = objectiveSentences.slice(0, 2).join('. ') + (objectiveSentences.length > 2 ? '.' : '');
-  const additionalHighlight = objectiveSentences.length > 2 
-    ? objectiveSentences[2] + '.' 
-    : "Driven by a passion for VLSI technology, I am eager to contribute to innovative projects and continually expand my expertise in the semiconductor field.";
-
-
   return (
-    <div className="z-10 flex flex-col items-center animate-fade-in-up">
+    <div className="z-10 flex flex-col items-center animate-fade-in-up max-w-4xl mx-auto"> {/* Increased max-width */}
       <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-4 text-center leading-tight">
         Hi, I am <span className="text-primary">{personalInfo.name}</span>
       </h1>
-      <p className="text-xl md:text-2xl text-muted-foreground mb-6 max-w-3xl text-center leading-relaxed">
+      <p className="text-xl md:text-2xl text-muted-foreground mb-6 text-center leading-relaxed">
          {personalInfo.title}.
       </p>
-      <p className="text-lg md:text-xl text-muted-foreground/80 mb-8 max-w-3xl text-center leading-relaxed">
-        {mainObjectivePart} {additionalHighlight}
+      {/* Displaying the full objective for more information */}
+      <p className="text-md md:text-lg lg:text-xl text-muted-foreground/90 mb-10 max-w-3xl text-center leading-relaxed md:leading-loose">
+        {personalInfo.objective}
       </p>
 
        {/* Social Links */}
-       <div className="flex justify-center space-x-4 mb-10">
-         <Button variant="ghost" size="icon" asChild className="text-foreground/70 hover:text-primary transition-all duration-200 hover:scale-110 focus:scale-110">
+       <div className="flex justify-center space-x-3 md:space-x-4 mb-10">
+         <Button variant="outline" size="icon" asChild className="text-foreground/70 hover:text-primary transition-all duration-200 hover:scale-110 focus:scale-110 border-border hover:border-primary hover-lift">
            <Link href={personalInfo.github || '#'} target="_blank" rel="noopener noreferrer" aria-label="GitHub Profile">
-             <Github className="h-6 w-6" />
+             <Github className="h-5 w-5 md:h-6 md:w-6" />
            </Link>
          </Button>
-         <Button variant="ghost" size="icon" asChild className="text-foreground/70 hover:text-primary transition-all duration-200 hover:scale-110 focus:scale-110">
+         <Button variant="outline" size="icon" asChild className="text-foreground/70 hover:text-primary transition-all duration-200 hover:scale-110 focus:scale-110 border-border hover:border-primary hover-lift">
            <Link href={personalInfo.linkedin || '#'} target="_blank" rel="noopener noreferrer" aria-label="LinkedIn Profile">
-             <Linkedin className="h-6 w-6" />
+             <Linkedin className="h-5 w-5 md:h-6 md:w-6" />
            </Link>
          </Button>
-          <Button variant="ghost" size="icon" asChild className="text-foreground/70 hover:text-primary transition-all duration-200 hover:scale-110 focus:scale-110">
+          <Button variant="outline" size="icon" asChild className="text-foreground/70 hover:text-primary transition-all duration-200 hover:scale-110 focus:scale-110 border-border hover:border-primary hover-lift">
            <a href={`mailto:${personalInfo.email}`} aria-label="Send Email">
-             <Mail className="h-6 w-6" />
+             <Mail className="h-5 w-5 md:h-6 md:w-6" />
            </a>
          </Button>
-         <Button variant="ghost" size="icon" asChild className="text-foreground/70 hover:text-primary transition-all duration-200 hover:scale-110 focus:scale-110">
+         <Button variant="outline" size="icon" asChild className="text-foreground/70 hover:text-primary transition-all duration-200 hover:scale-110 focus:scale-110 border-border hover:border-primary hover-lift">
            <a href={`https://wa.me/${personalInfo.phone.replace(/\D/g, '')}`} target="_blank" rel="noopener noreferrer" aria-label="WhatsApp Chat">
               <WhatsAppIcon />
            </a>
@@ -62,8 +55,9 @@ export default function HeroSection({ personalInfo }: HeroSectionProps) {
        </div>
 
        {/* Optional: Scroll Down Indicator or Call to Action for other sections */}
-       <div className="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce">
-          <svg className="w-6 h-6 text-primary" fill="none" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" viewBox="0 0 24 24" stroke="currentColor">
+       {/* Kept subtle, might be less necessary if views switch directly */}
+       <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce opacity-70">
+          <svg className="w-5 h-5 md:w-6 md:h-6 text-primary" fill="none" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" viewBox="0 0 24 24" stroke="currentColor">
             <path d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
           </svg>
        </div>
