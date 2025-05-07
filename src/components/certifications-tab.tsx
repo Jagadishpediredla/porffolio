@@ -1,4 +1,3 @@
-
 'use client';
 
  import type React from 'react';
@@ -27,10 +26,40 @@ export default function CertificationsTab({ portfolioData }: CertificationsTabPr
     return acc;
   }, {} as Record<string, Certification[]>);
 
+  const categoryOrder = [
+    "VLSI & Semiconductor Technology",
+    "Embedded Systems & IoT",
+    "Artificial Intelligence & Machine Learning",
+    "Cloud Computing",
+    "Foundational Technology & Innovation",
+    "Other" // Ensure 'Other' is handled if present
+  ];
+
+  const sortedGroupedCertifications = Object.entries(groupedCertifications).sort(([categoryA], [categoryB]) => {
+    const indexA = categoryOrder.indexOf(categoryA);
+    const indexB = categoryOrder.indexOf(categoryB);
+
+    // If both categories are in the defined order, sort by that order
+    if (indexA !== -1 && indexB !== -1) {
+      return indexA - indexB;
+    }
+    // If only categoryA is in the order, it comes first
+    if (indexA !== -1) {
+      return -1;
+    }
+    // If only categoryB is in the order, it comes first
+    if (indexB !== -1) {
+      return 1;
+    }
+    // Otherwise, maintain original order or sort alphabetically for unspecified categories
+    return categoryA.localeCompare(categoryB);
+  });
+
+
   return (
     <div className="w-full max-w-4xl mx-auto space-y-10">
-      {Object.entries(groupedCertifications).length > 0 ? (
-        Object.entries(groupedCertifications).map(([category, certsInCategory], categoryIndex) => (
+      {sortedGroupedCertifications.length > 0 ? (
+        sortedGroupedCertifications.map(([category, certsInCategory], categoryIndex) => (
           <section key={category} className="animate-fade-in-up" style={{ animationDelay: `${0.1 + categoryIndex * 0.2}s`, animationFillMode: 'backwards' }}>
             <h3 className="text-2xl font-semibold text-primary mb-6 flex items-center">
               <FolderArchive className="mr-3 h-6 w-6" />
@@ -43,7 +72,7 @@ export default function CertificationsTab({ portfolioData }: CertificationsTabPr
                     value={`item-${item.id}`}
                     key={item.id}
                     className="border border-border/50 rounded-lg overflow-hidden shadow-sm hover:border-primary/50 hover:shadow-primary/15 transition-all duration-300 bg-card/80 backdrop-blur-sm animate-fade-in-up group"
-                    style={{ animationDelay: `${0.1 + index * 0.1}s`, animationFillMode: 'backwards' }}
+                    style={{ animationDelay: `${0.1 + (categoryIndex * 0.1) + (index * 0.05)}s`, animationFillMode: 'backwards' }} // Adjusted animation delay calculation for smoother cascading effect
                   >
                     <AccordionTrigger className="px-6 py-4 text-left font-medium hover:no-underline hover:bg-muted/50 transition-colors duration-200 [&[data-state=open]>svg]:text-primary [&[data-state=open]>svg]:rotate-180">
                       <div className="flex justify-between items-center w-full pr-4">
@@ -54,7 +83,6 @@ export default function CertificationsTab({ portfolioData }: CertificationsTabPr
                       </div>
                     </AccordionTrigger>
                     <AccordionContent className="px-6 pb-6 pt-2 text-base text-muted-foreground bg-muted/30">
-                      {/* Issuer is now in trigger, date can be shown here if needed, or removed */}
                       {item.date && <p className="mb-1 text-xs text-muted-foreground/80">Date: {item.date}</p>}
                       {item.description && <p className="mb-4 leading-relaxed">{item.description}</p>}
                       
@@ -66,7 +94,7 @@ export default function CertificationsTab({ portfolioData }: CertificationsTabPr
                           style={{ objectFit: 'contain' }}
                           data-ai-hint={`certificate ${item.issuer || ''}`}
                           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 50vw"
-                          priority={index < 3}
+                          priority={index < 3 && categoryIndex < 1} // Prioritize images in first few items of first category
                         />
                       </div>
 
@@ -103,3 +131,4 @@ export default function CertificationsTab({ portfolioData }: CertificationsTabPr
     </div>
   );
 }
+
