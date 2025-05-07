@@ -76,21 +76,21 @@ export default function Home() {
   }, []);
 
   const handleNavLinkClick = (id: string) => {
-    setActiveSectionId(id);
     const element = document.getElementById(id);
     if (element) {
-      // Only scroll if the section is not the home section or if it's not already at the top
-      // For tab-like views, scrolling might primarily be needed when initially navigating to a long section.
-      if (id !== sectionIds.home || window.scrollY > 0) {
-        const navbarHeight = document.querySelector('nav')?.offsetHeight || 0;
-        const elementPosition = element.getBoundingClientRect().top + window.scrollY;
-        const offsetPosition = elementPosition - navbarHeight - 20; // 20px buffer
-
-        window.scrollTo({
-          top: offsetPosition,
-          behavior: 'smooth'
-        });
+      const navbarHeight = document.querySelector('nav')?.offsetHeight || 0;
+      let scrollToPosition = element.getBoundingClientRect().top + window.scrollY - navbarHeight - 20;
+      if (id === sectionIds.home) {
+        scrollToPosition = 0; 
       }
+
+      window.scrollTo({ top: Math.max(0, scrollToPosition), behavior: 'smooth' });
+    }
+
+    // Only update activeSectionId if it's actually changing.
+    // This prevents re-renders that could re-trigger animations on the active section.
+    if (activeSectionId !== id) {
+      setActiveSectionId(id);
     }
   };
 
@@ -276,3 +276,4 @@ export default function Home() {
     </div>
   );
 }
+
