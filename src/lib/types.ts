@@ -15,6 +15,7 @@ export interface PersonalInfo {
   softSkills: string[];
   hobbies: string[];
   languages: string[];
+  cvLink?: string; // Optional CV link
 }
 
 export interface Certification {
@@ -25,6 +26,7 @@ export interface Certification {
   description?: string; // Optional description
   link?: string; // Optional link
   skills?: string[]; // Optional skills
+  logoUrl?: string; // Optional: URL for the issuer's logo
 }
 
 export interface Experience {
@@ -67,7 +69,7 @@ export interface Education {
 
 export interface PortfolioData {
   personalInfo: PersonalInfo;
-  certifications: Certification[]; // Use Array instead of Record
+  certifications: Certification[];
   experience: Experience[];
   projects: Project[];
   achievements: Achievement[];

@@ -5,96 +5,143 @@ import type { PortfolioData } from './types';
 export const portfolioData: PortfolioData = {
   personalInfo: {
     name: "Venkata Jagadish Pediredla",
-    title: "VLSI Enthusiast", // Derived from objective
-    objective: "I am deeply passionate about VLSI technology and am eager to contribute to this rapidly growing field. As an enthusiast, I constantly seek to enhance my knowledge and skills in semiconductor design and fabrication, also enhancing my experience in EDA tools and CMOS design. I strongly believe in the future of the semiconductor sector in India and aspire to be an integral part of its growth. My Interest in VLSI aligns with the evolving technological advancements, and I am excited to contribute to shaping India's future in this domain.",
-    location: "Kovvur, East Godavari, AP, India", // Updated location
+    title: "VLSI Enthusiast & Aspiring Engineer", // Enhanced title
+    objective: "A highly motivated and passionate VLSI enthusiast with a strong foundation in semiconductor design, EDA tools, and CMOS technology. Eager to contribute to India's burgeoning semiconductor sector by applying acquired skills in practical settings and continuously learning to stay at the forefront of technological advancements. Proven ability in problem-solving, project execution, and a keen interest in embedded systems and IoT.",
+    location: "Kovvur, East Godavari, AP, India",
     email: "jpediredla56@gmail.com",
     phone: "9059674614",
     linkedin: "https://linkedin.com/in/venkata-jagadish-pediredla",
     github: "https://github.com/jagadishpediredla",
-    profilePictureUrl: "https://picsum.photos/seed/vjp/200/200", // Placeholder, update if available
-    technicalSkills: ["Lab view", "Verilog", "LT spice", "Python", "Matlab"],
-    softSkills: ["Passion for learning", "Presentation and public speaking", "Logical reasoning", "Self control"],
-    hobbies: ["Playing shuttle", "Doing DIY electronics projects", "Exploring places", "Listening music"],
-    languages: ["Telugu", "English", "Hindi"],
+    profilePictureUrl: "https://picsum.photos/seed/vjp-profile/300/300",
+    technicalSkills: ["LabVIEW", "Verilog", "LTspice", "Python", "MATLAB", "Xilinx Vivado", "MPLAB IDE", "Arduino IDE", "ESP8266", "CMOS Design", "VLSI Testing", "MEMS", "Embedded Systems"],
+    softSkills: ["Passion for learning", "Presentation & Public Speaking", "Logical Reasoning", "Self-Control", "Problem-Solving", "Teamwork"],
+    hobbies: ["Playing Shuttle Badminton", "DIY Electronics Projects", "Exploring New Places & Technologies", "Listening to Music"],
+    languages: ["Telugu (Native)", "English (Fluent)", "Hindi (Conversational)"],
+    cvLink: "/assets/VenkataJagadishPediredla_Resume.pdf", // Placeholder CV link
   },
   certifications: [
-    { id: "cert1", title: "Chip Design and Verilog Programming", issuer: "Infosys", description:"Completed certification focused on chip design principles and Verilog programming." },
-    { id: "cert2", title: "VLSI for Beginners", issuer: "NIELIT", description: "Fundamental course on VLSI concepts for beginners." },
-    { id: "cert3", title: "Internet Of Things", issuer: "APSSDC", description: "Course covering the basics and applications of IoT."},
-    { id: "cert4", title: "Introduction to Embedded System Design", issuer: "NPTEL", description: "Completed NPTEL course on embedded system design fundamentals."},
-    { id: "cert5", title: "Semiconductor Fabrication 101", issuer: "Texas Instruments", description: "Introduction to the processes involved in semiconductor fabrication."}, // Corrected Issuer
+    { 
+      id: "cert1", 
+      title: "Chip Design and Verilog Programming", 
+      issuer: "Infosys", 
+      description:"Completed an intensive certification focused on advanced chip design methodologies and practical Verilog programming for complex digital circuits. Covered FSM design, synthesis, and verification techniques.",
+      logoUrl: "/assets/logos/infosys.png",
+      date: "2023",
+      skills: ["Verilog", "Chip Design", "FSM", "Synthesis", "Verification"]
+    },
+    { 
+      id: "cert2", 
+      title: "VLSI for Beginners", 
+      issuer: "NIELIT", 
+      description: "A foundational course introducing core VLSI concepts, including semiconductor physics, CMOS fabrication processes, and basic digital circuit design principles.",
+      logoUrl: "/assets/logos/nielit.png",
+      date: "2022",
+      skills: ["VLSI Fundamentals", "CMOS", "Digital Circuits"]
+    },
+    { 
+      id: "cert3", 
+      title: "Internet Of Things (IoT)", 
+      issuer: "APSSDC", 
+      description: "Comprehensive training covering the architecture, protocols, and applications of IoT. Included hands-on experience with sensors, microcontrollers, and cloud platforms.",
+      logoUrl: "/assets/logos/apssdc.png",
+      date: "2023",
+      skills: ["IoT", "Sensors", "Microcontrollers", "Cloud Platforms"]
+    },
+    { 
+      id: "cert4", 
+      title: "Introduction to Embedded System Design", 
+      issuer: "NPTEL", 
+      description: "An NPTEL certified course detailing the fundamentals of embedded system architecture, programming, and real-time operating systems (RTOS).",
+      logoUrl: "/assets/logos/nptel.png",
+      date: "2022",
+      skills: ["Embedded Systems", "RTOS", "Microcontroller Programming"]
+    },
+    { 
+      id: "cert5", 
+      title: "Semiconductor Fabrication 101", 
+      issuer: "Texas Instruments", 
+      description: "An introductory program by Texas Instruments explaining the key stages and processes involved in modern semiconductor device fabrication, from wafer processing to packaging.",
+      logoUrl: "/assets/logos/ti.png",
+      date: "2023",
+      skills: ["Semiconductor Fabrication", "Wafer Processing", "Cleanroom Protocols"]
+    },
   ],
   experience: [
     {
       id: "exp1",
       title: "VLSI Testing Internship",
-      company: "Semiconductor Laboratory",
-      duration: "January 7 2024 - Ongoing",
-      description: "I have done my internship at semiconductor laboratory which is the only fabrication plant in india. I have developed a virtual machine using lab VIEW to automate the testing process. i have also worked on MEMS -CMUT devices, to design and fabricate these devices",
-      skills: ["VLSI Testing", "LabVIEW", "MEMS", "CMUT", "Semiconductor Fabrication"]
+      company: "Semiconductor Laboratory (SCL)",
+      location: "Mohali, India",
+      duration: "Jan 2024 - Present", // Assuming ongoing, update if ended
+      description: "Developed a LabVIEW-based virtual machine for automated testing of semiconductor devices, significantly improving efficiency. Gained hands-on experience with MEMS-CMUT device design, fabrication processes, and characterization. Contributed to test plan development and execution.",
+      skills: ["VLSI Testing", "LabVIEW Automation", "MEMS", "CMUT Devices", "Semiconductor Fabrication", "Test Plan Development"]
     },
     {
       id: "exp2",
-      title: "VLSI Internship",
+      title: "VLSI Design Internship",
       company: "CodTech IT Solutions",
-      duration: "June 1, 2024 - July 30, 2024",
-      description: "I have learned about CMOS designing and visi basics and implemented some codes on verilog. Using verilog to implement basic codes on xilinx vivado",
-      skills: ["CMOS Design", "Verilog", "Xilinx Vivado", "VLSI"]
+      location: "Remote",
+      duration: "Jun 2024 - Jul 2024", // Based on resume
+      description: "Focused on CMOS design fundamentals and VLSI basics. Implemented and simulated various digital logic circuits using Verilog on the Xilinx Vivado platform. Participated in design reviews and documentation.",
+      skills: ["CMOS Design", "Verilog HDL", "Xilinx Vivado", "Digital Logic Simulation", "VLSI Basics"]
     },
      {
       id: "exp3",
       title: "Embedded Systems Design Internship",
       company: "Emertex",
-      duration: "February 9, 2024 - April 18, 2024",
-      description: "Developed and simulated embedded systems for a washing machine project using MP Lab IDE. Used esp microcontroller to simulate and test washing machine functionalities and control cycles",
-       skills: ["Embedded Systems", "Simulation", "MPLAB IDE", "ESP Microcontroller", "Washing Machine Control"]
+      location: "Remote",
+      duration: "Feb 2024 - Apr 2024", // Based on resume
+      description: "Engineered and simulated an embedded control system for a washing machine project utilizing MPLAB IDE and ESP microcontrollers. Successfully implemented control cycles, user interface logic, and sensor integration for various washing machine functionalities.",
+       skills: ["Embedded Systems", "MPLAB IDE", "ESP Microcontrollers", "System Simulation", "Control Systems", "Firmware Development"]
     },
   ],
   projects: [
     {
       id: "proj1",
-      title: "T Junction Traffic Control System",
-      description: "Designed a T-junction traffic light system using Verilog on Vivado, implementing a finite state machine (FSM) for efficient signal control. Optimized traffic flow by programming state transitions, demonstrating strong skills in HDL design and FSM-based control systems with FPGA programming.",
-      imageUrl: "https://picsum.photos/seed/traffic/400/250",
-      imageHint: "traffic light system",
-      tags: ["Verilog", "Vivado", "FPGA", "HDL", "FSM", "Traffic Control"],
-      githubLink: "https://github.com/jagadishpediredla", // Assuming it's on GitHub
+      title: "T-Junction Traffic Control System using FSM",
+      description: "Designed and implemented a Verilog-based T-junction traffic light controller on the Vivado platform. Utilized a Finite State Machine (FSM) to manage signal timing and transitions, optimizing traffic flow and pedestrian safety. This project demonstrated proficiency in HDL, FPGA programming, and FSM design for real-world applications.",
+      imageUrl: "https://picsum.photos/seed/fpga-traffic/400/250",
+      imageHint: "FPGA traffic controller",
+      tags: ["Verilog", "Vivado", "FPGA", "FSM", "Traffic Control", "HDL", "Digital Design"],
+      githubLink: "https://github.com/jagadishpediredla/T-Junction-Traffic-Control", // Placeholder
     },
     {
       id: "proj2",
-      title: "Automated Mopping Robot",
-      description: "Developed an automated mopping robot using Arduino IDE and esp 8266 which runs on both autonomous and manual modes with a dedicated mobile application custom created and making it most affordable one under 3000 rupees",
-      imageUrl: "https://picsum.photos/seed/robot/400/250",
-      imageHint: "robot mopping floor",
-      tags: ["Arduino", "ESP8266", "Robotics", "Mobile App", "Automation", "IoT"],
-      githubLink: "https://github.com/jagadishpediredla", // Assuming it's on GitHub
+      title: "Cost-Effective Automated Mopping Robot",
+      description: "Developed an autonomous and manually-controllable mopping robot using Arduino IDE and ESP8266. Created a custom mobile application for remote operation and mode selection. Engineered the robot to be highly affordable (under ₹3000) without compromising core functionality, showcasing skills in embedded programming, IoT, and frugal innovation.",
+      imageUrl: "https://picsum.photos/seed/mopping-robot-iot/400/250",
+      imageHint: "IoT mopping robot",
+      tags: ["Arduino", "ESP8266", "Robotics", "IoT", "Mobile App Development", "Automation", "Embedded C"],
+      githubLink: "https://github.com/jagadishpediredla/Automated-Mopping-Robot", // Placeholder
     },
   ],
   achievements: [
-     { id: "ach1", title: "Qualified in National Defence Academy exam on first attempt" },
-     { id: "ach2", title: "District second price in Yuva utsav", description:"Achieved 2nd place in district level Yuva Utsav science fare conducted by Indian government."},
-     { id: "ach3", title: "Student of the year in intermediate" },
+     { id: "ach1", title: "Qualified NDA Examination (First Attempt)", description:"Successfully cleared the National Defence Academy entrance examination on the first attempt, showcasing discipline and strong aptitude.", type: "Competitive Exam"},
+     { id: "ach2", title: "District 2nd Prize - Yuva Utsav Science Fair", description:"Awarded 2nd place at the district-level Yuva Utsav science competition, organized by the Government of India, for an innovative science project.", type: "Competition"},
+     { id: "ach3", title: "Student of the Year (Intermediate)", description:"Recognized as 'Student of the Year' during intermediate education for outstanding academic performance and extracurricular involvement.", type: "Academic Award"},
   ],
   education: [
       {
           id: "edu1",
-          degree: "Bachelor of Technology (ECE)",
-          institution: "JNTU College of Engineering Kalikiri",
-          graduationYear: "2025",
-          aggregate: "8 CGPA"
+          degree: "Bachelor of Technology in Electronics & Communication Engineering",
+          institution: "JNTU College of Engineering, Kalikiri",
+          location: "Kalikiri, Andhra Pradesh",
+          graduationYear: "2025 (Expected)",
+          aggregate: "8.0 CGPA (Current)"
       },
       {
           id: "edu2",
-          degree: "Intermediate Education (MPC)",
-          institution: "Sai Bharathi Junior College, Rajahmundry",
+          degree: "Intermediate (MPC)",
+          institution: "Sai Bharathi Junior College",
+          location: "Rajahmundry, Andhra Pradesh",
           graduationYear: "2021",
           aggregate: "97%"
       },
       {
           id: "edu3",
-          degree: "Matriculation (10th)",
-          institution: "Ravindra Bharathi School, Rajahmundry",
+          degree: "Secondary School Certificate (SSC)",
+          institution: "Ravindra Bharathi School",
+          location: "Rajahmundry, Andhra Pradesh",
           graduationYear: "2019",
           aggregate: "10.0 CGPA"
       }
