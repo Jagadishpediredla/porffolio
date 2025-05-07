@@ -26,14 +26,14 @@ export default function HeroSection({ personalInfo }: HeroSectionProps) {
       <p className="text-xl md:text-2xl text-muted-foreground mb-6 text-center leading-relaxed">
          {personalInfo.title}.
       </p>
-      {/* Displaying the full objective for more information */}
+      {/* Displaying the objective */}
       <p className="text-md md:text-lg lg:text-xl text-muted-foreground/90 mb-8 max-w-3xl text-center leading-relaxed md:leading-loose">
         {personalInfo.objective}
       </p>
 
-      {/* Additional introductory text */}
+      {/* Short welcome text */}
       <p className="text-md md:text-lg text-muted-foreground/80 mb-10 max-w-3xl text-center leading-relaxed">
-        Welcome to my digital space! Here, I've curated a collection of my projects, experiences, and skills, offering a glimpse into my passion for VLSI design and embedded systems. Dive in to learn more about my journey and how I approach challenges in the world of technology. I am actively seeking opportunities where I can contribute my skills and continue to grow as a professional.
+        Welcome to my digital space! Explore my projects, experience, and skills.
       </p>
 
        {/* Social Links */}
