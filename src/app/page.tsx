@@ -12,7 +12,7 @@ import HeroSection from "@/components/hero-section";
 import Navbar from "@/components/navbar";
 import { portfolioData as staticData } from '@/lib/portfolio-data';
 import type { PortfolioData } from '@/lib/types';
-import { Mail, Phone, Linkedin as LinkedinIcon, ArrowRight, Briefcase, FolderGit2, BadgeCheck, Star as StarIcon } from 'lucide-react';
+import { Mail, Phone, Linkedin as LinkedinIcon, ArrowRight } from 'lucide-react';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import FeaturedSkillsSummary from '@/components/featured-skills-summary';
@@ -20,8 +20,6 @@ import RecentExperienceSummary from '@/components/recent-experience-summary';
 import HighlightedProjectsSummary from '@/components/highlighted-projects-summary';
 import KeyCertificationsSummary from '@/components/key-certifications-summary';
 import NotableAchievementsSummary from '@/components/notable-achievements-summary';
-import { Badge } from '@/components/ui/badge';
-import Image from 'next/image';
 
 
 export default function Home() {
@@ -76,13 +74,14 @@ export default function Home() {
 
   const handleNavLinkClick = (id: string) => {
     setActiveSectionId(id);
-    // Scroll to top of the new section smoothly
+    // Scroll to top smoothly when a nav link is clicked
+    // This is more relevant for a single-page app structure where content might be below the fold
+    // For tab-like view switching, this might not be necessary unless sections are very long
     const element = document.getElementById(id);
     if (element) {
-      // Calculate offset based on navbar height
-      const navbarHeight = document.querySelector('nav')?.offsetHeight || 0; // Or your fixed navbar height
+      const navbarHeight = document.querySelector('nav')?.offsetHeight || 0;
       const elementPosition = element.getBoundingClientRect().top + window.scrollY;
-      const offsetPosition = elementPosition - navbarHeight - 20; // 20px additional padding
+      const offsetPosition = elementPosition - navbarHeight - 20;
 
       window.scrollTo({
         top: offsetPosition,
@@ -90,6 +89,7 @@ export default function Home() {
       });
     }
   };
+
 
   if (loading || !portfolioData) {
     return (
@@ -101,6 +101,7 @@ export default function Home() {
 
   let currentView = null;
 
+  // Ensures consistent padding and minimum height for all sections, plus animation
   const SectionWrapper: React.FC<{ id: string; children: React.ReactNode; bg?: string; className?: string }> = ({ id, children, bg, className }) => (
     <section
       id={id}
@@ -113,6 +114,16 @@ export default function Home() {
 
 
   if (activeSectionId === sectionIds.home) {
+    const homeSkills = portfolioData.personalInfo.technicalSkills || [];
+    // Prioritize specific skills for the summary
+    const prioritizedSkills = ["Verilog", "System Verilog", "UVM", "CMOS Design", "VLSI Testing", "Embedded Systems"];
+    let displayedSkills = prioritizedSkills.filter(skill => homeSkills.includes(skill));
+    if (displayedSkills.length < 6) {
+        const remainingSkills = homeSkills.filter(skill => !prioritizedSkills.includes(skill));
+        displayedSkills = [...displayedSkills, ...remainingSkills.slice(0, 6 - displayedSkills.length)];
+    }
+
+
     currentView = (
       <section
         id={sectionIds.home}
@@ -136,8 +147,8 @@ export default function Home() {
           <div className="mt-12 md:mt-16 animate-fade-in-up" style={{ animationDelay: '0.4s' }}>
             <h2 className="text-2xl md:text-3xl font-bold text-primary mb-8 md:mb-10">Portfolio Snapshot</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
-              {portfolioData.personalInfo.technicalSkills && portfolioData.personalInfo.technicalSkills.length > 0 && (
-                <FeaturedSkillsSummary skills={portfolioData.personalInfo.technicalSkills.slice(0, 6)} />
+              {displayedSkills.length > 0 && (
+                <FeaturedSkillsSummary skills={displayedSkills} />
               )}
               {portfolioData.experience && portfolioData.experience.length > 0 && (
                 <RecentExperienceSummary experience={portfolioData.experience[0]} />
@@ -250,7 +261,8 @@ export default function Home() {
         onNavLinkClick={handleNavLinkClick}
         activeSectionId={activeSectionId}
       />
-      <main className="flex-grow pt-[4rem] md:pt-[4rem]">
+      <main className="flex-grow pt-[4rem] md:pt-[4rem]"> {/* Adjusted padding-top */}
+        {/* The key prop forces a re-render on view change, which can help with animations */}
         <div key={activeSectionId}>
           {currentView}
         </div>

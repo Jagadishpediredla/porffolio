@@ -16,7 +16,7 @@ export const portfolioData: PortfolioData = {
     profilePictureUrl: "https://picsum.photos/seed/vjp-profile/300/300",
     // Ensure this list contains all skills for categorization in skills-section.tsx
     technicalSkills: [
-        "Verilog", "CMOS Design", "VLSI Testing", "MEMS", "Xilinx Vivado", "LTspice",
+        "Verilog", "System Verilog", "UVM", "CMOS Design", "VLSI Testing", "MEMS", "Xilinx Vivado", "LTspice",
         "LabVIEW", "Embedded Systems", "MPLAB IDE", "Arduino IDE", "ESP8266",
         "Python", "MATLAB"
     ],
