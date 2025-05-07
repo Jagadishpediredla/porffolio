@@ -45,6 +45,7 @@ export default function Home() {
   const [activeSectionId, setActiveSectionId] = useState<string>(sectionIds.home);
 
   useEffect(() => {
+    // Simulate fetching data (replace with actual data fetching if needed)
     // Sort experience data to ensure the most recent is first
     const sortedExperience = [...staticData.experience].sort((a,b) => {
         const presentA = a.duration.toLowerCase().includes("present");
@@ -125,7 +126,7 @@ export default function Home() {
     { src: '/images/nielit.png', alt: 'NIELIT Logo' },
     { src: '/images/arm.png', alt: 'Arm Logo' },
     { src: '/images/texas.png', alt: 'Texas Instruments Logo' },
-    { src: '/images/scl.png', alt: 'SCL Logo' },
+    { src: '/images/scl.png', alt: 'SCL Logo' }, // Ensure this entry exists
     { src: '/images/infosys.png', alt: 'Infosys Logo' },
   ];
 
@@ -185,7 +186,8 @@ export default function Home() {
               <h3 className="text-xl md:text-2xl font-semibold text-primary mb-6 text-center">Key Collaborations & Certifying Bodies</h3>
               <div className="flex flex-wrap justify-center items-center gap-8 md:gap-12">
                  {collaborationLogos.map((logo, index) => (
-                  <div key={index} className="relative h-10 md:h-12 w-24 md:w-32 filter grayscale hover:grayscale-0 transition-all duration-300 opacity-70 hover:opacity-100">
+                  // Removed grayscale filter classes
+                  <div key={index} className="relative h-10 md:h-12 w-24 md:w-32 hover:grayscale-0 transition-all duration-300 opacity-70 hover:opacity-100">
                      <Image
                        src={logo.src}
                        alt={logo.alt}
