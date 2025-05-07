@@ -5,26 +5,25 @@ import type { PortfolioData } from './types';
 export const portfolioData: PortfolioData = {
   personalInfo: {
     name: "Venkata Jagadish Pediredla",
-    title: "My Personal Portfolio",
-    objective: "A highly motivated and passionate Electronics engineer with a strong foundation in semiconductor design, EDA tools, and CMOS technology. Eager to contribute to India's burgeoning semiconductor sector by applying acquired skills in practical settings and continuously learning to stay at the forefront of technological advancements. Proven ability in problem-solving, project execution, and a keen interest in embedded systems and IoT.",
-    location: "Kovvur, East Godavari, AP, India",
+    title: "VLSI Engineer | Embedded Systems Enthusiast", // Updated title
+    objective: "A highly motivated and passionate Electronics engineer with a strong foundation in semiconductor design, EDA tools, and CMOS technology. Eager to contribute to India's burgeoning semiconductor sector by applying acquired skills in practical settings and continuously learning to stay at the forefront of technological advancements. Proven ability in problem-solving, project execution, and a keen interest in embedded systems and IoT. Actively seeking new opportunities.", // Added open for opportunities
+    location: "Kovvur, East Godavari, AP, India", // Updated location
     email: "jpediredla56@gmail.com",
     phone: "9059674614",
     linkedin: "https://linkedin.com/in/venkata-jagadish-pediredla",
     github: "https://github.com/jagadishpediredla",
-    profilePictureUrl: "/public/images/my-image.jpg",
-    // Ensure this list contains all skills for categorization in skills-section.tsx
+    profilePictureUrl: "/images/profile.jpg", // Updated profile picture path
     technicalSkills: [
         "Verilog", "System Verilog", "UVM", "CMOS Design", "VLSI Testing", "MEMS", "Xilinx Vivado", "LTspice",
-        "LabVIEW", "Embedded Systems", "MPLAB IDE", "Arduino IDE", "ESP32", // Removed ESP8266, UVM & SystemVerilog are here
- "Python", "MATLAB", "C programming"
+        "LabVIEW", "Embedded Systems", "MPLAB IDE", "Arduino IDE", "ESP32",
+        "Python", "MATLAB", "C programming"
     ],
     softSkills: ["Passion for learning", "Presentation & Public Speaking", "Logical Reasoning", "Self-Control", "Problem-Solving", "Teamwork"],
     hobbies: ["Playing Shuttle Badminton", "DIY Electronics Projects", "Exploring New Places & Technologies", "Listening to Music"],
     languages: ["Telugu (Native)", "English (Fluent)", "Hindi (Conversational)"],
     cvLink: "/assets/VenkataJagadishPediredla_Resume.pdf",
   },
-  certifications: [ 
+  certifications: [
     // Certifications data is now primarily managed in certifications-data.ts
     // This array can be kept for fallback or specific overrides if needed, but generally certifications-data.ts is the source.
   ],
@@ -62,8 +61,8 @@ export const portfolioData: PortfolioData = {
       id: "proj1",
       title: "T-Junction Traffic Control System using FSM",
       description: "Designed and implemented a Verilog-based T-junction traffic light controller on the Vivado platform. Utilized a Finite State Machine (FSM) to manage signal timing and transitions, optimizing traffic flow and pedestrian safety. This project demonstrated proficiency in HDL, FPGA programming, and FSM design for real-world applications.",
-      imageUrl: "https://picsum.photos/seed/fpga-traffic/400/250",
-      imageHint: "project technology",
+      imageUrl: "/images/traffic.jpg", // Updated image URL
+      imageHint: "traffic light fsm diagram", // Updated hint
       tags: ["Verilog", "Vivado", "FPGA", "FSM", "Traffic Control", "HDL", "Digital Design"],
       githubLink: "https://github.com/jagadishpediredla/T-Junction-Traffic-Control",
     },
@@ -71,9 +70,9 @@ export const portfolioData: PortfolioData = {
       id: "proj2",
       title: "Cost-Effective Automated Mopping Robot",
       description: "Developed an autonomous and manually-controllable mopping robot using Arduino IDE and ESP8266. Created a custom mobile application for remote operation and mode selection. Engineered the robot to be highly affordable (under ₹3000) without compromising core functionality, showcasing skills in embedded programming, IoT, and frugal innovation.",
-      imageUrl: "https://picsum.photos/seed/mopping-robot-iot/400/250", // Updated placeholder
-      tags: ["Arduino", "ESP8266", "Robotics", "IoT", "Mobile App Development", "Automation", "Embedded C"],
-      imageHint: "project technology",
+      imageUrl: "/images/mop.jpg", // Updated image URL
+      tags: ["Arduino", "ESP32", "Robotics", "IoT", "Mobile App Development", "Automation", "Embedded C"], // Updated ESP8266 to ESP32 based on skills list
+      imageHint: "automated mopping robot", // Updated hint
       githubLink: "https://github.com/jagadishpediredla/Automated-Mopping-Robot",
     },
      {
@@ -82,14 +81,16 @@ export const portfolioData: PortfolioData = {
       description: "Showcased a prototype model for impact detection, aimed at supporting ISRO’s upcoming Chandrayaan missions. Built using an indigenous accelerometer sensor from SCL and integrated with a microcontroller to detect impacts during motion, simulating a lunar rover. Tested and analyzed sensor response to validate effectiveness for future ISRO rovers.",
       imageUrl: "/images/impact.jpg",
       imageHint: "impact sensor prototype",
+      tags: ["MEMS", "Sensors", "Microcontrollers", "LabVIEW", "Prototyping", "ISRO", "SCL"],
       githubLink: "#",
     },
     {
       id: "proj4",
       title: "Gyro-Controlled Car",
       description: "Developed a car controlled via a mobile phone's gyroscope. Hosted a web server on an ESP32 microcontroller for real-time communication. Smartphone gyroscope data is sent to the ESP32 via a web interface, controlling the car's motors. Enables intuitive control by tilting the phone, integrating IoT and motion-sensing.",
-      imageUrl: "/images/gyro.jpg", // Dummy image
+      imageUrl: "/images/gyro.jpg", // Keep dummy for now
       imageHint: "Gyro controlled car",
+      tags: ["ESP32", "IoT", "Gyroscope", "Web Server", "Motor Control", "Mobile Control"],
       githubLink: "#",
     },
   ],

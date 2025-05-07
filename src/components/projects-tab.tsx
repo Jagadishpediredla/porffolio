@@ -31,7 +31,9 @@ export default function ProjectsSection({ portfolioData }: ProjectsSectionProps)
                 <div className="relative w-full h-56 overflow-hidden"> {/* Increased height */}
                 <Image
                     src={project.imageUrl}
- alt={`${project.title} screenshot`} placeholder="blur" blurDataURL="/placeholder.png"
+                    alt={`${project.title} screenshot`}
+                    // placeholder="blur" // Removed placeholder prop
+                    // blurDataURL="/placeholder.png" // Removed placeholder prop
                     fill
                     style={{ objectFit: 'cover' }}
                     className="transition-transform duration-500 group-hover:scale-105"
@@ -82,4 +84,3 @@ export default function ProjectsSection({ portfolioData }: ProjectsSectionProps)
     </div>
   );
 }
-

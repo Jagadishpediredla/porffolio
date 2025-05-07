@@ -40,7 +40,7 @@ const HighlightedProjectsSummary: React.FC<HighlightedProjectsSummaryProps> = ({
       <CardContent className="flex-grow">
         <div className="relative w-full h-40 mb-3 rounded-md overflow-hidden"> {/* Removed group here, added to parent card */}
           <Image
-            src={project.imageUrl || `https://picsum.photos/seed/${project.id}/300/200`}
+            src={project.imageUrl} // Use the updated image URL from props
             alt={`${project.title} screenshot`}
             fill
             style={{ objectFit: 'cover' }}
@@ -67,4 +67,3 @@ const HighlightedProjectsSummary: React.FC<HighlightedProjectsSummaryProps> = ({
 };
 
 export default HighlightedProjectsSummary;
-
