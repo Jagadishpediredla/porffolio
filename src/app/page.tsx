@@ -12,7 +12,7 @@ import HeroSection from "@/components/hero-section";
 import Navbar from "@/components/navbar";
 import { portfolioData as staticData } from '@/lib/portfolio-data';
 import type { PortfolioData } from '@/lib/types';
-import { ArrowRight } from 'lucide-react'; // Mail, Phone, LinkedinIcon removed as custom icons will be used
+import { ArrowRight } from 'lucide-react';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import FeaturedSkillsSummary from '@/components/featured-skills-summary';
@@ -77,19 +77,20 @@ export default function Home() {
 
   const handleNavLinkClick = (id: string) => {
     setActiveSectionId(id);
-    // Scroll to top smoothly when a nav link is clicked
-    // This is more relevant for a single-page app structure where content might be below the fold
-    // For tab-like view switching, this might not be necessary unless sections are very long
     const element = document.getElementById(id);
     if (element) {
-      const navbarHeight = document.querySelector('nav')?.offsetHeight || 0;
-      const elementPosition = element.getBoundingClientRect().top + window.scrollY;
-      const offsetPosition = elementPosition - navbarHeight - 20; // 20px buffer
+      // Only scroll if the section is not the home section or if it's not already at the top
+      // For tab-like views, scrolling might primarily be needed when initially navigating to a long section.
+      if (id !== sectionIds.home || window.scrollY > 0) {
+        const navbarHeight = document.querySelector('nav')?.offsetHeight || 0;
+        const elementPosition = element.getBoundingClientRect().top + window.scrollY;
+        const offsetPosition = elementPosition - navbarHeight - 20; // 20px buffer
 
-      window.scrollTo({
-        top: offsetPosition,
-        behavior: 'smooth'
-      });
+        window.scrollTo({
+          top: offsetPosition,
+          behavior: 'smooth'
+        });
+      }
     }
   };
 
@@ -104,11 +105,10 @@ export default function Home() {
 
   let currentView = null;
 
-  // Ensures consistent padding and minimum height for all sections, plus animation
   const SectionWrapper: React.FC<{ id: string; children: React.ReactNode; bg?: string; className?: string }> = ({ id, children, bg, className }) => (
     <section
       id={id}
-      className={`py-12 md:py-16 px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16 min-h-[calc(100vh-4rem)] ${bg || ''} ${className || ''} animate-fade-in-up`}
+      className={`py-12 md:py-16 px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16 min-h-[calc(100vh-var(--navbar-height,4rem)-2rem)] ${bg || ''} ${className || ''} animate-fade-in-up`}
       style={{ animationDelay: '0.2s', animationFillMode: 'backwards' }}
     >
       {children}
@@ -118,7 +118,6 @@ export default function Home() {
 
   if (activeSectionId === sectionIds.home) {
     const homeSkills = portfolioData.personalInfo.technicalSkills || [];
-    // Prioritize specific skills for the summary
     const prioritizedSkills = ["Verilog", "System Verilog", "UVM", "CMOS Design", "VLSI Testing", "Embedded Systems"];
     let displayedSkills = prioritizedSkills.filter(skill => homeSkills.includes(skill));
     if (displayedSkills.length < 6) {
@@ -130,7 +129,7 @@ export default function Home() {
     currentView = (
       <section
         id={sectionIds.home}
-        className="relative min-h-screen flex flex-col items-center justify-center text-center px-4 py-16 md:py-20 overflow-hidden" 
+        className="relative min-h-[calc(100vh-var(--navbar-height,4rem))] flex flex-col items-center justify-center text-center px-4 py-16 md:py-20 overflow-hidden" 
       >
         <div
           className="absolute inset-0 z-0 opacity-[0.07]"
@@ -142,7 +141,7 @@ export default function Home() {
           }}
           data-ai-hint="microchip texture"
         ></div>
-        <div className="w-full max-w-6xl mx-auto z-10"> {/* Max width container for home content */}
+        <div className="w-full max-w-6xl mx-auto z-10">
           <div className="animate-fade-in-up" style={{ animationDelay: '0.2s' }}>
             <HeroSection personalInfo={portfolioData.personalInfo} />
           </div>
@@ -264,9 +263,9 @@ export default function Home() {
         onNavLinkClick={handleNavLinkClick}
         activeSectionId={activeSectionId}
       />
-      <main className="flex-grow pt-[4rem] md:pt-[4.5rem]"> {/* Increased padding-top for mobile */}
-        {/* The key prop forces a re-render on view change, which can help with animations */}
-        <div key={activeSectionId}>
+      <main className="flex-grow pt-[calc(var(--navbar-height,4rem)+1rem)]"> {/* Adjusted padding-top to use CSS var and add buffer */}
+        {/* Removed the key prop from this div to prevent re-mounting and re-animating sections */}
+        <div> 
           {currentView}
         </div>
       </main>
