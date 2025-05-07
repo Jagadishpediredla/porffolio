@@ -27,6 +27,8 @@ const HighlightedProjectsSummary: React.FC<HighlightedProjectsSummaryProps> = ({
     );
   }
 
+  const githubLink = "https://github.com/jagadishpediredla";  //Define Github link for all projects
+
   return (
     // Ensure the card takes full height within the grid cell
     <Card className="h-full flex flex-col bg-card/60 backdrop-blur-sm border-border/50 shadow-lg hover:shadow-primary/20 hover:border-primary/60 transition-all duration-300 hover-lift overflow-hidden group">
@@ -53,26 +55,16 @@ const HighlightedProjectsSummary: React.FC<HighlightedProjectsSummaryProps> = ({
           {project.description.split('.')[0] + '.'} {/* Show first sentence */}
         </p>
       </CardContent>
-      {(project.githubLink || project.liveLink) && (
-        <CardFooter className="pt-3 mt-auto border-t border-border/30 bg-muted/20">
-          {project.githubLink && project.githubLink !== "#" && (
-            <Button variant="outline" size="sm" asChild className="mr-2 btn-textured hover:shadow-primary/20">
-              <Link href={project.githubLink} target="_blank" rel="noopener noreferrer" aria-label={`View ${project.title} on GitHub`}>
-                <Github className="mr-1.5 h-4 w-4" /> GitHub
-              </Link>
-            </Button>
-          )}
-          {project.liveLink && project.liveLink !== "#" && (
-            <Button variant="default" size="sm" asChild className="btn-textured hover:shadow-primary/20">
-              <Link href={project.liveLink} target="_blank" rel="noopener noreferrer" aria-label={`View live demo of ${project.title}`}>
-                <ExternalLink className="mr-1.5 h-4 w-4" /> Live Demo
-              </Link>
-            </Button>
-          )}
-        </CardFooter>
-      )}
+      <CardFooter className="flex justify-end space-x-3 bg-muted/20 p-4 mt-auto border-t border-border/30">
+          <Button variant="outline" size="sm" asChild className="mr-2 btn-textured hover:shadow-primary/20">
+            <Link href={githubLink} target="_blank" rel="noopener noreferrer" aria-label={`View ${project.title} on GitHub`}>
+              <Github className="mr-1.5 h-4 w-4" /> GitHub
+            </Link>
+          </Button>
+      </CardFooter>
     </Card>
   );
 };
 
 export default HighlightedProjectsSummary;
+

@@ -1,4 +1,3 @@
-
 'use client';
 
 import type React from 'react';
@@ -16,6 +15,8 @@ interface ProjectsSectionProps {
 
 export default function ProjectsSection({ portfolioData }: ProjectsSectionProps) {
   const projects: Project[] = portfolioData?.projects || [];
+
+  const githubLink = "https://github.com/jagadishpediredla";  //Define Github link for all projects
 
   return (
     <div className="w-full max-w-6xl mx-auto">
@@ -66,20 +67,11 @@ export default function ProjectsSection({ portfolioData }: ProjectsSectionProps)
                   )}
                 </CardContent>
                 <CardFooter className="flex justify-end space-x-3 bg-muted/30 p-4 mt-auto border-t border-border/50">
-                 {project.githubLink && project.githubLink !== "#" && (
-                    <Button variant="outline" size="sm" asChild className="hover:bg-accent hover:text-accent-foreground transition-all duration-200 hover:scale-105 focus:scale-105 btn-textured border-primary/30 hover:border-primary">
-                        <Link href={project.githubLink} target="_blank" rel="noopener noreferrer" aria-label={`View ${project.title} on GitHub`}>
+                     <Button variant="outline" size="sm" asChild className="mr-2 btn-textured hover:shadow-primary/20">
+                        <Link href={githubLink} target="_blank" rel="noopener noreferrer" aria-label={`View ${project.title} on GitHub`}>
                         <Github className="mr-1.5 h-4 w-4" /> GitHub
                         </Link>
                     </Button>
-                 )}
-                 {project.liveLink && project.liveLink !== "#" && (
-                    <Button variant="default" size="sm" asChild className="bg-primary hover:bg-primary/90 text-primary-foreground transition-all duration-200 hover:scale-105 focus:scale-105 btn-textured">
-                        <Link href={project.liveLink} target="_blank" rel="noopener noreferrer" aria-label={`View live demo of ${project.title}`}>
-                        <ExternalLink className="mr-1.5 h-4 w-4" /> Live Demo
-                        </Link>
-                    </Button>
-                 )}
                 </CardFooter>
             </Card>
             ))
@@ -90,3 +82,4 @@ export default function ProjectsSection({ portfolioData }: ProjectsSectionProps)
     </div>
   );
 }
+
