@@ -48,13 +48,14 @@ export default function CertificationsTab({ portfolioData }: CertificationsTabPr
                     <AccordionTrigger className="px-6 py-4 text-left font-medium hover:no-underline hover:bg-muted/50 transition-colors duration-200 [&[data-state=open]>svg]:text-primary [&[data-state=open]>svg]:rotate-180">
                       <div className="flex justify-between items-center w-full pr-4">
                         <span className="font-semibold text-foreground text-lg">{item.title}</span>
-                        {item.date && (
-                          <span className="text-sm text-muted-foreground hidden sm:block flex-shrink-0">{item.date}</span>
+                        {item.issuer && ( // Display issuer instead of date
+                          <span className="text-sm text-muted-foreground hidden sm:block flex-shrink-0">{item.issuer}</span>
                         )}
                       </div>
                     </AccordionTrigger>
                     <AccordionContent className="px-6 pb-6 pt-2 text-base text-muted-foreground bg-muted/30">
-                      {item.issuer && <p className="mb-1 text-sm font-medium text-primary">{item.issuer}</p>}
+                      {/* Issuer is now in trigger, date can be shown here if needed, or removed */}
+                      {item.date && <p className="mb-1 text-xs text-muted-foreground/80">Date: {item.date}</p>}
                       {item.description && <p className="mb-4 leading-relaxed">{item.description}</p>}
                       
                       <div className="my-5 relative h-72 md:h-80 w-full overflow-hidden rounded-md border border-border/30 bg-muted/10 flex items-center justify-center">
