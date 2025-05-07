@@ -19,14 +19,15 @@ export interface PersonalInfo {
 }
 
 export interface Certification {
-  id: string; // Use string IDs
+  id: string;
   title: string;
   issuer: string;
-  date?: string; // Optional date
-  description?: string; // Optional description
-  link?: string; // Optional link
-  skills?: string[]; // Optional skills
-  logoUrl?: string; // Optional: URL for the issuer's logo
+  date?: string;
+  description?: string;
+  link?: string;
+  skills?: string[];
+  logoUrl?: string; // Optional: URL for the issuer's logo (not currently used in CertificationsTab directly but good for data model)
+  imageUrl?: string; // URL for the certificate image itself
 }
 
 export interface Experience {
@@ -69,7 +70,7 @@ export interface Education {
 
 export interface PortfolioData {
   personalInfo: PersonalInfo;
-  certifications: Certification[];
+  certifications: Certification[]; // This was for the main portfolioData, certificationsData.ts uses Certification[] directly
   experience: Experience[];
   projects: Project[];
   achievements: Achievement[];
