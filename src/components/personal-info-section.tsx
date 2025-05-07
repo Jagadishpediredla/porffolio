@@ -43,12 +43,13 @@ export default function PersonalInfoSection({ portfolioData }: PersonalInfoSecti
   return (
     <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12 items-start max-w-6xl mx-auto">
       {/* Apply animation to the entire grid item for consistency */}
-      <div 
-        className="flex flex-col items-center md:items-start md:col-span-1 animate-fade-in-up" 
+      <div
+        className="flex flex-col items-center md:items-start md:col-span-1 animate-fade-in-up"
         style={{ animationDelay: '0.1s', animationFillMode: 'backwards' }}
       >
         <Avatar className="h-48 w-48 md:h-56 md:w-56 mb-6 ring-4 ring-primary/30 ring-offset-4 ring-offset-background shadow-xl hover:ring-primary/50 transition-all duration-300 ease-out hover:shadow-primary/20">
-          <AvatarImage src={personalInfo.profilePictureUrl || `https://picsum.photos/seed/${personalInfo.name}/300/300`} alt="Profile Picture" data-ai-hint="person professional" />
+           {/* Updated src to local path */}
+          <AvatarImage src="/assets/images/profile-picture.jpg" alt="Profile Picture" data-ai-hint="person professional" />
           <AvatarFallback className="text-4xl">{fallbackInitials}</AvatarFallback>
         </Avatar>
         <Button variant="default" size="lg" className="mt-4 btn-textured w-full md:w-auto group hover-lift hover:shadow-primary/20" asChild>
@@ -59,8 +60,8 @@ export default function PersonalInfoSection({ portfolioData }: PersonalInfoSecti
       </div>
 
       {/* Apply animation to the entire grid item */}
-      <div 
-        className="md:col-span-2 space-y-6 animate-fade-in-up" 
+      <div
+        className="md:col-span-2 space-y-6 animate-fade-in-up"
         style={{ animationDelay: '0.3s', animationFillMode: 'backwards' }}
       >
         <h3 className="text-3xl lg:text-4xl font-bold text-foreground mb-1">{personalInfo.name}</h3>
@@ -71,7 +72,7 @@ export default function PersonalInfoSection({ portfolioData }: PersonalInfoSecti
         </p>
 
         {/* Add consistent hover effect to Card */}
-        <Card className="bg-card/50 border-border/30 shadow-md hover:shadow-primary/15 hover:border-primary/50 transition-all duration-300">
+        <Card className="bg-card/50 border-border/30 shadow-md hover:shadow-primary/15 hover:border-primary/50 transition-all duration-300 hover-lift">
             <CardHeader>
                 <CardTitle className="text-lg text-primary flex items-center"><MapPin className="mr-2 h-5 w-5" /> Contact & Location</CardTitle>
             </CardHeader>

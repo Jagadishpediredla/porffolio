@@ -6,14 +6,14 @@ import type { PortfolioData } from './types';
 export const portfolioData: PortfolioData = {
   personalInfo: {
     name: "Venkata Jagadish Pediredla",
-    title: "My Personal Portfolio - A showcase of my relevant information", // Updated tagline
+    title: "My Personal Portfolio", // Updated tagline
     objective: "A highly motivated and passionate VLSI enthusiast with a strong foundation in semiconductor design, EDA tools, and CMOS technology. Eager to contribute to India's burgeoning semiconductor sector by applying acquired skills in practical settings and continuously learning to stay at the forefront of technological advancements. Proven ability in problem-solving, project execution, and a keen interest in embedded systems and IoT.",
     location: "Kovvur, East Godavari, AP, India",
     email: "jpediredla56@gmail.com",
     phone: "9059674614",
     linkedin: "https://linkedin.com/in/venkata-jagadish-pediredla",
     github: "https://github.com/jagadishpediredla",
-    profilePictureUrl: "https://picsum.photos/seed/vjp-profile/300/300",
+    profilePictureUrl: "/assets/images/profile-picture.jpg", // Updated path to local image
     // Ensure this list contains all skills for categorization in skills-section.tsx
     technicalSkills: [
         "Verilog", "System Verilog", "UVM", "CMOS Design", "VLSI Testing", "MEMS", "Xilinx Vivado", "LTspice",
@@ -31,7 +31,7 @@ export const portfolioData: PortfolioData = {
       title: "Chip Design and Verilog Programming",
       issuer: "Infosys",
       description:"Completed an intensive certification focused on advanced chip design methodologies and practical Verilog programming for complex digital circuits. Covered FSM design, synthesis, and verification techniques.",
-      logoUrl: "/assets/logos/infosys.png",
+      logoUrl: "/assets/logos/infosys.png", // Path to local logo
       date: "2023",
       skills: ["Verilog", "Chip Design", "FSM", "Synthesis", "Verification"],
       link: "#" // Placeholder link
@@ -41,7 +41,7 @@ export const portfolioData: PortfolioData = {
       title: "VLSI for Beginners",
       issuer: "NIELIT",
       description: "A foundational course introducing core VLSI concepts, including semiconductor physics, CMOS fabrication processes, and basic digital circuit design principles.",
-      logoUrl: "/assets/logos/nielit.png",
+      logoUrl: "/assets/logos/nielit.png", // Path to local logo
       date: "2022",
       skills: ["VLSI Fundamentals", "CMOS", "Digital Circuits"],
        link: "#" // Placeholder link
@@ -51,7 +51,7 @@ export const portfolioData: PortfolioData = {
       title: "Internet Of Things (IoT)",
       issuer: "APSSDC",
       description: "Comprehensive training covering the architecture, protocols, and applications of IoT. Included hands-on experience with sensors, microcontrollers, and cloud platforms.",
-      logoUrl: "/assets/logos/apssdc.png",
+      logoUrl: "/assets/logos/apssdc.png", // Path to local logo
       date: "2023",
       skills: ["IoT", "Sensors", "Microcontrollers", "Cloud Platforms"],
        link: "#" // Placeholder link
@@ -61,7 +61,7 @@ export const portfolioData: PortfolioData = {
       title: "Introduction to Embedded System Design",
       issuer: "NPTEL",
       description: "An NPTEL certified course detailing the fundamentals of embedded system architecture, programming, and real-time operating systems (RTOS).",
-      logoUrl: "/assets/logos/nptel.png",
+      logoUrl: "/assets/logos/nptel.png", // Path to local logo
       date: "2022",
       skills: ["Embedded Systems", "RTOS", "Microcontroller Programming"],
        link: "#" // Placeholder link
@@ -71,7 +71,7 @@ export const portfolioData: PortfolioData = {
       title: "Semiconductor Fabrication 101",
       issuer: "Texas Instruments",
       description: "An introductory program by Texas Instruments explaining the key stages and processes involved in modern semiconductor device fabrication, from wafer processing to packaging.",
-      logoUrl: "/assets/logos/ti.png",
+      logoUrl: "/assets/logos/ti.png", // Path to local logo
       date: "2023",
       skills: ["Semiconductor Fabrication", "Wafer Processing", "Cleanroom Protocols"],
        link: "#" // Placeholder link
@@ -158,4 +158,3 @@ export const portfolioData: PortfolioData = {
       }
   ]
 };
-
