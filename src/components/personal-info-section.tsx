@@ -49,7 +49,7 @@ export default function PersonalInfoSection({ portfolioData }: PersonalInfoSecti
       >
         <Avatar className="h-48 w-48 md:h-56 md:w-56 mb-6 ring-4 ring-primary/30 ring-offset-4 ring-offset-background shadow-xl hover:ring-primary/50 transition-all duration-300 ease-out hover:shadow-primary/20">
            {/* Updated src to local path */}
-          <AvatarImage src="/assets/images/my-image.jpg" alt="Profile Picture" data-ai-hint="person professional" />
+          <AvatarImage src="/images/profile.jpg" alt="Profile Picture" data-ai-hint="person professional" />
           <AvatarFallback className="text-4xl">{fallbackInitials}</AvatarFallback>
         </Avatar>
         {/* Download CV Button removed */}
