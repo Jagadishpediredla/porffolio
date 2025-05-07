@@ -25,7 +25,7 @@ const lato = Lato({
 
 export const metadata: Metadata = {
   title: 'Persona Canvas - Portfolio',
-  description: 'A modern, animated personal portfolio showcasing skills and projects.', // Updated description
+  description: 'My Personal Portfolio.', // Updated description
 };
 
 export default function RootLayout({
@@ -35,7 +35,6 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={`${inter.variable} ${poppins.variable} ${lato.variable} dark`}> {/* Add font variables */}
-      {/* Added relative positioning and overflow-x-hidden to body */}
       <body className={`font-body antialiased relative overflow-x-hidden`}> {/* Apply Lato font variable as default body font */}
          {/* Background Container */}
         <div
