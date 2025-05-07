@@ -6,7 +6,7 @@ import type { PortfolioData } from './types';
 export const portfolioData: PortfolioData = {
   personalInfo: {
     name: "Venkata Jagadish Pediredla",
-    title: "VLSI Enthusiast & Aspiring Engineer",
+    title: "My Personal Portfolio - A showcase of my relevant information", // Updated tagline
     objective: "A highly motivated and passionate VLSI enthusiast with a strong foundation in semiconductor design, EDA tools, and CMOS technology. Eager to contribute to India's burgeoning semiconductor sector by applying acquired skills in practical settings and continuously learning to stay at the forefront of technological advancements. Proven ability in problem-solving, project execution, and a keen interest in embedded systems and IoT.",
     location: "Kovvur, East Godavari, AP, India",
     email: "jpediredla56@gmail.com",
@@ -158,3 +158,4 @@ export const portfolioData: PortfolioData = {
       }
   ]
 };
+
