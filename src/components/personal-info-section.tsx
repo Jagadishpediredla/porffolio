@@ -4,7 +4,7 @@
 import type React from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { MapPin, FileText } from "lucide-react"; // Keep MapPin and FileText as they are not social icons
+import { MapPin } from "lucide-react"; // Keep MapPin
 import GithubCustomIcon from './icons/GithubCustomIcon';
 import LinkedinCustomIcon from './icons/LinkedinCustomIcon';
 import MailCustomIcon from './icons/MailCustomIcon';
@@ -49,14 +49,10 @@ export default function PersonalInfoSection({ portfolioData }: PersonalInfoSecti
       >
         <Avatar className="h-48 w-48 md:h-56 md:w-56 mb-6 ring-4 ring-primary/30 ring-offset-4 ring-offset-background shadow-xl hover:ring-primary/50 transition-all duration-300 ease-out hover:shadow-primary/20">
            {/* Updated src to local path */}
-          <AvatarImage src="/assets/images/profile-picture.jpg" alt="Profile Picture" data-ai-hint="person professional" />
+          <AvatarImage src="/assets/images/my-image.jpg" alt="Profile Picture" data-ai-hint="person professional" />
           <AvatarFallback className="text-4xl">{fallbackInitials}</AvatarFallback>
         </Avatar>
-        <Button variant="default" size="lg" className="mt-4 btn-textured w-full md:w-auto group hover-lift hover:shadow-primary/20" asChild>
-           <Link href={personalInfo.cvLink || "#"} target="_blank" rel="noopener noreferrer" aria-label="Download CV">
-             <FileText className="mr-2 h-5 w-5 group-hover:animate-pulse" /> Download CV
-           </Link>
-         </Button>
+        {/* Download CV Button removed */}
       </div>
 
       {/* Apply animation to the entire grid item */}

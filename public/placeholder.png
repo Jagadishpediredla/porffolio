@@ -1,0 +1,8 @@
+from PIL import Image
+
+# Create a new transparent image
+width, height = 100, 100
+img = Image.new('RGBA', (width, height), (0, 0, 0, 0))
+
+# Save the image as placeholder.png in the public directory
+img.save('public/placeholder.png', 'PNG')

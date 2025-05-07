@@ -12,12 +12,12 @@ export const portfolioData: PortfolioData = {
     phone: "9059674614",
     linkedin: "https://linkedin.com/in/venkata-jagadish-pediredla",
     github: "https://github.com/jagadishpediredla",
-    profilePictureUrl: "/assets/images/profile-picture.jpg",
+    profilePictureUrl: "/public/images/my-image.jpg",
     // Ensure this list contains all skills for categorization in skills-section.tsx
     technicalSkills: [
         "Verilog", "System Verilog", "UVM", "CMOS Design", "VLSI Testing", "MEMS", "Xilinx Vivado", "LTspice",
         "LabVIEW", "Embedded Systems", "MPLAB IDE", "Arduino IDE", "ESP32", // Removed ESP8266, UVM & SystemVerilog are here
-        "Python", "MATLAB"
+ "Python", "MATLAB", "C programming"
     ],
     softSkills: ["Passion for learning", "Presentation & Public Speaking", "Logical Reasoning", "Self-Control", "Problem-Solving", "Teamwork"],
     hobbies: ["Playing Shuttle Badminton", "DIY Electronics Projects", "Exploring New Places & Technologies", "Listening to Music"],
@@ -32,10 +32,10 @@ export const portfolioData: PortfolioData = {
     {
       id: "exp1",
       title: "VLSI Testing Internship",
-      company: "Semiconductor Laboratory (SCL)",
-      location: "Mohali, India",
+      company: "Semiconductor Laboratory (SCL) - ISRO",
+ location: "Punjab, Mohali",
       duration: "Jan 2024 - Present",
-      description: "Developed a LabVIEW-based virtual machine for automated testing of semiconductor devices, significantly improving efficiency. Gained hands-on experience with MEMS-CMUT device design, fabrication processes, and characterization. Contributed to test plan development and execution.",
+ description: "Worked on an impact detection prototype for the upcoming ISRO Chandrayaan Rover project. Developed a LabVIEW-based virtual machine for automated testing of semiconductor devices, significantly improving efficiency. Gained hands-on experience with MEMS-CMUT device design, fabrication processes, and characterization. Contributed to test plan development and execution.",
       skills: ["VLSI Testing", "LabVIEW Automation", "MEMS", "CMUT Devices", "Semiconductor Fabrication", "Test Plan Development"]
     },
     {
@@ -44,7 +44,7 @@ export const portfolioData: PortfolioData = {
       company: "CodTech IT Solutions",
       location: "Remote",
       duration: "Jun 2024 - Jul 2024",
-      description: "Focused on CMOS design fundamentals and VLSI basics. Implemented and simulated various digital logic circuits using Verilog on the Xilinx Vivado platform. Participated in design reviews and documentation.",
+      description: "Focused on CMOS design fundamentals and VLSI basics. Implemented and simulated the T-Junction Traffic Control System project. The project's objective was to effectively manage traffic flow at a T-junction, ensuring smooth traffic movement and reducing congestion. The project was implemented using Verilog on the Xilinx Vivado platform, which allowed for detailed simulation and verification of the system's operation. The design included a finite state machine (FSM) to manage signal timing and transitions, optimizing traffic flow and pedestrian safety. Participated in design reviews and documentation.",
       skills: ["CMOS Design", "Verilog HDL", "Xilinx Vivado", "Digital Logic Simulation", "VLSI Basics"]
     },
      {
@@ -63,7 +63,7 @@ export const portfolioData: PortfolioData = {
       title: "T-Junction Traffic Control System using FSM",
       description: "Designed and implemented a Verilog-based T-junction traffic light controller on the Vivado platform. Utilized a Finite State Machine (FSM) to manage signal timing and transitions, optimizing traffic flow and pedestrian safety. This project demonstrated proficiency in HDL, FPGA programming, and FSM design for real-world applications.",
       imageUrl: "https://picsum.photos/seed/fpga-traffic/400/250",
-      imageHint: "FPGA traffic controller",
+      imageHint: "project technology",
       tags: ["Verilog", "Vivado", "FPGA", "FSM", "Traffic Control", "HDL", "Digital Design"],
       githubLink: "https://github.com/jagadishpediredla/T-Junction-Traffic-Control",
     },
@@ -72,26 +72,24 @@ export const portfolioData: PortfolioData = {
       title: "Cost-Effective Automated Mopping Robot",
       description: "Developed an autonomous and manually-controllable mopping robot using Arduino IDE and ESP8266. Created a custom mobile application for remote operation and mode selection. Engineered the robot to be highly affordable (under ₹3000) without compromising core functionality, showcasing skills in embedded programming, IoT, and frugal innovation.",
       imageUrl: "https://picsum.photos/seed/mopping-robot-iot/400/250", // Updated placeholder
-      imageHint: "IoT mopping robot",
       tags: ["Arduino", "ESP8266", "Robotics", "IoT", "Mobile App Development", "Automation", "Embedded C"],
+      imageHint: "project technology",
       githubLink: "https://github.com/jagadishpediredla/Automated-Mopping-Robot",
     },
      {
       id: "proj3",
       title: "Impact Detection Car Prototype",
       description: "Showcased a prototype model for impact detection, aimed at supporting ISRO’s upcoming Chandrayaan missions. Built using an indigenous accelerometer sensor from SCL and integrated with a microcontroller to detect impacts during motion, simulating a lunar rover. Tested and analyzed sensor response to validate effectiveness for future ISRO rovers.",
-      imageUrl: "https://picsum.photos/seed/impact-detection/400/250", // Dummy image
+      imageUrl: "/images/impact.jpg",
       imageHint: "impact sensor prototype",
-      tags: ["Accelerometer", "Sensor Integration", "Microcontroller", "ISRO", "Chandrayaan", "SCL", "Impact Detection", "Prototype", "Embedded Systems"],
       githubLink: "#",
     },
     {
       id: "proj4",
       title: "Gyro-Controlled Car",
       description: "Developed a car controlled via a mobile phone's gyroscope. Hosted a web server on an ESP32 microcontroller for real-time communication. Smartphone gyroscope data is sent to the ESP32 via a web interface, controlling the car's motors. Enables intuitive control by tilting the phone, integrating IoT and motion-sensing.",
-      imageUrl: "https://picsum.photos/seed/gyro-car/400/250", // Dummy image
-      imageHint: "gyro controlled car",
-      tags: ["Gyroscope", "ESP32", "IoT", "Web Server", "Motion Control", "Mobile Control", "Robotics", "Embedded Systems"],
+      imageUrl: "/images/gyro.jpg", // Dummy image
+      imageHint: "Gyro controlled car",
       githubLink: "#",
     },
   ],
@@ -108,8 +106,8 @@ export const portfolioData: PortfolioData = {
           degree: "Bachelor of Technology in Electronics & Communication Engineering",
           institution: "JNTU College of Engineering, Kalikiri",
           location: "Kalikiri, Andhra Pradesh",
-          graduationYear: "2025 (Expected)",
-          aggregate: "8.0 CGPA (Current)"
+ graduationYear: "2025",
+ aggregate: "77%"
       },
       {
           id: "edu2",

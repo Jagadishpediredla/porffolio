@@ -3,7 +3,7 @@
 
 import type React from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { Avatar, AvatarImage } from "@/components/ui/avatar";
 import { Github, Linkedin, Mail, MapPin, Code, Zap, Smile, Languages, Phone, FileText } from "lucide-react"; // Added FileText for CV
 import { Button } from "./ui/button";
 import Link from 'next/link';
@@ -51,16 +51,9 @@ export default function PersonalInfoSection({ portfolioData }: PersonalInfoSecti
       {/* Profile Picture Column */}
       <div className="flex flex-col items-center md:items-start md:col-span-1">
         <Avatar className="h-48 w-48 md:h-64 md:w-64 mb-6 ring-4 ring-primary/50 ring-offset-4 ring-offset-background shadow-lg">
-          <AvatarImage src={personalInfo.profilePictureUrl || `https://picsum.photos/seed/${personalInfo.name}/300/300`} alt="Profile Picture" data-ai-hint="person profile professional" />
+ <AvatarImage src="/images/profile.jpg" alt="Profile Picture" />
           <AvatarFallback>{fallbackInitials}</AvatarFallback>
         </Avatar>
-         {/* Download CV Button */}
-        <Button variant="default" size="lg" className="mt-4 btn-textured w-full md:w-auto" asChild>
-           {/* Replace '#' with the actual path to the CV */}
-           <Link href="#" target="_blank" rel="noopener noreferrer" aria-label="Download CV">
-             <FileText className="mr-2 h-5 w-5" /> Download CV
-           </Link>
-         </Button>
       </div>
 
       {/* Info Column */}

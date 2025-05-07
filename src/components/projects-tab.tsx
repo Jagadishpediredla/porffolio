@@ -29,8 +29,8 @@ export default function ProjectsSection({ portfolioData }: ProjectsSectionProps)
             >
                 <div className="relative w-full h-56 overflow-hidden"> {/* Increased height */}
                 <Image
-                    src={project.imageUrl || `https://picsum.photos/seed/${project.id}/400/250`} // Fallback image
-                    alt={`${project.title} screenshot`}
+                    src={project.imageUrl}
+ alt={`${project.title} screenshot`} placeholder="blur" blurDataURL="/placeholder.png"
                     fill
                     style={{ objectFit: 'cover' }}
                     className="transition-transform duration-500 group-hover:scale-105"
