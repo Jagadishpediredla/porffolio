@@ -126,7 +126,7 @@ export default function Home() {
     { src: '/images/nielit.png', alt: 'NIELIT Logo' },
     { src: '/images/arm.png', alt: 'Arm Logo' },
     { src: '/images/texas.png', alt: 'Texas Instruments Logo' },
-    { src: '/images/scl.png', alt: 'SCL Logo' }, // Ensure this entry exists
+    { src: '/images/scl.png', alt: 'SCL Logo' }, // Corrected path
     { src: '/images/infosys.png', alt: 'Infosys Logo' },
   ];
 
@@ -291,4 +291,5 @@ export default function Home() {
     </div>
   );
 }
+
 
