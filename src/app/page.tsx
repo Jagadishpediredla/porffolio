@@ -1,80 +1,117 @@
+
 'use client';
 
-import type React from 'react'; // Import type for React
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import PersonalInfoTab from "@/components/personal-info-tab";
-import CertificationsTab from "@/components/certifications-tab";
-import ExperienceTab from "@/components/experience-tab"; // Contains both Experience and Education
-import ProjectsTab from "@/components/projects-tab";
-import AchievementsTab from "@/components/achievements-tab";
-import { User, Award, Briefcase, FolderGit2, CheckCircle } from "lucide-react"; // Import icons
-import { portfolioData } from '@/lib/portfolio-data'; // Import static data
+import type React from 'react';
+import { useState, useEffect } from 'react';
+import PersonalInfoSection from "@/components/personal-info-tab"; // Corrected path
+import CertificationsTab from "@/components/certifications-tab"; // Corrected import name and path
+import ExperienceSection from "@/components/experience-tab"; // Corrected path
+import ProjectsSection from "@/components/projects-tab"; // Corrected path
+import AchievementsTab from "@/components/achievements-tab"; // Renamed from AchievementsSection and corrected path
+import SkillsSection from "@/components/skills-section"; // New component
+import HeroSection from "@/components/hero-section"; // New component
+import Navbar from "@/components/navbar"; // New component
+import { portfolioData as staticData } from '@/lib/portfolio-data'; // Import static data
 import type { PortfolioData } from '@/lib/types'; // Import type
+import { Separator } from '@/components/ui/separator'; // Import Separator
 
 export default function Home() {
   // State to hold portfolio data, initialized with static data
-  // In a real app, you might fetch this data or use server props
-  const data: PortfolioData = portfolioData; // Using static data for now
+  const [portfolioData, setPortfolioData] = useState<PortfolioData | null>(null);
+  const [loading, setLoading] = useState(true);
 
-  // Use data from portfolioData or provide fallbacks
-  const tabsConfig = [
-    { value: "personal-info", label: "Personal Info", icon: User, Component: PersonalInfoTab },
-    { value: "experience", label: "Experience & Edu", icon: Briefcase, Component: ExperienceTab },
-    { value: "projects", label: "Projects", icon: FolderGit2, Component: ProjectsTab },
-    { value: "certifications", label: "Certifications", icon: CheckCircle, Component: CertificationsTab },
-    { value: "achievements", label: "Achievements", icon: Award, Component: AchievementsTab },
-  ];
+  useEffect(() => {
+    // Simulate fetching data or use static data directly
+    // In a real app with DB, you would fetch here
+    setPortfolioData(staticData);
+    setLoading(false);
+  }, []);
 
-  // Fallback name if not available in data
-  const headerName = data?.personalInfo?.name || "Persona Canvas";
+  if (loading || !portfolioData) {
+    // Optional: Add a loading spinner or skeleton screen here
+    return (
+        <div className="flex items-center justify-center min-h-screen">
+            <div className="animate-spin rounded-full h-16 w-16 border-t-2 border-b-2 border-primary"></div>
+        </div>
+    );
+  }
+
+  const sectionIds = {
+    home: "home",
+    about: "about",
+    experience: "experience",
+    projects: "projects",
+    certifications: "certifications",
+    achievements: "achievements",
+    skills: "skills",
+    contact: "contact", // Added contact ID
+  };
 
   return (
-    <main className="flex min-h-screen flex-col items-center p-4 md:p-12 lg:p-24 bg-background text-foreground transition-colors duration-300">
-      <header className="mb-12 text-center">
-        <h1 className="text-4xl md:text-5xl font-bold mb-2 bg-gradient-to-r from-primary via-teal-400 to-secondary bg-clip-text text-transparent drop-shadow-sm">
-          {headerName}
-        </h1>
-        <p className="text-lg text-muted-foreground">
-          My Personal Portfolio
-        </p>
-      </header>
+    <div className="flex flex-col min-h-screen bg-background text-foreground">
+      <Navbar sectionIds={sectionIds} />
 
-       {/* Adjusted main container padding and added bottom margin */}
-       <div className="w-full max-w-5xl mb-32"> {/* Increased bottom margin */}
-        <Tabs defaultValue="personal-info" className="w-full">
-          {/* Increased margin-bottom on TabsList */}
-          <TabsList className="grid w-full grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-2 mb-16 bg-muted/50 rounded-lg p-1 transition-all duration-300 ease-in-out "> {/* Increased mb, added sticky, z-index, backdrop-blur */}
-            {tabsConfig.map((tab) => (
-              <TabsTrigger
-                key={tab.value}
-                value={tab.value}
-                className="flex items-center justify-center gap-2 data-[state=active]:bg-primary data-[state=active]:text-primary-foreground data-[state=active]:shadow-md transition-all duration-300 ease-in-out rounded-md p-2 text-sm font-medium hover:bg-accent/80 hover:text-accent-foreground focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
-                aria-label={tab.label}
-              >
-                <tab.icon className="h-4 w-4" />
-                <span>{tab.label}</span>
-              </TabsTrigger>
-            ))}
-          </TabsList>
+      <main className="flex-grow pt-16 md:pt-20 lg:pt-24"> {/* Increased padding top for navbar */}
 
-          {/* Container for Tab Content - Added more margin top */}
-          <div className="mt-24"> {/* Increased mt for more space */}
-            {tabsConfig.map((tab) => (
-              <TabsContent
-                key={tab.value}
-                value={tab.value}
-                // Removed fixed minimum height to allow content to define its own height
-                className="animate-fade-in" // Added fade-in animation here as well
-                style={{ animationDelay: `0.2s`, animationFillMode: 'backwards' }} // Basic delay
-              >
-                {/* Pass portfolio data to each tab component */}
-                <tab.Component portfolioData={data} />
-              </TabsContent>
-            ))}
-          </div>
-        </Tabs>
-      </div>
-    </main>
+        {/* Hero Section */}
+        <section id={sectionIds.home} className="relative min-h-screen flex items-center justify-center text-center px-4 overflow-hidden">
+           <HeroSection personalInfo={portfolioData.personalInfo} />
+        </section>
+
+        {/* About Me Section (combines Personal Info) */}
+        <section id={sectionIds.about} className="py-16 md:py-24 px-4 md:px-12 lg:px-24 animate-fade-in-up">
+           <h2 className="text-3xl md:text-4xl font-bold text-center mb-12 text-primary">About Me</h2>
+           <PersonalInfoSection portfolioData={portfolioData} />
+        </section>
+
+        <Separator className="my-12 md:my-16 bg-border/20 max-w-4xl mx-auto" />
+
+         {/* Skills Section */}
+        <section id={sectionIds.skills} className="py-16 md:py-24 px-4 md:px-12 lg:px-24 bg-card/50 animate-fade-in-up">
+          <h2 className="text-3xl md:text-4xl font-bold text-center mb-12 text-primary">My Skills</h2>
+          <SkillsSection personalInfo={portfolioData.personalInfo} />
+        </section>
+
+        <Separator className="my-12 md:my-16 bg-border/20 max-w-4xl mx-auto" />
+
+
+        {/* Experience Section */}
+        <section id={sectionIds.experience} className="py-16 md:py-24 px-4 md:px-12 lg:px-24 animate-fade-in-up">
+          <h2 className="text-3xl md:text-4xl font-bold text-center mb-12 text-primary">Experience & Education</h2>
+          <ExperienceSection portfolioData={portfolioData} />
+        </section>
+
+        <Separator className="my-12 md:my-16 bg-border/20 max-w-4xl mx-auto" />
+
+        {/* Projects Section */}
+        <section id={sectionIds.projects} className="py-16 md:py-24 px-4 md:px-12 lg:px-24 bg-card/50 animate-fade-in-up">
+           <h2 className="text-3xl md:text-4xl font-bold text-center mb-12 text-primary">Projects</h2>
+          <ProjectsSection portfolioData={portfolioData} />
+        </section>
+
+        <Separator className="my-12 md:my-16 bg-border/20 max-w-4xl mx-auto" />
+
+        {/* Certifications Section */}
+        <section id={sectionIds.certifications} className="py-16 md:py-24 px-4 md:px-12 lg:px-24 animate-fade-in-up">
+           <h2 className="text-3xl md:text-4xl font-bold text-center mb-12 text-primary">Certifications</h2>
+          <CertificationsTab portfolioData={portfolioData} /> {/* Corrected component name */}
+        </section>
+
+        <Separator className="my-12 md:my-16 bg-border/20 max-w-4xl mx-auto" />
+
+        {/* Achievements Section */}
+        <section id={sectionIds.achievements} className="py-16 md:py-24 px-4 md:px-12 lg:px-24 bg-card/50 animate-fade-in-up mb-12 md:mb-16"> {/* Added margin bottom */}
+           <h2 className="text-3xl md:text-4xl font-bold text-center mb-12 text-primary">Achievements</h2>
+          <AchievementsTab portfolioData={portfolioData} /> {/* Use the correct component name */}
+        </section>
+
+        {/* Footer/Contact Placeholder - Can be linked from Navbar */}
+        <footer id={sectionIds.contact} className="py-8 text-center bg-muted text-muted-foreground mt-16">
+           <p>&copy; {new Date().getFullYear()} Venkata Jagadish Pediredla. All rights reserved.</p>
+           <p>A Personal Portfolio</p> {/* Updated tagline */}
+        </footer>
+
+      </main>
+    </div>
   );
 }
-

@@ -1,113 +1,113 @@
+
 'use client';
 
-import type React from 'react'; // Import type for React
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Briefcase, GraduationCap } from "lucide-react"; // Added GraduationCap
-import { Separator } from "./ui/separator";
+import type React from 'react';
+import { Briefcase, GraduationCap, Calendar, MapPin } from "lucide-react"; // Import icons
 import { Badge } from "./ui/badge";
-// Removed direct import of portfolioData
-import type { PortfolioData, Experience, Education } from '@/lib/types'; // Import types
+import type { PortfolioData, Experience, Education } from '@/lib/types';
 
-interface ExperienceTabProps {
+interface ExperienceSectionProps {
   portfolioData: PortfolioData;
 }
 
-export default function ExperienceTab({ portfolioData }: ExperienceTabProps) {
-  const experiences: Experience[] = portfolioData?.experience || []; // Use data from props
-  const education: Education[] = portfolioData?.education || []; // Use data from props
+export default function ExperienceSection({ portfolioData }: ExperienceSectionProps) {
+  const experiences: Experience[] = portfolioData?.experience || [];
+  const education: Education[] = portfolioData?.education || [];
+
+  const timelineItems = [
+    ...experiences.map(item => ({ ...item, type: 'experience' as const })),
+    ...education.map(item => ({ ...item, type: 'education' as const })),
+  ].sort((a, b) => {
+    // Sort primarily by end date (ongoing first), then by start date
+    const getYear = (item: Experience | Education) => {
+      if (item.type === 'experience') return item.duration.split(' - ')[1] || new Date().getFullYear().toString();
+      return item.graduationYear;
+    };
+    const endYearA = getYear(a);
+    const endYearB = getYear(b);
+    if (endYearA === 'Ongoing' && endYearB !== 'Ongoing') return -1;
+    if (endYearA !== 'Ongoing' && endYearB === 'Ongoing') return 1;
+    if (endYearA !== 'Ongoing' && endYearB !== 'Ongoing') {
+       const yearDiff = parseInt(endYearB) - parseInt(endYearA);
+       if (yearDiff !== 0) return yearDiff;
+    }
+    // Add secondary sort by start date/year if needed
+    return 0; // Basic sort for now
+  });
+
 
   return (
-    <Card className="w-full bg-card border border-border shadow-lg hover:shadow-xl transition-shadow duration-300 overflow-hidden animate-fade-in">
-      {/* Work Experience Section */}
-      <CardHeader className="pt-6">
-        <CardTitle className="text-2xl font-semibold flex items-center gap-2">
-           <Briefcase className="h-6 w-6 text-primary"/>
-           Work Experience / Internships
-        </CardTitle>
-         <CardDescription>My professional journey and key roles.</CardDescription>
-      </CardHeader>
-      <CardContent className="space-y-8">
-        {experiences.length > 0 ? (
-            experiences.map((exp, index) => (
+    <div className="w-full max-w-4xl mx-auto relative pl-8 md:pl-12">
+      {/* Vertical Timeline Line */}
+      <div className="absolute left-4 md:left-6 top-0 bottom-0 w-0.5 bg-border/50"></div>
+
+      {timelineItems.length > 0 ? (
+        <div className="space-y-12">
+          {timelineItems.map((item, index) => (
             <div
-                key={exp.id}
-                className="animate-fade-in"
-                style={{ animationDelay: `${0.1 + index * 0.1}s`, animationFillMode: 'backwards' }}
+              key={`${item.type}-${item.id}`}
+              className="relative animate-fade-in-up"
+               style={{ animationDelay: `${0.1 + index * 0.15}s`, animationFillMode: 'backwards' }}
             >
-                <div className="flex flex-col md:flex-row justify-between mb-2">
-                <h3 className="text-xl font-semibold text-foreground">{exp.title}</h3>
-                <span className="text-sm text-muted-foreground md:text-right mt-1 md:mt-0">{exp.duration}</span>
-                </div>
-                <div className="flex flex-col md:flex-row justify-between mb-3 text-muted-foreground">
-                <p className="font-medium">{exp.company}</p>
-                 {exp.location && <p className="text-sm">{exp.location}</p>}
-                </div>
-                {/* Split description into bullet points if possible */}
-                <div className="mb-4 text-base leading-relaxed text-muted-foreground"> {/* Changed CardDescription to div */}
-                 {exp.description.includes('.') ? (
-                    <ul className="list-disc list-inside space-y-1">
-                        {exp.description.split('. ').filter(s => s.trim()).map((point, i) => (
-                            <li key={i}>{point.trim()}{exp.description.includes('.') && i < exp.description.split('. ').filter(s => s.trim()).length - 1 ? '.' : ''}</li>
-                        ))}
-                    </ul>
-                 ) : (
-                    exp.description // Render as is if no periods
-                 )}
-                 </div>
-                {exp.skills && exp.skills.length > 0 && (
-                <div className="flex flex-wrap gap-2">
-                {exp.skills.map(skill => (
-                    <Badge key={skill} variant="outline" className="transition-transform duration-200 hover:scale-105">{skill}</Badge>
-                    ))}
-                </div>
-                )}
-                {index < experiences.length - 1 && <Separator className="my-8 bg-border/50" />}
-            </div>
-            ))
-        ) : (
-             <p className="text-muted-foreground text-center py-4">No work experience available.</p>
-        )}
+               {/* Timeline Dot */}
+               <div className="absolute left-[-1.1rem] md:left-[-1.6rem] top-1 h-4 w-4 rounded-full bg-primary border-2 border-background ring-2 ring-primary/50"></div>
 
-         {/* Separator between sections */}
-        {experiences.length > 0 && education.length > 0 && <Separator className="my-12 border-primary/30" />}
-
-        {/* Educational History Section */}
-        {education.length > 0 && (
-            <>
-                <CardHeader className="pt-0 px-0"> {/* Remove padding top */}
-                    <CardTitle className="text-2xl font-semibold flex items-center gap-2">
-                    <GraduationCap className="h-6 w-6 text-primary"/>
-                    Educational History
-                    </CardTitle>
-                     <CardDescription>My academic background.</CardDescription>
-                </CardHeader>
-                 <div className="space-y-8">
-                 {education.map((edu, index) => (
-                     <div
-                         key={edu.id}
-                         className="animate-fade-in"
-                         style={{ animationDelay: `${0.1 + (experiences.length + index) * 0.1}s`, animationFillMode: 'backwards' }} // Continue stagger
-                     >
-                         <div className="flex flex-col md:flex-row justify-between mb-2">
-                         <h3 className="text-xl font-semibold text-foreground">{edu.degree}</h3>
-                         <span className="text-sm text-muted-foreground md:text-right mt-1 md:mt-0">Graduated: {edu.graduationYear}</span>
+                {item.type === 'experience' ? (
+                    // Work Experience Card
+                    <div className="bg-card/60 backdrop-blur-sm p-6 rounded-lg border border-border/50 shadow-md hover:shadow-primary/10 transition-shadow duration-300">
+                        <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-2 gap-2">
+                            <h3 className="text-xl font-semibold text-foreground">{item.title}</h3>
+                             <div className="flex items-center gap-2 text-sm text-muted-foreground flex-shrink-0">
+                               <Calendar className="h-4 w-4"/>
+                               <span>{item.duration}</span>
+                             </div>
+                        </div>
+                        <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-3 text-muted-foreground gap-2">
+                            <p className="font-medium flex items-center gap-1"><Briefcase className="h-4 w-4"/> {item.company}</p>
+                            {item.location && <p className="text-sm flex items-center gap-1"><MapPin className="h-4 w-4"/> {item.location}</p>}
+                        </div>
+                        <div className="mb-4 text-base leading-relaxed text-muted-foreground">
+                            {item.description.includes('.') ? (
+                                <ul className="list-disc list-outside space-y-1 pl-5">
+                                    {item.description.split('. ').filter(s => s.trim()).map((point, i) => (
+                                        <li key={i}>{point.trim()}{item.description.includes('.') && i < item.description.split('. ').filter(s => s.trim()).length - 1 ? '.' : ''}</li>
+                                    ))}
+                                </ul>
+                            ) : (
+                                <p>{item.description}</p> // Render as paragraph if no periods
+                            )}
+                        </div>
+                        {item.skills && item.skills.length > 0 && (
+                            <div className="flex flex-wrap gap-2">
+                                {item.skills.map(skill => (
+                                    <Badge key={skill} variant="secondary" className="transition-transform duration-200 hover:scale-105 text-sm px-3 py-1">{skill}</Badge>
+                                ))}
+                            </div>
+                        )}
+                    </div>
+                ) : (
+                    // Education Card
+                     <div className="bg-card/60 backdrop-blur-sm p-6 rounded-lg border border-border/50 shadow-md hover:shadow-primary/10 transition-shadow duration-300">
+                         <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-2 gap-2">
+                             <h3 className="text-xl font-semibold text-foreground">{item.degree}</h3>
+                              <div className="flex items-center gap-2 text-sm text-muted-foreground flex-shrink-0">
+                               <Calendar className="h-4 w-4"/>
+                               <span>Graduated: {item.graduationYear}</span>
+                              </div>
                          </div>
-                         <div className="flex flex-col md:flex-row justify-between mb-3 text-muted-foreground">
-                         <p className="font-medium">{edu.institution}</p>
-                         {edu.location && <p className="text-sm">{edu.location}</p>}
+                         <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-3 text-muted-foreground gap-2">
+                             <p className="font-medium flex items-center gap-1"><GraduationCap className="h-4 w-4"/> {item.institution}</p>
+                            {item.location && <p className="text-sm flex items-center gap-1"><MapPin className="h-4 w-4"/> {item.location}</p>}
                          </div>
-                         <p className="text-base leading-relaxed">Aggregate: {edu.aggregate}</p>
-                         {index < education.length - 1 && <Separator className="my-8 bg-border/50" />}
+                         <p className="text-base leading-relaxed font-medium text-foreground">Aggregate: <Badge variant="outline">{item.aggregate}</Badge></p>
                      </div>
-                     ))}
-                 </div>
-            </>
-        )}
-        {education.length === 0 && (
-             <p className="text-muted-foreground text-center py-4">No educational history available.</p>
-        )}
-
-      </CardContent>
-    </Card>
+                )}
+            </div>
+          ))}
+        </div>
+      ) : (
+        <p className="text-muted-foreground text-center py-4">No experience or education available.</p>
+      )}
+    </div>
   );
 }

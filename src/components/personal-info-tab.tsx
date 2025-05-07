@@ -1,17 +1,17 @@
 
 'use client';
 
-import type React from 'react'; // Import type for React
+import type React from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { Github, Linkedin, Mail, MapPin, Code, Zap, Smile, Languages, Phone } from "lucide-react"; // Added Phone icon
+import { Github, Linkedin, Mail, MapPin, Code, Zap, Smile, Languages, Phone, FileText } from "lucide-react"; // Added FileText for CV
 import { Button } from "./ui/button";
 import Link from 'next/link';
-import { Badge } from "@/components/ui/badge"; // Import Badge
-import { Separator } from "@/components/ui/separator"; // Import Separator
-import type { PortfolioData, PersonalInfo } from '@/lib/types'; // Import types
+import { Badge } from "@/components/ui/badge";
+import { Separator } from "@/components/ui/separator";
+import type { PortfolioData, PersonalInfo } from '@/lib/types';
 
-interface PersonalInfoTabProps {
+interface PersonalInfoSectionProps {
   portfolioData: PortfolioData;
 }
 
@@ -23,10 +23,9 @@ const WhatsAppIcon = () => (
 );
 
 
-export default function PersonalInfoTab({ portfolioData }: PersonalInfoTabProps) {
-  const personalInfo: PersonalInfo | undefined = portfolioData?.personalInfo; // Use data from props
+export default function PersonalInfoSection({ portfolioData }: PersonalInfoSectionProps) {
+  const personalInfo: PersonalInfo | undefined = portfolioData?.personalInfo;
 
-  // Calculate fallback initials dynamically
   const getFallbackInitials = (name: string | undefined): string => {
     if (!name) return DEFAULT_FALLBACK;
     const nameParts = name.split(' ');
@@ -40,151 +39,89 @@ export default function PersonalInfoTab({ portfolioData }: PersonalInfoTabProps)
 
   const fallbackInitials = getFallbackInitials(personalInfo?.name);
 
+  // Basic loading state - Consider a more elaborate skeleton if needed
   if (!personalInfo) {
-    // Render a loading state or a message indicating data is unavailable
-    return (
-      <Card className="w-full bg-card border border-border shadow-lg overflow-hidden animate-pulse"> {/* Basic pulse animation */}
-        <CardHeader className="text-center pt-8">
-           <div className="mx-auto h-24 w-24 mb-4 rounded-full bg-muted"></div>
-           <div className="h-8 bg-muted rounded w-3/4 mx-auto"></div>
-           <div className="h-4 bg-muted rounded w-1/2 mx-auto mt-2"></div>
-        </CardHeader>
-        <CardContent className="space-y-8 text-center pb-8 px-4 md:px-8">
-           {/* Placeholder sections */}
-           <div className="h-4 bg-muted rounded w-full"></div>
-           <Separator className="my-6" />
-           <div className="h-4 bg-muted rounded w-3/4 mx-auto"></div>
-           <Separator className="my-6" />
-           <div className="flex justify-center space-x-4 pt-4">
-              <div className="h-10 w-10 bg-muted rounded-md"></div>
-              <div className="h-10 w-10 bg-muted rounded-md"></div>
-           </div>
-           {/* Add more skeleton placeholders as needed */}
-        </CardContent>
-      </Card>
-    );
+    return <div className="text-center text-muted-foreground">Loading personal information...</div>;
   }
 
-
   return (
-    <Card className="w-full bg-card border border-border shadow-lg hover:shadow-xl transition-shadow duration-300 overflow-hidden animate-fade-in">
-      <CardHeader className="text-center pt-8">
-        <Avatar className="mx-auto h-24 w-24 mb-4 ring-2 ring-primary ring-offset-4 ring-offset-background transform transition-transform duration-300 hover:scale-105">
-          <AvatarImage src={personalInfo.profilePictureUrl || "https://picsum.photos/200/200"} alt="Profile Picture" data-ai-hint="person profile" />
+    // Use grid layout for better alignment like the mockup
+    <div className="grid grid-cols-1 md:grid-cols-3 gap-12 items-start max-w-6xl mx-auto">
+
+      {/* Profile Picture Column */}
+      <div className="flex flex-col items-center md:items-start md:col-span-1">
+        <Avatar className="h-48 w-48 md:h-64 md:w-64 mb-6 ring-4 ring-primary/50 ring-offset-4 ring-offset-background shadow-lg">
+          <AvatarImage src={personalInfo.profilePictureUrl || `https://picsum.photos/seed/${personalInfo.name}/300/300`} alt="Profile Picture" data-ai-hint="person profile professional" />
           <AvatarFallback>{fallbackInitials}</AvatarFallback>
         </Avatar>
-        <CardTitle className="text-3xl font-semibold">{personalInfo.name}</CardTitle>
-        <p className="text-primary font-medium">{personalInfo.title}</p>
-      </CardHeader>
-      <CardContent className="space-y-8 text-center pb-8 px-4 md:px-8"> {/* Increased spacing and padding */}
-        {/* Objective Section */}
-        <section aria-labelledby="objective-title">
-            <h2 id="objective-title" className="text-xl font-semibold mb-3 text-foreground">Objective</h2>
-            <p className="text-muted-foreground leading-relaxed max-w-2xl mx-auto text-left md:text-center">
-                {personalInfo.objective}
-            </p>
-        </section>
+         {/* Download CV Button */}
+        <Button variant="default" size="lg" className="mt-4 btn-textured w-full md:w-auto" asChild>
+           {/* Replace '#' with the actual path to the CV */}
+           <Link href="#" target="_blank" rel="noopener noreferrer" aria-label="Download CV">
+             <FileText className="mr-2 h-5 w-5" /> Download CV
+           </Link>
+         </Button>
+      </div>
 
-        <Separator className="my-6" />
+      {/* Info Column */}
+      <div className="md:col-span-2 space-y-6">
+        <h3 className="text-3xl font-bold text-foreground mb-1">Hi There! I'm {personalInfo.name}</h3>
+        <p className="text-xl text-primary font-semibold mb-4">{personalInfo.title}</p>
 
-        {/* Contact & Location Section */}
-         <section aria-labelledby="contact-location-title" className="flex flex-col md:flex-row justify-center items-center gap-y-4 md:gap-x-8 text-muted-foreground">
-             <h2 id="contact-location-title" className="sr-only">Contact and Location</h2>
-             <div className="flex items-center space-x-2">
-                 <MapPin className="h-4 w-4" />
-                 {/* Updated to use the new location format */}
-                 <span>{personalInfo.location || 'Location not specified'}</span>
-             </div>
-             {/* Moved Contact Text Here */}
-             <div className="flex items-center space-x-2">
-                  <Mail className="h-4 w-4" />
-                  <a href={`mailto:${personalInfo.email}`} className="hover:text-primary transition-colors duration-200">{personalInfo.email}</a>
-              </div>
-              <div className="flex items-center space-x-2">
-                 {/* Using generic Phone icon here */}
-                 <Phone className="h-4 w-4" />
-                 <a href={`tel:${personalInfo.phone.replace(/\D/g, '')}`} className="hover:text-primary transition-colors duration-200">{personalInfo.phone}</a>
-             </div>
-         </section>
+        {/* Objective/Bio */}
+        <p className="text-muted-foreground leading-relaxed text-lg mb-6">
+            {personalInfo.objective}
+        </p>
 
-        <Separator className="my-6" />
-
-        {/* Social Links Section */}
-        <section aria-labelledby="social-links-title" className="flex justify-center space-x-4 pt-4">
-          <h2 id="social-links-title" className="sr-only">Social Links</h2>
-          <Button variant="outline" size="icon" asChild className="hover:bg-accent hover:text-accent-foreground transition-all duration-200 hover:scale-110 hover:shadow-md focus:scale-110 focus:shadow-md">
-            <Link href={personalInfo.github || '#'} target="_blank" rel="noopener noreferrer" aria-label="GitHub Profile">
-              <Github className="h-5 w-5" />
-            </Link>
-          </Button>
-          <Button variant="outline" size="icon" asChild className="hover:bg-accent hover:text-accent-foreground transition-all duration-200 hover:scale-110 hover:shadow-md focus:scale-110 focus:shadow-md">
-            <Link href={personalInfo.linkedin || '#'} target="_blank" rel="noopener noreferrer" aria-label="LinkedIn Profile">
-              <Linkedin className="h-5 w-5" />
-            </Link>
-          </Button>
-           <Button variant="outline" size="icon" asChild className="hover:bg-accent hover:text-accent-foreground transition-all duration-200 hover:scale-110 hover:shadow-md focus:scale-110 focus:shadow-md">
-            <a href={`mailto:${personalInfo.email}`} aria-label="Send Email">
-              <Mail className="h-5 w-5" />
-            </a>
-          </Button>
-          <Button variant="outline" size="icon" asChild className="hover:bg-accent hover:text-accent-foreground transition-all duration-200 hover:scale-110 hover:shadow-md focus:scale-110 focus:shadow-md">
-             {/* Assuming phone number is suitable for WhatsApp */}
-            <a href={`https://wa.me/${personalInfo.phone.replace(/\D/g, '')}`} target="_blank" rel="noopener noreferrer" aria-label="WhatsApp Chat">
-               <WhatsAppIcon />
-            </a>
-          </Button>
-        </section>
+        {/* Detailed Info List */}
+        <ul className="space-y-3 text-lg text-muted-foreground mb-8">
+            <li className="flex items-center">
+                <span className="font-semibold text-foreground w-24 shrink-0">Location:</span>
+                <span>{personalInfo.location}</span>
+            </li>
+            <li className="flex items-center">
+               <span className="font-semibold text-foreground w-24 shrink-0">Email:</span>
+               <a href={`mailto:${personalInfo.email}`} className="hover:text-primary transition-colors duration-200 break-all">{personalInfo.email}</a>
+           </li>
+           <li className="flex items-center">
+                <span className="font-semibold text-foreground w-24 shrink-0">Phone:</span>
+                <a href={`tel:${personalInfo.phone.replace(/\D/g, '')}`} className="hover:text-primary transition-colors duration-200">{personalInfo.phone}</a>
+            </li>
+             <li className="flex items-center">
+                <span className="font-semibold text-foreground w-24 shrink-0">Languages:</span>
+                 <span>{personalInfo.languages?.join(', ')}</span>
+            </li>
+             {/* Add other relevant info like Birthday, Freelance availability if present in data */}
+        </ul>
 
 
-         <Separator className="my-6" />
+        {/* Social Links */}
+        <div className="flex space-x-4">
+            <Button variant="outline" size="icon" asChild className="hover:bg-accent hover:text-accent-foreground transition-all duration-200 hover:scale-110 focus:scale-110 border-primary/30 hover:border-primary">
+              <Link href={personalInfo.github || '#'} target="_blank" rel="noopener noreferrer" aria-label="GitHub Profile">
+                <Github className="h-5 w-5" />
+              </Link>
+            </Button>
+            <Button variant="outline" size="icon" asChild className="hover:bg-accent hover:text-accent-foreground transition-all duration-200 hover:scale-110 focus:scale-110 border-primary/30 hover:border-primary">
+              <Link href={personalInfo.linkedin || '#'} target="_blank" rel="noopener noreferrer" aria-label="LinkedIn Profile">
+                <Linkedin className="h-5 w-5" />
+              </Link>
+            </Button>
+             <Button variant="outline" size="icon" asChild className="hover:bg-accent hover:text-accent-foreground transition-all duration-200 hover:scale-110 focus:scale-110 border-primary/30 hover:border-primary">
+              <a href={`mailto:${personalInfo.email}`} aria-label="Send Email">
+                <Mail className="h-5 w-5" />
+              </a>
+            </Button>
+             <Button variant="outline" size="icon" asChild className="hover:bg-accent hover:text-accent-foreground transition-all duration-200 hover:scale-110 focus:scale-110 border-primary/30 hover:border-primary">
+               {/* Assuming phone number is suitable for WhatsApp */}
+              <a href={`https://wa.me/${personalInfo.phone.replace(/\D/g, '')}`} target="_blank" rel="noopener noreferrer" aria-label="WhatsApp Chat">
+                 <WhatsAppIcon />
+              </a>
+            </Button>
+          </div>
 
-         {/* Technical Skills Section */}
-         <section aria-labelledby="tech-skills-title">
-           <h2 id="tech-skills-title" className="text-xl font-semibold mb-4 flex items-center justify-center gap-2 text-foreground"><Code className="h-5 w-5 text-primary"/> Technical Skills</h2>
-           <div className="flex flex-wrap justify-center gap-2">
-             {personalInfo.technicalSkills?.map((skill) => (
-               <Badge key={skill} variant="secondary" className="transition-transform duration-200 hover:scale-105 text-sm px-3 py-1">{skill}</Badge>
-             ))}
-           </div>
-         </section>
-
-         <Separator className="my-6" />
-
-         {/* Soft Skills Section */}
-         <section aria-labelledby="soft-skills-title">
-           <h2 id="soft-skills-title" className="text-xl font-semibold mb-4 flex items-center justify-center gap-2 text-foreground"><Zap className="h-5 w-5 text-primary"/> Soft Skills</h2>
-           <div className="flex flex-wrap justify-center gap-2">
-             {personalInfo.softSkills?.map((skill) => (
-               <Badge key={skill} variant="outline" className="transition-transform duration-200 hover:scale-105 text-sm px-3 py-1">{skill}</Badge>
-             ))}
-           </div>
-         </section>
-
-        <Separator className="my-6" />
-
-        {/* Hobbies Section */}
-         <section aria-labelledby="hobbies-title">
-             <h2 id="hobbies-title" className="text-xl font-semibold mb-4 flex items-center justify-center gap-2 text-foreground"><Smile className="h-5 w-5 text-primary"/> Hobbies</h2>
-             <div className="flex flex-wrap justify-center gap-2">
-             {personalInfo.hobbies?.map((hobby) => (
-                 <Badge key={hobby} variant="secondary" className="transition-transform duration-200 hover:scale-105 text-sm px-3 py-1">{hobby}</Badge>
-             ))}
-             </div>
-         </section>
-
-         <Separator className="my-6" />
-
-         {/* Languages Section */}
-         <section aria-labelledby="languages-title">
-           <h2 id="languages-title" className="text-xl font-semibold mb-4 flex items-center justify-center gap-2 text-foreground"><Languages className="h-5 w-5 text-primary"/> Languages</h2>
-           <div className="flex flex-wrap justify-center gap-2">
-             {personalInfo.languages?.map((lang) => (
-               <Badge key={lang} variant="outline" className="transition-transform duration-200 hover:scale-105 text-sm px-3 py-1">{lang}</Badge>
-             ))}
-           </div>
-         </section>
-
-      </CardContent>
-    </Card>
+      </div>
+      {/* Removed Skills/Hobbies/Languages from here, suggest moving to separate Skills section */}
+    </div>
   );
 }
