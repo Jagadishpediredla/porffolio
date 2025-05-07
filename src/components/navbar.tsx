@@ -5,14 +5,7 @@ import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { Button } from './ui/button';
 import { Menu, X } from 'lucide-react'; // Keep Menu and X for mobile toggle
-import HomeCustomIcon from './icons/HomeCustomIcon';
-import UserCustomIcon from './icons/UserCustomIcon';
-import SkillsCustomIcon from './icons/SkillsCustomIcon';
-import ExperienceCustomIcon from './icons/ExperienceCustomIcon';
-import ProjectsCustomIcon from './icons/ProjectsCustomIcon';
-import CertificationsCustomIcon from './icons/CertificationsCustomIcon';
-import AchievementsCustomIcon from './icons/AchievementsCustomIcon';
-import MailCustomIcon from './icons/MailCustomIcon'; // For Contact
+// Icons for sections have been removed as per user request
 
 interface NavbarProps {
   sectionIds: { [key: string]: string };
@@ -42,14 +35,14 @@ const Navbar: React.FC<NavbarProps> = ({ sectionIds, onNavLinkClick, activeSecti
   };
 
   const navLinks = [
-    { label: 'Home', id: sectionIds.home, icon: <HomeCustomIcon className="mr-2 h-5 w-5" /> },
-    { label: 'About', id: sectionIds.about, icon: <UserCustomIcon className="mr-2 h-5 w-5" /> },
-    { label: 'Skills', id: sectionIds.skills, icon: <SkillsCustomIcon className="mr-2 h-5 w-5" /> },
-    { label: 'Experience', id: sectionIds.experience, icon: <ExperienceCustomIcon className="mr-2 h-5 w-5" /> },
-    { label: 'Projects', id: sectionIds.projects, icon: <ProjectsCustomIcon className="mr-2 h-5 w-5" /> },
-    { label: 'Certifications', id: sectionIds.certifications, fullLabel: 'Certifications', icon: <CertificationsCustomIcon className="mr-2 h-5 w-5" /> },
-    { label: 'Achievements', id: sectionIds.achievements, icon: <AchievementsCustomIcon className="mr-2 h-5 w-5" /> },
-    { label: 'Contact', id: sectionIds.contact, icon: <MailCustomIcon className="mr-2 h-5 w-5" /> },
+    { label: 'Home', id: sectionIds.home },
+    { label: 'About', id: sectionIds.about },
+    { label: 'Skills', id: sectionIds.skills },
+    { label: 'Experience', id: sectionIds.experience },
+    { label: 'Projects', id: sectionIds.projects },
+    { label: 'Certifications', id: sectionIds.certifications, fullLabel: 'Certifications' },
+    { label: 'Achievements', id: sectionIds.achievements },
+    { label: 'Contact', id: sectionIds.contact },
   ];
 
   return (
@@ -81,7 +74,7 @@ const Navbar: React.FC<NavbarProps> = ({ sectionIds, onNavLinkClick, activeSecti
                   aria-current={activeSectionId === link.id ? 'page' : undefined}
                   asChild={false} // Ensure it's a button for onClick to work directly
                 >
-                  {link.icon}
+                  {/* Icon removed from here */}
                   {link.label}
                 </Button>
               ))}
@@ -118,7 +111,7 @@ const Navbar: React.FC<NavbarProps> = ({ sectionIds, onNavLinkClick, activeSecti
                 aria-current={activeSectionId === link.id ? 'page' : undefined}
                 asChild={false}
               >
-                {link.icon}
+                {/* Icon removed from here */}
                 {link.fullLabel || link.label}
               </Button>
             ))}
