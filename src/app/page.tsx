@@ -151,7 +151,7 @@ export default function Home() {
          <div className="w-full max-w-6xl mx-auto z-10">
            {/* Removed conditional animation class here */}
            <HeroSection personalInfo={portfolioData.personalInfo} />
-
+ 
            {/* Removed conditional animation class from outer container */}
            <div className="mt-12 md:mt-16">
              <h2 className="text-2xl md:text-3xl font-bold text-primary mb-8 md:mb-10">Portfolio Snapshot</h2>

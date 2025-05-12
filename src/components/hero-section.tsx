@@ -21,8 +21,8 @@ export default function HeroSection({ personalInfo }: HeroSectionProps) {
       <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-4 text-center leading-tight">
         Hi, I am <span className="text-primary">{personalInfo.name}</span>
       </h1>
-      <p className="text-xl md:text-2xl text-muted-foreground mb-6 text-center leading-relaxed">
-         {personalInfo.title}.
+      <p className="text-xl md:text-2xl text-muted-foreground mb-6 text-center leading-relaxed" data-ai-key="hero-tagline">
+         Showcasing my Portfolio.
       </p>
       {/* Displaying the objective */}
       <p className="text-md md:text-lg lg:text-xl text-muted-foreground/90 mb-8 max-w-3xl text-center leading-relaxed md:leading-loose">
